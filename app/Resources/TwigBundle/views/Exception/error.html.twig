@@ -1,0 +1,21 @@
+{% extends 'WebBundle:Layout:app.html.twig' %}
+
+{% block title %}{{ 'error.title.other'|trans }}{% endblock %}
+
+{% block body %}
+    <div id="container" class="container">
+        <div class="block block-exception">
+            <h1 class="block-title">{{ 'error.title.other'|trans }}</h1>
+
+            <p class="block-content">{{ 'error.info.other'|trans({'%support_mail%': incenteev_support_mail}) }}</p>
+
+            <ul class="list list-actions right">
+                <li>
+                    <a href="{{ path('showcase_home') }}" class="btn button-info">
+                        {{ 'layout.action.go_to_app'|trans }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

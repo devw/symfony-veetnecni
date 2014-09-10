@@ -1,0 +1,44 @@
+// ------------------------------
+// Widget Module
+// ------------------------------
+
+
+// Core
+// -------------------------
+.widget {
+    .border-radius(4px);
+    background-color: @widgetBackgroundColor;
+    margin-bottom: 20px;
+
+    > .widget-title {
+        margin-bottom: @normalFontSize;
+        margin-top: 0;
+    }
+}
+
+
+// Menu Widget
+// -------------------------
+.widget-menu {
+    li:first-child > a {
+        .border-top-left-radius(4px);
+        .border-top-right-radius(4px);
+    }
+
+    li:last-child > a {
+        .border-bottom-left-radius(4px);
+        .border-bottom-right-radius(4px);
+    }
+}
+
+
+// Feedback Widget
+// -------------------------
+.widget-feedback {
+    padding: @normalFontSize;
+    padding-top: 7px;
+
+    .btn {
+        text-align: center;
+    }
+}

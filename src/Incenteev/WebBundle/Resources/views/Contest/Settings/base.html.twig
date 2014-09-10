@@ -1,0 +1,108 @@
+{% extends 'WebBundle:Layout:app.html.twig' %}
+
+{% set contest_styles = contest.styles %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% set background_url = get_background(contest) %}
+
+    <style type="text/css">
+        body {
+            {% if contest_styles.background_color|default(null) is not null %}
+                background-color: {{ contest_styles.background_color }};
+                background-image: none;
+            {% endif %}
+
+            {% if background_url is not null %}
+                background-image: url('{{ background_url }}');
+            {% endif %}
+        }
+    </style>
+{% endblock %}
+
+{% block body_background_position %}
+{% if contest_styles.background_position|default(null) is not null %}background-{{ contest_styles.background_position }}{% endif %}
+{% endblock %}
+
+{% block body_background_repeat %}
+{% if contest_styles.background_repeat|default(false) %} background-repeat{% endif %}
+{% endblock %}
+
+{% block container_overlay %}
+{% if contest_styles.overlay|default(null) is not null %} overlay-{{ contest_styles.overlay }}{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <aside class="span4">
+        <div class="widget">
+            <div class="media profile profile-user">
+                <a href="{{ path('profile_show') }}" class="profile-user-avatar">
+                    <img src="{{ get_avatar(app.user) }}" alt="">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <a href="{{ path('profile_show') }}" class="profile-user-name">{{ app.user.firstName }}</a>
+                    </h4>
+                </div>
+            </div>
+            {# TODO - Uncommented this as soon as we have the data available
+                <table class="stats">
+                    <tbody>
+                        <tr>
+                            <td rowspan="2">
+                                <p class="stats-item">
+                                    <strong>
+                                        1<sup>st</sup>
+                                    </strong>
+                                    {{ 'contest_show.stats.position'|trans }}
+                                </p>
+                            </td>
+                            <td>
+                                <p class="stats-item">
+                                    <strong>1 500 000</strong>
+                                    {{ contest.dataName }} ({{ contest.unit }})
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="stats-item">
+                                    <strong>23</strong>
+                                    {{ 'contest_show.stats.remaining_days'|trans }}
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            #}
+        </div>
+
+        <div class="widget">
+            <nav class="menu menu-sidebar">
+                {% set menu = knp_menu_get('WebBundle:MenuBuilder:contestMenu', [], {'contest': contest}) %}
+
+                {{ knp_menu_render(menu, {'currentAsLink': false, 'currentClass' : 'active', 'template': 'WebBundle:Menu:app.html.twig'}) }}
+            </nav>
+        </div>
+        <div class="widget widget-feedback">
+            {{ block('footer_content') }}
+        </div>
+    </aside>
+    <div class="span8">
+        <div class="block block-app">
+            <div class="block-app-container">
+                <div class="block-app-content">
+                    <h1 class="block-app-title">
+                        {% block edit_title %}{% endblock edit_title %}
+                        <small>{% block edit_subtitle %}{% endblock %}</small>
+                    </h1>
+                    {% block edit_content %}{% endblock edit_content %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

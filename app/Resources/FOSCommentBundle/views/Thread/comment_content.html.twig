@@ -1,0 +1,98 @@
+{#
+
+ This file is part of the FOSCommentBundle package.
+
+ (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+
+ This source file is subject to the MIT license that is bundled
+ with this source code in the file LICENSE.
+
+#}
+
+{% block fos_comment_comment %}
+<article id="fos_comment_{{ comment.id }}" class="fos_comment_comment_show fos_comment_comment_depth_{{ depth }} comment{% if depth == 0 %} comment-main{% endif %} {% if comment.author is sameas(app.user) %} comment-own{% endif %}" {% if parentId is defined %}data-parent="{{ parentId }}"{% endif %}>
+
+    <div class="comment-message media">
+        <div class="comment-author pull-left">
+            <img src="{{ get_avatar(comment.author) }}" alt="" class="comment-author-avatar media-object" title="{{ comment.author.name }}" />
+        </div>
+        <div class="fos_comment_comment_body media-body comment-container">
+            {% block fos_comment_comment_metas_authorline %}
+                <p class="comment-author-name">
+                    {% if comment is fos_comment_in_state(constant('FOS\\CommentBundle\\Model\\CommentInterface::STATE_DELETED')) %}
+                        <del>{{ comment.authorName }}</del>
+                    {% else %}
+                        {{ comment.authorName }}
+                    {% endif %}
+                </p>
+            {% endblock fos_comment_comment_metas_authorline %}
+
+            <div class="comment-content">
+                {% block fos_comment_comment_body %}
+                    {% if comment is fos_comment_in_state(constant('FOS\\CommentBundle\\Model\\CommentInterface::STATE_DELETED')) %}
+                        <span class="comment-content is-deleted">{% trans from 'FOSCommentBundle' %}fos_comment_comment_deleted{% endtrans %}</span>
+                    {% else %}
+                        {% if comment is fos_comment_raw %}
+                            {{ comment.rawBody | raw }}
+                        {% else %}
+                            {{ comment.body | nl2br }}
+                        {% endif %}
+                    {% endif %}
+                {% endblock fos_comment_comment_body %}
+            </div>
+
+            <footer class="comment-metas">
+                {% block fos_comment_comment_metas %}
+                    <time datetime="{{ comment.createdAt|date(constant('DATE_W3C')) }}">{{ comment.createdAt|date }}</time>
+                    {% block fos_comment_comment_metas_edit %}
+                        {% if fos_comment_can_edit_comment(comment) %}
+                            · <a data-url="{{ url("fos_comment_edit_thread_comment", {"id": comment.thread.id, "commentId": comment.id}) }}" class="fos_comment_comment_edit_show_form comment-meta-link">{% trans from 'FOSCommentBundle' %}fos_comment_comment_edit{% endtrans %}</a>
+                        {% endif %}
+                    {% endblock fos_comment_comment_metas_edit %}
+
+                    {% block fos_comment_comment_metas_delete %}
+                        {% if fos_comment_can_delete_comment(comment) %}
+                            {% if comment is fos_comment_in_state(constant('FOS\\CommentBundle\\Model\\CommentInterface::STATE_DELETED')) %}
+                                {# undelete #}
+                                · <a data-url="{{ url("fos_comment_remove_thread_comment", {"id": comment.thread.id, "commentId": comment.id, "value": constant('FOS\\CommentBundle\\Model\\CommentInterface::STATE_VISIBLE') }) }}" class="fos_comment_comment_remove comment-meta-link">
+                                    {% trans from 'FOSCommentBundle' %}fos_comment_comment_undelete{% endtrans %}
+                                </a>
+                            {% else %}
+                                {# delete #}
+                                · <a data-url="{{ url("fos_comment_remove_thread_comment", {"id": comment.thread.id, "commentId": comment.id, "value":  constant('FOS\\CommentBundle\\Model\\CommentInterface::STATE_DELETED')}) }}" class="fos_comment_comment_remove comment-meta-link">
+                                    {% trans from 'FOSCommentBundle' %}fos_comment_comment_delete{% endtrans %}
+                                </a>
+                            {% endif %}
+                        {% endif %}
+                    {% endblock fos_comment_comment_metas_delete %}
+                {% endblock fos_comment_comment_metas %}
+
+                {% if view is not sameas('flat') and fos_comment_can_comment(comment) %}
+                    <div class="fos_comment_comment_reply comment-reply">
+                        {% block fos_comment_comment_reply %}
+                            · <a data-url="{{ url('fos_comment_new_thread_comments', {"id": comment.thread.id}) }}" data-name="{{ comment.authorName }}"
+                            data-parent-id="{{ comment.id }}" class="fos_comment_comment_reply_show_form comment-meta-link btn-link">
+                                {% trans from 'FOSCommentBundle' %}fos_comment_comment_show_reply{% endtrans %}
+                            </a>
+                        {% endblock fos_comment_comment_reply %}
+                    </div>
+                {% endif %}
+            </footer>
+        </div>
+    </div>
+
+    {% block fos_comment_comment_children %}
+        {% if view is not sameas('flat') %}
+            <div class="fos_comment_comment_replies comment-reply">
+                {% if children is defined %}
+                    {% include "FOSCommentBundle:Thread:comments.html.twig" with { "comments": children, "depth": depth + 1, "parentId": comment.id, "view": view } %}
+                {% endif %}
+
+            </div>
+        {% elseif view is sameas('flat') and children is defined %}
+            {% include "FOSCommentBundle:Thread:comments.html.twig" with { "comments": children, "depth": depth + 1, "parentId": comment.id, "view": view } %}
+        {% endif %}
+    {% endblock fos_comment_comment_children %}
+
+</article>
+{% endblock fos_comment_comment %}

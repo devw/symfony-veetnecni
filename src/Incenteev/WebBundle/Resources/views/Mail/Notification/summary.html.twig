@@ -1,0 +1,190 @@
+{# Mail sent when inviting new users to a contest #}
+
+{% block subject %}
+{% autoescape false %}
+    {{ 'mail.summary.subject'|trans({'%user_name%': recipient.firstName, '%contest_name%': contest.name}) }}
+{% endautoescape %}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+{% if contest.summaryText is not null %}
+    {{ contest.summaryText|replace({'%user_name%': recipient.firstName, '%contest_name%': contest.name}) }}
+{% else %}
+    {{ 'mail.summary.content'|trans({'%user_name%': recipient.firstName, '%contest_name%': contest.name}) }}
+{% endif %}
+
+{# Ranking #}
+    #{{ 'mail.summary.title.board'|trans }}
+{% for item in board %}
+    {{ loop.index }} - {{ item.participation.user.name }} ({{ item.score|float_val }})
+{% else %}
+    {{ 'mail.summary.info.no_participants'|trans }}
+{% endfor %}
+
+    #{{ 'mail.summary.title.top_messages'|trans }}
+{% if top_messages is not empty %}
+{% for comment in top_messages %}
+    {{ comment.authorName }}
+    {{ comment.body }}
+{% endfor %}
+{% else %}
+    {{ 'mail.summary.info.no_message'|trans }}
+{% endif %}
+
+{# We add more data in the mail if the user is a contest owner #}
+{% if contest.hasOwner(recipient) %}
+
+{# Pending Users #}
+{% if pending_users is not empty %}
+    #{{ 'mail.summary.pending_users'|trans }}
+{% for item in pending_users %}
+    * {{ item.user.name }}
+{% endfor %}
+{% endif %}
+
+{# People that have not updated their results #}
+{% if not_updated_users is not empty %}
+    #{{ 'mail.summary.not_updated_users'|trans }}
+{% for item in not_updated_users %}
+    * {{ item.user.name }}
+{% endfor %}
+    {{ url('contest_data_show_results', {'id': contest.id}) }}
+{% endif %}
+{% endif %}
+
+    {{ url('contest_show', {'id': contest.id}) }}
+{% endautoescape %}
+{% endblock %}
+
+{% block body_html %}
+{% embed "WebBundle:Mail:layout.html.twig" %}
+
+    {% set background_url = get_background(contest)|default(null) %}
+    {% set avatar_url = get_avatar(contest)|default(null) %}
+
+    {% block title %}{{ recipient.organization.name }}{% endblock %}
+
+    {% block content %}
+        {% if contest.summaryText is not null %}
+            {{ contest.summaryText|replace({'%user_name%': recipient.firstName, '%contest_name%': contest.name})|markdown }}
+        {% else %}
+            {{ 'mail.summary.content'|trans({'%user_name%': recipient.firstName, '%contest_name%': contest.name})|markdown }}
+        {% endif %}
+
+        <hr class="soften">
+
+        {# Ranking #}
+        <h4>{{ 'mail.summary.title.board'|trans }}</h4>
+        <table border="0" cellspacing="0" cellpadding="0" class="table centered" align="center">
+            <tbody>
+                {% for item in board %}
+                    {% set rank = loop.index %}
+                    <tr class="user">
+                        <td class="rank-users-position" width="32">{{ rank }}</td>
+                        <td width="32" align="center">
+                            <img src="{{ get_avatar(item.participation.user) }}" alt="" class="user-avatar" width="32">
+                        </td>
+                        <td class="user-name">{{ item.participation.user.name }}</td>
+                        <td class="rank-users-score">
+                            <span rel="tooltip" title="{{ item.score|float_val }} {{ contest.unit }}">{{ item.score|float_val }}</span>
+                        </td>
+                    </tr>
+                {% else %}
+                    {{ 'mail.summary.info.no_participants'|trans }}
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {# Top Messages #}
+        <h4>{{ 'mail.summary.title.top_messages'|trans }}</h4>
+        {% if top_messages is not empty %}
+            <table border="0" cellspacing="0" cellpadding="0" class="table centered" align="center">
+                <tbody>
+                    {% for comment in top_messages %}
+                        <tr class="user">
+                            <td width="50">
+                                {% if comment.author is not null %}
+                                    <img src="{{ get_avatar(comment.author) }}" alt="" class="user-avatar" width="50">
+                                {% endif %}
+                            </td>
+                            <td class="user-name">
+                                <strong>
+                                    {% if comment.author is not null %}
+                                        {{ comment.authorName }}
+                                    {% endif %}
+                                </strong>
+                                <p>{{ comment.body }}</p>
+                                {# TODO - Add repliers #}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>{{ 'mail.summary.info.no_message'|trans }}</p>
+        {% endif %}
+
+        {# We add more data in the mail if the user is a contest owner #}
+        {% if contest.hasOwner(recipient) %}
+            <hr class="soften">
+            <table border="0" cellspacing="0" cellpadding="0" class="table centered" align="center">
+                <tbody>
+                    <tr>
+                        {# Pending Users #}
+                        {% if pending_users is not empty %}
+                            <td>
+                                <h4>{{ 'mail.summary.title.pending_users'|trans }}</h4>
+                                <table border="0" cellspacing="0" cellpadding="0" class="table centered" align="center">
+                                    <tbody>
+                                        {% for item in pending_users %}
+                                            <tr class="user{% if item.user is sameas(recipient) %} rank-users-current{% endif %}">
+                                                <td width="32" align="center">
+                                                    <img src="{{ get_avatar(item.user) }}" alt="" class="user-avatar" width="32">
+                                                </td>
+                                                <td class="user-name">{{ item.user.name }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </td>
+                        {% endif %}
+                        {# People that have not updated their results #}
+                        {% if not_updated_users is not empty %}
+                            <td>
+                                <h4>{{ 'mail.summary.title.not_updated_users'|trans }}</h4>
+                                <table border="0" cellspacing="0" cellpadding="0" class="table centered" align="center">
+                                    <tbody>
+                                        {% for item in not_updated_users %}
+                                            <tr class="user{% if item.user is sameas(recipient) %} rank-users-current{% endif %}">
+                                                <td width="32" align="center">
+                                                    <img src="{{ get_avatar(item.user) }}" alt="" class="user-avatar" width="32">
+                                                </td>
+                                                <td class="user-name">{{ item.user.name }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        <tr>
+                                            <td colspan="2">
+                                                <a href="{{ url('contest_data_show_results', {'id': contest.id}) }}" class="link">
+                                                    {{ 'mail.action.show_results'|trans }}
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        {% endif %}
+                    </tr>
+                </tbody>
+            </table>
+        {% endif %}
+
+        <p class="main-button">
+            <a href="{{ url('contest_show', {'id': contest.id}) }}">
+                {{ 'mail.action.display_contest'|trans }}
+            </a>
+        </p>
+    {% endblock %}
+
+{% endembed %}
+{% endblock %}

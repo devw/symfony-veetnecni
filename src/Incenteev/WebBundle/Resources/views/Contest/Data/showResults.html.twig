@@ -1,0 +1,24 @@
+{% extends 'WebBundle:Contest/Settings:base.html.twig' %}
+
+{% block title %}
+    {{ 'contest_show.page_title.all_results'|trans }}
+    - {{ 'contest.title.contest_title'|trans({'%contest_name%': contest.name}) }}
+    - Incenteev
+{% endblock %}
+
+{% block edit_title %}{{ 'contest_settings.title.all_results'|trans({'%contest_name%': contest.name}) }}{% endblock edit_title %}
+{% block edit_subtitle %}{{ 'contest_settings.subtitle.all_results'|trans }}{% endblock %}
+
+{% block edit_content %}
+    {% if contest.started %}
+        <div class="message message-info hidden-js">
+            {{ 'contest_data.info.js_needed'|trans }}
+        </div>
+        <div class="data-grid data-grid-results" data-source-url="{{ path('contest_data_load_results', {'id': contest.id}) }}"
+             data-save-url="{{ path('contest_data_save_entry', {'id': contest.id}) }}" data-token="{{ csrf_token('save_entry') }}"></div>
+    {% else %}
+        <div class="message message-info">
+            {{ 'contest_data.info.not_started_yet'|trans({'%contest_name%': contest.name}) }}
+        </div>
+    {% endif %}
+{% endblock %}

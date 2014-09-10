@@ -1,0 +1,18 @@
+title:
+    main: Incenteev
+    main_placeholder: Application de Gestion et d'Animation de Challenges Commerciaux Facile, Intuitive, et Puissante pour Motiver votre Équipe Commerciale et Doper vos Ventes.
+    marketing: Présentation de Incenteev.
+    marketing_placeholder: Besoin de raisons pour aimer Incenteev ? Ne cherchez pas plus loin.
+    coming_soon: Nous sommes actuellement en Beta privée.
+    coming_soon_placeholder: Entrez votre e-mail pour être invité dans Incenteev. C'est gratuit pendant la durée de la Beta.
+    power_of_sales_contests: Les Challenges sont Puissants
+    benefits_of_incenteev: Incenteev les rend Faciles
+info:
+    power_of_sales_contests: Les Challenges Commerciaux sont très puissants pour Motiver et Engager votre équipe de vendeurs. Ils augmentent les ventes. Ils sont Amusants et dopent le moral des employés. Mais ils sont difficiles à organiser et prennent beaucoup du temps des managers.
+    benefits_of_incenteev: Créez un Challenge en 3 clics. Nous nous chargeons de rappeler aux participants de mettre à jour leurs résultats. Nous nous occupons de l'animation régulière. Vous avez de beaux graphiques pour analyser vos données. Plus de problème de management, seulement des résultats !
+action:
+    sign_me_up: M'inscrire
+    coming_soon: Invitez-moi !
+    contact_support: Contacter le support
+messages:
+    loading: Chargement...

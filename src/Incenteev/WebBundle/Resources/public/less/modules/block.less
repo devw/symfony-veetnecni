@@ -1,0 +1,127 @@
+// ------------------------------
+// Block Module
+// ------------------------------
+
+
+// User administration Block
+// -------------------------
+.block-user-administration {
+    margin: 0;
+    width: 100%;
+
+    > .block-container {
+        > .block-title {
+            padding: 0 0 @normalFontSize;
+            text-align: center;
+        }
+
+        > .block-content, > p {
+            padding: @normalFontSize @normalFontSize * 2;
+        }
+    }
+
+    > .block-user-administration-links {
+        margin-top: 10px;
+
+        a {
+            display: block;
+            padding: 10px;
+        }
+    }
+}
+
+
+// App Block
+// -------------------------
+.block-app {
+    margin-bottom: 20px;
+
+    .block-app-title {
+        .box-shadow(0 1px 0 @colorWhite);
+        border-bottom: 1px solid @appBorderColor;
+        display: table;
+        font-size: 25px;
+        line-height: 37px;
+        margin-bottom: 15px;
+        margin-top: 0;
+        padding-bottom: 15px;
+        text-shadow: @contentShadowColor;
+        width: 100%;
+
+        > small {
+            color: @helpContentColor;
+            display: block;
+            font-size: @baseFontSize;
+            line-height: @baseLineHeight;
+        }
+
+        > .block-app-title-content,
+        > .block-app-title-actions {
+            display: table-cell;
+        }
+
+        > .block-app-title-actions {
+            text-align: right;
+
+            .button {
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    .block-app-content {
+        .border-radius(4px);
+        background-color: @blockBackgroundColor;
+        padding: 20px 5px;
+    }
+}
+
+
+// App Block
+// -------------------------
+.block-contest {
+    position: relative;
+
+    .block-contest-header {
+        margin-bottom: 30px;
+        min-height: 100px;
+
+        .block-contest-avatar,
+        .block-contest-title {
+            display: inline-block;
+            .ie7-inline-block();
+            vertical-align: middle;
+        }
+    }
+
+    .block-contest-avatar {
+        background: @contestAvatarBackground;
+        left: @normalFontSize;
+        margin: 0;
+        max-width: 100px;
+        position: absolute;
+        top: @normalFontSize;
+        width: 100%;
+    }
+
+    .block-contest-title {
+        .box-shadow(none);
+        border: none;
+        margin: 0 0 0px 130px;
+        width: auto;
+    }
+}
+
+// Exception Block
+// -------------------------
+.block-exception {
+    .border-radius(10px);
+    .box-shadow(0 0 0 @colorWhite);
+    border: 1px solid @borderColor;
+    background-color: @blockBackgroundColor;
+    padding: 50px;
+
+    .block-title {
+        padding-bottom: 20px;
+    }
+}

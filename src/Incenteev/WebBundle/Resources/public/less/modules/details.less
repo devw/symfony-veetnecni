@@ -1,0 +1,62 @@
+// ------------------------------
+// Details Module
+// ------------------------------
+
+
+// Core
+// -------------------------
+.details {
+    > .details-group {
+        .clearfix();
+        margin-bottom: @baseLineHeight;
+
+        > .details-label {
+            color: @contentColor;
+            font-weight: bold;
+            text-shadow: @contentShadowColor;
+            margin: 0;
+        }
+
+        > .details-content {
+            color: @contentColor;
+            text-shadow: @contentShadowColor;
+
+            .details-help {
+                font-style: italic;
+            }
+
+            p {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+
+// Horizontal Details
+// -------------------------
+.details-horizontal {
+    > .details-group {
+        margin-bottom: @normalLineHeight;
+
+        > .details-label {
+            float: left;
+            width: 140px;
+            text-align: right;
+        }
+
+        > .details-content {
+            margin-left: 160px;
+        }
+    }
+}
+
+
+// Resume Details
+// -------------------------
+.details-resume {
+    .border-radius(3px);
+    background-color: @colorWhite;
+    border: 1px solid @appBorderColor;
+    padding: @normalFontSize;
+}

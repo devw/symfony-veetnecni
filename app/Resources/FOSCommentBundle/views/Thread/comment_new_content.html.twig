@@ -1,0 +1,47 @@
+{% block fos_comment_comment_form_holder %}
+    <div class="fos_comment_comment_form_holder comment-replies">
+        {% block fos_comment_comment_new_form %}
+            <form class="fos_comment_comment_new_form form form-comment" action="{{ url('fos_comment_post_thread_comments', url_parameters) }}" data-parent="{{ parent.id|default() }}" method="POST">
+                <div class="comment">
+                    <div class="media comment-message">
+                        <span class="pull-left comment-author">
+                            <img src="{{ get_avatar(app.user) }}" alt="" class="media-object comment-author-avatar" title="{{ app.user.name }}">
+                        </span>
+                        <div class="media-body comment-input-container">
+                        {% block fos_comment_form_fields %}
+                            {% if form.vars.errors %}
+                                <div class="fos_comment_form_errors">
+                                    {{ form_errors(form) }}
+                                </div>
+                            {% endif %}
+                            {% if form.body.vars.errors %}
+                                <div class="fos_comment_form_errors">
+                                    {{ form_errors(form.body) }}
+                                </div>
+                            {% endif %}
+                            {{ form_widget(form.body, {'attr': {'placeholder': 'contest_show.placeholder.post_comment'|trans, 'data-tid': 'post-message' }}) }}
+
+                            {{ form_rest(form) }}
+                        {% endblock %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-comment-actions hide fos_comment_submit">
+                    {% block fos_comment_form_submit %}
+                        {% if parent is not null %}
+                            <a class="fos_comment_comment_reply_cancel">
+                                {% trans from 'FOSCommentBundle' %}fos_comment_comment_reply_cancel{% endtrans %}
+                            </a>
+                        {% endif %}
+                        <button type="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                            {% trans from 'FOSCommentBundle' %}fos_comment_comment_new_submit{% endtrans %}
+                        </button>
+                    {% endblock %}
+                </div>
+
+            </form>
+        {% endblock fos_comment_comment_new_form %}
+
+    </div>
+{% endblock fos_comment_comment_form_holder %}

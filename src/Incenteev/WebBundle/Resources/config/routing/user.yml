@@ -1,0 +1,4 @@
+user_list:
+    pattern:  /
+    defaults: { _controller: "WebBundle:User:index", _format: json }
+    requirements: { _method: get }

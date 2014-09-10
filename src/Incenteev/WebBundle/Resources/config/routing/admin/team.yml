@@ -1,0 +1,18 @@
+admin_team_list:
+    pattern:  /
+    defaults: { _controller: "WebBundle:Admin\OrganizationTeam:index" }
+
+admin_team_show:
+    pattern:  /{id}
+    defaults: { _controller: "WebBundle:Admin\OrganizationTeam:show" }
+    requirements: { _method: get, id: '\d+' }
+
+admin_team_create:
+    pattern:  /create
+    defaults: { _controller: "WebBundle:Admin\OrganizationTeam:create" }
+    requirements: { _method: get|post }
+
+admin_team_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "WebBundle:Admin\OrganizationTeam:edit" }
+    requirements: { _method: get|post, id: '\d+' }

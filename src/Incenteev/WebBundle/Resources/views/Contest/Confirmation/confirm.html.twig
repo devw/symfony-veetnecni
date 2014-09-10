@@ -1,0 +1,106 @@
+{% extends 'WebBundle:Contest/Confirmation:layout.html.twig' %}
+
+{% block title %}
+    {{ 'confirmation.page_title.confirm_participation'|trans }}
+    - {{ 'contest.title.contest_title'|trans({'%contest_name%': contest.name}) }}
+    - Incenteev
+{% endblock %}
+
+{% block content %}
+    <h1 class="block-app-title">
+        {{ 'confirmation.title.confirm_participation'|trans({'%contest_name%': participation.contest.name}) }}
+        <small>{{ 'confirmation.subtitle.confirm_participation'|trans }}</small>
+    </h1>
+
+    {% set menu = knp_menu_get('WebBundle:MenuBuilder:contestConfirmationMenu', [], {'participation': participation}) %}
+
+    {{ knp_menu_render(menu, {'currentAsLink': false, 'currentClass' : 'active', 'template': 'WebBundle:Menu:confirmation.html.twig'}) }}
+
+    <div class="row-fluid">
+        <div class="span7">
+            <h4>{{ 'confirmation.title.contest_info'|trans }}</h4>
+            <div class="details">
+                <div class="details-group">
+                    <span class="details-label">{{ 'contest.label.duration'|trans }}</span>
+
+                    <div class="details-content">
+                        {% if contest.startDate is not null and contest.endDate is not null %}
+                            {% set duration_days = contest.endDate.diff(contest.startDate).days %}
+                            {{ 'contest.info.duration'|transchoice(duration_days) }}
+                            ({{ 'contest.info.duration_range'|trans({'%start_date%': contest.startDate|date('d/m/Y'), '%end_date%': contest.endDate|date('d/m/Y')}) }})
+                        {% else %}
+                            {{ 'contest.info.not_set'|trans }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                {% if contest.prizes is not null and contest.prizes is not empty %}
+                    <div class="details-group">
+                        <span class="details-label">{{ 'contest.label.prizes'|trans }}</span>
+
+                        <div class="details-content">
+                            <ul class="nav">
+                                {% for prize in contest.prizes %}
+                                    <li class="nav-header">
+                                        {{ 'contest.info.rank'|transchoice(prize.rank) }}
+                                    </li>
+                                    <li class="thumbnail card card-prize card-block media">
+                                        <img src="{{ get_avatar(prize)|default(asset('bundles/web/img/contest-avatar.jpg')) }}" alt="" class="card-avatar">
+                                        <div class="media-body">
+                                            <h5 class="media-heading">{{ prize.name }}</h5>
+                                            <p class="view-more">{{ prize.description }}</p>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if contest.description is not null %}
+                    <div class="details-group">
+                        <span class="details-label">{{ 'contest.label.description'|trans }}</span>
+
+                        <div class="details-content">
+                            <div class="view-more well">{{ contest.description|markdown }}</div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if contest.rules is not null %}
+                    <div class="details-group">
+                        <span class="details-label">{{ 'contest.label.rules'|trans }}</span>
+
+                        <div class="details-content">
+                            <div class="view-more well">{{ contest.rules|markdown }}</div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <form action="{{ path('confirmation_acceptance', {'token': participation.token, 'id': participation.contest.id, 'full-process': app.request.query.get('full-process')}) }}"
+                method="post" {{ form_enctype(form) }} class="form form-app">
+                {{ form_widget(form) }}
+
+                <div class="form-app-actions">
+                    <ul class="form-app-actions-list list list-actions">
+                        <li>
+                            <button type="submit" name="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                                {{ 'confirmation.action.participate'|trans }}
+                            </button>
+                        </li>
+                        <li>
+                            <a href="{{ path('confirmation_choose_avatar', {'id': contest.id, 'token': participation.token}) }}" class="btn btn-link button-link-small">
+                                {{ 'confirmation.action.skip'|trans }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div class="span5">
+            <h5>{{ 'confirmation.title.why_confirm_participation'|trans }}</h5>
+            <div class="text text-justify text-small">{{ 'confirmation.info.why_confirm_participation'|trans|markdown }}</div>
+        </div>
+    </div>
+{% endblock %}

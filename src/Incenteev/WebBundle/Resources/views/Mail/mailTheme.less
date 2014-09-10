@@ -1,0 +1,153 @@
+// -------------------------------------- //
+//          CONTEST MAILS THEME           //
+//                                        //
+// Use it to compile to CSS as we don't   //
+// have Less available for mails atm.     //
+// -------------------------------------- //
+
+@assetVersion:               '';
+
+@import '../../public/vendor/less/bootstrap/mixins.less';
+@import '../../public/vendor/less/bootstrap/variables.less';
+@import '../../public/vendor/less/bootstrap/tables.less';
+@import '../../public/less/common/variables.less';
+@import '../../public/less/common/mixins.less';
+@import '../../public/less/modules/user.less';
+
+// Colors
+// ----------------------
+@colorWhite: #ffffff;
+@colorBlack: #000000;
+@colorLightGray: #f2f2f2;
+@contentColor: #666666;
+@contentShadowColor: 0 1px 0 @colorWhite;
+@colorBlue: #0088cc;
+@colorDarkBlue: #006699;
+@borderColor: #dadada;
+
+// Typography
+// ----------------------
+@primaryFontSize: 35px;
+@primaryLineHeight: 52px;
+
+@buttonFontSize: 20px;
+@buttonLineHeight: 30px;
+
+@highFontSize: 16px;
+@highLineHeight: 24px;
+
+@baseFontSize: 14px;
+@baseLineHeight: 21px;
+
+@smallFontSize: 12px;
+@smallLineHeight: 18px;
+
+@miniFontSize: 10px;
+@miniLineHeight: 15px;
+
+@fontFamily: "Lucida Grande", Geneva, Helvetica, Arial, sans-serif !important;
+
+h1, h2, h3, h4, h5, h6 {
+    color: @contentColor;
+    font-family: @fontFamily;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline !important;
+}
+
+hr.soften {
+    background-image: -webkit-linear-gradient(left, transparent, rgba(0, 0, 0, .1), transparent);
+    background-image: -moz-linear-gradient(left, transparent, rgba(0, 0, 0, .1), transparent);
+    background-image: -ms-linear-gradient(left, transparent, rgba(0, 0, 0, .1), transparent);
+    background-image: -o-linear-gradient(left, transparent, rgba(0, 0, 0, .1), transparent);
+    background-image: linear-gradient(left, transparent, rgba(0, 0, 0, .1), transparent);
+    border: 0;
+    height: 1px;
+    margin: 25px 0;
+}
+
+
+// Layout
+// ---------------------------
+table.container, td.container {
+    width: 700px;
+}
+
+table.centered,
+td.centered {
+    margin: 0 auto;
+}
+
+img.logo {
+    display: block;
+    max-width: 200px;
+    width: 100%;
+}
+
+h1.logo-title {
+    font-size: @primaryFontSize;
+    font-weight: normal;
+    line-height: @primaryLineHeight;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+td.main-container {
+    padding: 40px 20px;
+}
+
+td.content-container {
+    .border-radius(5px);
+    .box-shadow(0 1px 4px @colorWhite);
+    border: 1px solid @borderColor;
+    padding-bottom: 30px;
+}
+
+div.main-content {
+    color: @contentColor;
+    font-size: @highFontSize;
+    line-height: @highLineHeight;
+    margin: 0px;
+    padding: 5px 60px 9px;
+}
+
+p.main-button {
+    .border-radius(4px);
+    background-color: @contentColor;
+    color: @colorWhite;
+    cursor: pointer;
+    font-size:  @buttonFontSize;
+    line-height: @buttonLineHeight;
+    margin: 40px auto 0;
+    padding: 9px 14px;
+    text-align: center;
+    width: 50%;
+
+    a {
+        color: @colorWhite;
+    }
+}
+
+a.link {
+    font-size: @baseFontSize;
+    line-height: @baseLineHeight;
+    text-decoration: none;
+}
+
+div.footer-content {
+    color: @contentColor;
+    font-family: @fontFamily;
+    font-size: @miniFontSize;
+    line-height: @miniLineHeight;
+}
+
+a.footer-link {
+    color: @colorBlue;
+    margin-right: 8px;
+    text-decoration: underline;
+}

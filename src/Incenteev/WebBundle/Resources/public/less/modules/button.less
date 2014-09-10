@@ -1,0 +1,79 @@
+// ------------------------------
+// Button Module
+// ------------------------------
+
+
+// Button statuses
+// -------------------------
+
+// - Main Button
+.button-main {
+    border-bottom: 2px solid darken(@colorOrange, 5%);
+    padding: 9px 14px;
+
+    &:hover {
+        .buttonMainHover();
+    }
+}
+
+// - Info Button
+.button-info {
+    border-bottom: 2px solid @btnInfoBackgroundHighlight;
+    padding: 3px 10px;
+
+    &:hover {
+        .buttonInfoHover();
+    }
+}
+
+// - Success Button
+.button-success {
+    border-bottom: 2px solid @btnSuccessBackgroundHighlight;
+    padding: 9px 14px;
+
+    &:hover {
+        .buttonSuccessHover();
+    }
+}
+
+// - Danger Button
+.button-danger {
+    border-bottom: 2px solid @btnDangerBackgroundHighlight;
+    color: @btnDangerBackgroundHighlight;
+    padding: 9px 14px;
+
+    &:hover {
+        .buttonDangerHover();
+    }
+}
+
+// - Small Link Button
+.button-link-small {
+    font-size: @smallFontSize;
+    line-height: @highLineHeight;
+}
+
+.button-main,
+.button-info,
+.button-launch,
+.button-danger {
+    font-size: @normalFontSize;
+    line-height: @normalLineHeight;
+}
+
+// TODO separate the handling of the button statuses (main, info, danger...) from the button size.
+
+
+// Button sizes
+// -------------------------
+.button-big {
+    padding: 9px 14px;
+}
+
+// Button group
+// -------------------------
+.button-locked-group {
+    > .button-add-on {
+        padding: 3px 0 4px 5px;
+    }
+}

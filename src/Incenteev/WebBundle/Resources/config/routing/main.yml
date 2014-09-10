@@ -1,0 +1,25 @@
+showcase:
+    resource: showcase.yml
+
+contest:
+    resource: contest.yml
+    prefix:   /contests
+
+profile:
+    resource: profile.yml
+    prefix:   /profile
+
+admin:
+    resource: admin.yml
+    prefix: /admin
+
+registration:
+    resource: registration.yml
+    prefix: /registration
+
+user:
+    resource: user.yml
+    prefix:   /users
+
+feedback:
+    resource: "feedback.yml"

@@ -1,0 +1,19 @@
+{% block subject %}
+{% autoescape false %}
+    {{ sender.name }} sent you some feedback!
+{% endautoescape %}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+Dear Incenteev team,
+{{ sender.name }} sent you some feedback. Here is the message:
+
+{{ message }}
+
+Additional infos:
+User email: {{ sender.email }}
+Organization name: {{ sender.organization.name }}
+Page from which it has been sent: {{ referrer }}
+{% endautoescape %}
+{% endblock %}

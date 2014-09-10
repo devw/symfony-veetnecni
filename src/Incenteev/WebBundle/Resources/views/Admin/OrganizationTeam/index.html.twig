@@ -1,0 +1,45 @@
+{% extends 'WebBundle:Admin:layout.html.twig' %}
+
+{% block title %}
+    {{ 'admin.breadcrumb.teams.main'|trans }}
+    - {{ 'admin.breadcrumb.organization_management'|trans }}
+    - Incenteev
+{% endblock %}
+
+{% block breadcrumb %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{{ path('admin_home') }}">{{ 'admin.breadcrumb.organization_management'|trans }}</a>
+            <span class="divider">></span>
+        </li>
+        <li class="active">{{ 'admin.breadcrumb.teams.main'|trans }}</li>
+    </ul>
+{% endblock %}
+
+{% block inner_content %}
+<h1 class="block-app-title">
+    <span class="block-app-title-content">
+        {{ 'organization_team.title.list'|trans }}
+    </span>
+    <span class="block-app-title-actions">
+        <a href="{{ path('admin_team_create') }}" class="btn button-info">
+            {{ 'organization_team.action.create'|trans }}
+        </a>
+    </span>
+</h1>
+{% if teams is not empty %}
+    <ul class="list list-thumbnails">
+        {% for team in teams %}
+            <li>
+                <a href="{{ path('admin_team_show', {'id': team.id}) }}" class="thumbnail list-thumbnails-item">
+                    {# TODO - Handle default avatars in a better way #}
+                    <img src="{{ get_avatar(team)|default(asset('bundles/web/img/team-avatar.jpg')) }}" alt="" class="list-thumbnails-item-avatar">
+                    <span class="list-thumbnails-item-name">{{ team.name }}</span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>{{ 'organization_team.info.no_team'|trans }}</p>
+{% endif %}
+{% endblock %}

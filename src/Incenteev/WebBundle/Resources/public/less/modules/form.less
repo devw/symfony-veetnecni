@@ -1,0 +1,504 @@
+// ------------------------------
+// Form Module
+// ------------------------------
+
+
+// Core
+// -------------------------
+.form {
+    margin-bottom: 0;
+
+    input, select, textarea {
+        .placeholder(@placeholderContentColor);
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="date"],
+    input[type="number"],
+    textarea {
+        .box-sizing(border-box);
+        height: auto;
+        padding: 8px 4px;
+        width: 100%;
+    }
+
+    select {
+        width: 100%;
+    }
+
+    textarea {
+        min-height: 45px;
+        resize: vertical;
+    }
+
+    .control-group {
+        > .control-label {
+            color: @formLabelColor;
+            font-weight: bold;
+            position: relative;
+            text-shadow: @contentShadowColor;
+        }
+
+        > .controls {
+            .clearfix();
+
+            .form-checkbox {
+                float: left;
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .form-input-append {
+        .input-append;
+
+        input {
+            width: auto;
+        }
+
+        .form-add-on, input {
+            font-size: 16px;
+            margin: 0;
+            padding: 8px;
+        }
+    }
+
+    // - Help
+    .form-help {
+        color: @informationContentColor;
+        font-size: @smallFontSize;
+        font-style: italic;
+        line-height: @smallLineHeight;
+        text-shadow: @contentShadowColor;
+    }
+
+    .form-help-block {
+        font-size: @smallFontSize;
+        font-style: italic;
+        line-height: @smallLineHeight;
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    // - Errors
+    .form-error {
+        .border-radius(5px);
+        .control-group.error;
+        background-color: @errorBackgroundColor;
+        color: @errorContentColor;
+        margin: 5px 0 15px;
+        padding: 10px;
+        text-shadow: @errorContentShadowColor;
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .form-spaced {
+        margin-top: 20px;
+    }
+}
+
+// Inline notification Form
+// -------------------------
+.form.form-notify-inline {
+    > .form-notify-inline-content {
+        display: block;
+
+        > .control-group {
+            display: block;
+
+            > .controls {
+                input {
+                    display: block;
+                    margin: 0;
+                    min-height: 30px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    > .button-submit {
+        display: block;
+        margin: 10px 0 10px 5px;
+        width: 100%;
+    }
+}
+
+// Inline SignUp Form
+// -------------------------
+.form.form-signup-inline {
+    text-align: left;
+
+    > .form-signup-inline-content {
+        display: block;
+
+        > .control-group {
+            display: block;
+
+            > .controls {
+                input {
+                    display: block;
+                    margin: 0;
+                    min-height: 30px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    > .button-submit {
+        display: block;
+        margin: 10px 0;
+        width: 100%;
+    }
+}
+
+
+// User Administration Form
+// -------------------------
+.form.form-user-administration {
+    > .form-user-administration-content {
+
+        .control-label {
+            font-size: @smallFontSize;
+            line-height: @smallLineHeight;
+        }
+    }
+
+    .button-submit {
+        .border-radius(5px);
+        .box-sizing(border-box);
+        display: block;
+        font-size: @highFontSize;
+        line-height: @highLineHeight;
+        margin: 30px auto 10px;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+    }
+}
+
+
+// App Forms
+// -------------------------
+.form.form-invitation,
+.form.form-prize,
+.form.form-confirmation,
+.form.form-participants,
+.form.form-app {
+    .control-group {
+        > .control-label {
+            display: inline-block;
+            .ie7-inline-block();
+        }
+    }
+
+    .form-app-actions {
+        .clearfix();
+        .box-shadow(inset 0 1px 0 @colorWhite);
+        border-top: 1px solid @formTopBorderColor;
+        margin: 20px -5px -20px;
+        padding: (@baseLineHeight - 1) 20px @baseLineHeight;
+
+        .form-app-actions-list {
+            margin-bottom: 0;
+            text-align: right;
+        }
+    }
+
+    .form-app-avatar {
+        display: block;
+
+        .app-avatar {
+            .avatarPicture();
+            background-color: @userAvatarBackgroundColor;
+            margin: 0 10px 10px 0;
+        }
+
+        .app-background {
+            .border-radius(4px);
+            background-color: @colorWhiteSmoke;
+            border: 2px solid @colorBlue;
+            display: inline-block;
+            .ie7-inline-block();
+            height: 100px;
+            margin-right: @normalFontSize;
+            width: 150px;
+        }
+
+        .app-avatar-action {
+            vertical-align: top;
+
+            input {
+                vertical-align: top;
+            }
+        }
+    }
+
+    &.changed .button-submit {
+        .buttonMainHover();
+    }
+}
+
+
+// Form w/o labels
+// -------------------------
+.form.form-notify-inline,
+.form.form-without-label {
+    .control-label {
+        display: none;
+    }
+}
+
+
+// Prizing Form
+// -------------------------
+.form.form-prize {
+    > .form-app-prizes-container {
+        > .control-group.highlight {
+            background-color: @colorOrange;
+            height: 40px;
+        }
+
+        > .control-group {
+            background: darken(@colorWhite, 5%);
+            border: 1px solid @appBorderColor;
+        }
+
+        .controls-row {
+            display: table;
+            width: 100%;
+
+            &:last-child {
+                margin-bottom: 10px;
+            }
+
+            > .controls-cell {
+                padding: 10px 0;
+                display: table-cell;
+                vertical-align: middle;
+                .ie7-inline-block();
+                *max-width: 500px;
+
+                &.form-prize-item-rank-value {
+                    .box-shadow(1px 0 0 @colorWhite);
+                    // TODO - Add a hand icon instead of the native move cursor
+                    cursor: move;
+                    border-right: 1px solid @appBorderColor;
+                    text-align: center;
+                    width: 30px;
+                }
+
+                .control-group,
+                input {
+                    margin: 0;
+                }
+
+                .control-group {
+                    margin-left: 5px;
+                }
+
+                .controls:first-child {
+                    margin-left: 0;
+                    margin-top: 10px;
+                }
+
+                .form-prize-item-name {
+                    *min-width: 250px;
+                }
+            }
+        }
+    }
+}
+
+
+// Contest Creation Form
+// -------------------------
+.form.form-contest-creation {
+    .button-submit {
+        display: block;
+        margin: 0 auto;
+        max-width: 300px;
+        width: 50%;
+    }
+}
+
+
+// Comment Form
+// -------------------------
+.form.form-comment {
+    textarea {
+        .border-radius(0);
+        border: 1px solid @appBorderColor;
+        margin-bottom: 0;
+    }
+
+    .form-comment-actions {
+        .clearfix();
+        background-color: darken(@colorWhite, 4%);
+        border: 1px solid @appBorderColor;
+        border-top: 0;
+        padding: 7px;
+
+        .button-submit {
+            float: right;
+            min-width: 100px;
+            padding: 5px 10px;
+            width: auto;
+        }
+    }
+}
+
+
+// Contest publish Form
+// -------------------------
+.form-contest-publish {
+    .button-submit {
+        .buttonBackground(@btnSuccessBackgroundHighlight, darken(@btnSuccessBackgroundHighlight, 5%), @colorWhite);
+        display: block;
+        margin: 0 auto;
+        max-width: 300px;
+        width: 50%;
+    }
+}
+
+
+// Confirmation Form
+// -------------------------
+.form.form-confirmation {
+    > .form-confirmation-container .form-checkbox + label{
+        padding: 0;
+        width: auto;
+    }
+}
+
+
+// Feedback Form
+// -------------------------
+.form.form-feedback {
+    font-size: @normalFontSize;
+    line-height: @normalLineHeight;
+    max-width: 500px;
+
+    .control-group {
+        margin-bottom: 0;
+    }
+
+    .control-label {
+        color: @helpContentColor;
+        text-shadow: @contentShadowColor;
+    }
+
+    .form-feedback-textarea {
+        height: 100px;
+        min-height: 100px;
+        padding: 5px;
+    }
+
+    .form-feedback-actions {
+        .clearfix();
+        text-align: right;
+
+        .button-submit {
+            float: right;
+            font-size: @smallFontSize;
+            line-height: @smallLineHeight;
+            width: auto;
+        }
+    }
+}
+
+
+// Results Form
+// -------------------------
+.form.form-results {
+    .form-results-total {
+        border-top: 1px solid @borderColor;
+        color: @contentColor;
+        font-size: @highFontSize;
+        font-weight: bold;
+        line-height: @highLineHeight;
+        padding: 20px 0 5px 20px;
+        text-shadow: @contentShadowColor;
+    }
+}
+
+
+// Teams Form
+// -------------------------
+.form.form-teams {
+    .control-group {
+        position: relative;
+
+        > .control-group-team {
+            background: darken(@colorWhite, 5%);
+            border: 1px solid @appBorderColor;
+            margin-bottom: 20px;
+            padding: 20px;
+
+            > .controls {
+                margin-left: 0;
+                margin-right: 40px;
+            }
+        }
+
+        .delete-team {
+            cursor: pointer;
+            padding-top: 5px;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+    }
+
+    .form-teams-add {
+        .border-radius(5px);
+        .box-sizing(border-box);
+        display: block;
+
+        &.no-team {
+            margin: 30px auto 10px;
+            padding-left: 0;
+            padding-right: 0;
+            width: 40%;
+        }
+    }
+}
+
+
+// Prizing Participants Form
+// -------------------------
+.form.form-participants {
+    margin-bottom: 30px;
+}
+
+
+// Appearance Form
+// -------------------------
+.form.form-appearance {
+    .form-appearance-customization .control-group {
+        .control-label {
+            float: left;
+            font-weight: normal;
+            text-align: right;
+            width: 140px;
+        }
+
+        .controls {
+            margin-left: 160px;
+        }
+    }
+
+    .form-app-avatar {
+        margin-left: 160px;
+    }
+}

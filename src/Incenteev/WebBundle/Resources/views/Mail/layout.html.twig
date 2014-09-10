@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Incenteev</title>
+    <style type="text/css">
+        {# ---- Common ---- #}
+        {% set base_pic_dir = get_base_asset_url() ~ '/bundles/web/img' %}
+
+        {% include "WebBundle:Mail:style.css.twig" %}
+
+        {% set theme_background_color = '#ffffff' %}
+        {% set contest_styles_background_color = contest_styles.background_color|default('#f2f2f2') %}
+        {% set contest_styles_background_position = contest_styles.background_position|default('left') %}
+        {% set contest_styles_background_repeat = contest_styles.background_repeat|default(false) ? 'repeat' : 'no-repeat' %}
+        {% set contest_styles_background_image = background_url|default('') %}
+        {% set avatar_url = avatar_url|default(base_pic_dir ~ '/logo-150.png') %}
+
+        .body {
+            background-attachement: fixed;
+            background-color: {{ contest_styles_background_color }};
+            background-image: url('{{ contest_styles_background_image }}');
+            background-position: {{ contest_styles_background_position }} top;
+            background-repeat: {{ contest_styles_background_repeat }};
+            margin: 0;
+            width: 100% !important;
+        }
+    </style>
+</head>
+
+<body class="body" background="{{ contest_styles_background_image }}" bgcolor="{{ contest_styles_background_color }}">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="centered" align="center">
+        <tbody>
+            <tr>
+                <td class="main-container">
+                    <table border="0" cellspacing="0" cellpadding="20" class="container centered" align="center">
+                        <tbody>
+                            <tr>
+                                <td class="container centered" align="center" bgcolor="{{ theme_background_color }}">
+                                    <table border="0" cellpadding="0" cellspacing="0" class="container centered content-container" align="center" bgcolor="{{ theme_background_color }}">
+                                        <tbody>
+                                            <tr>
+                                                <td align="center">
+                                                    <img src="{{ avatar_url }}" alt="" class="logo">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="header">
+                                                    <h1 class="logo-title">{% block title 'Incenteev' %}</h1>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <hr class="soften">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="container centered" align="center">
+                                                    <table class="container" border="0" cellspacing="0" cellpadding="0" align="left">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td valign="top">
+                                                                    <div class="main-content">
+                                                                        {% block content %}{% endblock %}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <hr class="soften">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table class="container" cellspacing="0" cellpadding="0" border="0">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td align="left">
+                                                                <div class="footer-content">
+                                                                    Copyright © 2012
+                                                                    <a href="{{ url('showcase_home') }}" class="footer-link" target="_blank">Incenteev</a>
+                                                                    <br>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

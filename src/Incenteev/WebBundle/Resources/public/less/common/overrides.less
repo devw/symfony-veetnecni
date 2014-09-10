@@ -1,0 +1,56 @@
+// ------------------------------
+// - PHP Overrides for paths as
+// - LessPHP doesn't override paths
+// ------------------------------
+
+// Chosen Plugin
+// -------------------------
+.chzn-container-multi .chzn-choices .search-field input {
+    height: auto !important;
+}
+
+// Bootstrap
+// -------------------------
+.popover {
+    p {
+        text-align: left;
+
+        img {
+            float: left;
+            margin-right: 15px;
+            width: 50px;
+        }
+    }
+}
+
+// - Sprite Path
+@iconSpritePath:             '../../vendor/img/glyphicons-halflings.png@{assetVersion}';
+@iconWhiteSpritePath:        '../../vendor/img/glyphicons-halflings-white.png@{assetVersion}';
+@colorPickerSaturationImage: '../../vendor/img/bootstrap-colorpicker/saturation.png@{assetVersion}';
+@colorPickerHueImage:        '../../vendor/img/bootstrap-colorpicker/hue.png@{assetVersion}';
+@colorPickerAlphaImage:      '../../vendor/img/bootstrap-colorpicker/alpha.png@{assetVersion}';
+
+// - NavBar
+.navbar {
+    .navbar-form {
+        padding: 0;
+
+        .btn-link {
+            color: @navbarInverseLinkColor;
+            text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+            padding: 4px 14px;
+
+            &:focus,
+            &:hover {
+                color: @navbarInverseLinkColorHover;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+// Webkit built-in styles breaking the use of the output tag for us
+// -------------------------
+output {
+    unicode-bidi: normal;
+}

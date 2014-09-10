@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="incenteev.avatar.exposer" class="Incenteev\WebBundle\Avatar\Exposer" public="false">
+            <argument type="service" id="incenteev.avatar.path_resolver" />
+            <argument type="service" id="incenteev.util.base_url_resolver.assets" />
+            <argument type="service" id="incenteev.util.base_url_resolver.uploads" />
+            <argument type="service" id="incenteev.util.upload_filesystem" />
+            <argument>mm</argument>
+        </service>
+
+        <service id="incenteev.avatar.path_resolver" class="Incenteev\WebBundle\Avatar\PathResolver" public="false" />
+
+        <service id="incenteev.avatar.uploader" class="Incenteev\WebBundle\Avatar\Uploader">
+            <argument type="service" id="incenteev.util.upload_filesystem" />
+            <argument type="service" id="incenteev.avatar.imagine" />
+            <argument type="service" id="incenteev.avatar.path_resolver" />
+        </service>
+
+        <service id="incenteev.avatar.imagine" class="Imagine\Gd\Imagine" public="false" />
+    </services>
+</container>

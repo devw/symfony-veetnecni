@@ -1,0 +1,62 @@
+// ------------------------------
+// Breadcrumb Module
+// ------------------------------
+
+
+// Wizard
+// -------------------------
+.breadcrumb-wizard {
+    .clearfix();
+    .gradientBar(@colorWhite, @colorWhiteSmoke);
+    background-color: darken(@colorWhite, 3%);
+    border: 1px solid @borderColor;
+    color: @contentColor;
+    list-style-type: decimal;
+    list-style-position: inside;
+    margin: 0 auto 15px;
+    padding: 0;
+
+    li {
+        display: list-item;
+        float: left;
+        padding: 7px 14px;
+        border-right: 1px solid @borderColor;
+        position: relative;
+        margin-right: 0;
+
+        &.active {
+            background-color: @colorLightGray;
+            color: @colorBlack;
+
+            &:last-child .wizard-arrow {
+                display: none;
+            }
+        }
+
+        .step {
+            font-size: 1.2em;
+            padding-right: 5px;
+        }
+
+        .wizard-arrow {
+            border: 7px solid transparent;
+            border-left-color: @colorLightGray;
+            display: block;
+            height: 0;
+            margin-top: -7px;
+            position: absolute;
+            right: -14px;
+            top: 50%;
+            width: 0;
+            z-index: 2;
+        }
+
+        &:last-child {
+            border-right: none;
+
+            .wizard-arrow {
+                display: none;
+            }
+        }
+    }
+}

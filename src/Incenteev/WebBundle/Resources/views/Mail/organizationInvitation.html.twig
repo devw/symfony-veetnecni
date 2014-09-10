@@ -1,0 +1,39 @@
+{# Mail sent when inviting new users to an organization #}
+
+{% block subject %}
+{% autoescape false %}
+    {{ 'mail.organizationInvitation.subject'|trans({'%organization_name%': user.organization.name}) }}
+{% endautoescape %}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+    {{ 'mail.organizationInvitation.title'|trans }}
+
+    {{ 'mail.organizationInvitation.content_txt'|trans({
+        '%user_name%': user.firstName,
+        '%organization_name%': user.organization.name
+    }) }}
+
+    {{ url('registration_confirm', {'token': user.confirmationToken}) }}
+{% endautoescape %}
+{% endblock %}
+
+{% block body_html %}
+{% embed "WebBundle:Mail:layout.html.twig" %}
+
+    {% block content %}
+        {{ 'mail.organizationInvitation.content_html'|trans({
+            '%user_name%': user.firstName,
+            '%organization_name%': user.organization.name
+        })|markdown }}
+
+        <p class="main-button">
+            <a href="{{ url('registration_confirm', {'token': user.confirmationToken}) }}">
+                {{ 'mail.action.participate'|trans }}
+            </a>
+        </p>
+    {% endblock %}
+
+{% endembed %}
+{% endblock %}

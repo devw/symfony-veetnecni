@@ -1,0 +1,207 @@
+// ------------------------------
+// - Media Query for devices
+// - up to 768px
+// ------------------------------
+
+
+// Details Module
+// -------------------------
+.details {
+    .details-horizontal;
+}
+
+
+// Form Module
+// -------------------------
+.form.form-app,
+.form.form-invitation,
+.form.form-confirmation,
+.form.form-prize {
+
+    .form-app-actions {
+        margin-bottom: -20px;
+        margin-left: -10px;
+        margin-right: -10px;
+
+        .form-app-actions-list > li {
+            float: right;
+            margin-right: 5px;
+        }
+    }
+
+    .submit {
+        display: inline;
+        float: right;
+        width: auto;
+    }
+}
+
+// List Module
+// -------------------------
+
+// - Actions list
+.list.list-actions {
+    > li {
+        display: inline-block;
+        .ie7-inline-block();
+
+        .list-actions-item {
+            .box-sizing(content-box);
+            .ie7-inline-block();
+            display: inline-block;
+            padding: 4px 14px;
+            width: auto;
+        }
+    }
+}
+
+
+// Podium Module
+// -------------------------
+
+// - Podium Users
+.podium.podium-users {
+    .clearfix();
+    background: url('@{podiumPicture}') no-repeat scroll center bottom transparent;
+    border: none;
+    display: block;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 340px;
+    position: relative;
+    width: 450px;
+
+    .podium-user {
+        background: none;
+        border: none;
+        display: block;
+        position: absolute;
+        text-align: center;
+        width: 145px;
+
+        &.podium-user-1 {
+            left: 157px;
+            top: 2px;
+
+            .podium-user-prize-avatar {
+                .rotate(0deg);
+            }
+        }
+
+        &.podium-user-2 {
+            left: 13px;
+            top: 63px;
+
+            .podium-user-prize-avatar {
+                .rotate(4deg);
+            }
+        }
+
+        &.podium-user-3 {
+            right: 5px;
+            top: 82px;
+
+            .podium-user-prize-avatar {
+                .rotate(-4deg);
+            }
+        }
+
+        > .podium-user-rank {
+            display: none;
+        }
+
+        > .podium-user-avatar,
+        > .podium-user-prize-avatar,
+        > .podium-user-score {
+            border-bottom: none;
+            display: block;
+            padding: 0;
+        }
+
+        > .podium-user-avatar {
+            .box-shadow(0 3px 5px rgba(0, 0, 0, .2));
+            background: @colorWhite;
+            border: 1px solid #eeeeee;
+            margin: 0 auto;
+            padding: 4px;
+            text-align: center;
+            width: 80px;
+
+            &:hover {
+                .scale(1.2);
+            }
+
+            > img {
+                .avatarPicture(80px);
+                display: block;
+                margin: 0 auto;
+            }
+
+            > .podium-user-caption {
+                .text-overflow();
+                font-size: @normalFontSize;
+                font-weight: bold;
+                display: block;
+                margin: 0 auto;
+                padding-top: 5px;
+            }
+        }
+
+        > .podium-user-score {
+            color: @listPodiumPlateColor;
+            font-size: @miniFontSize;
+            line-height: @miniLineHeight;
+            margin-bottom: 15px;
+            margin-top: 19px;
+            text-align: center;
+            text-shadow: 0 -1px 0 @colorDarkGray;
+
+            > strong {
+                display: block;
+                font-size: 20px;
+                line-height: 16px;
+            }
+        }
+
+        .podium-user-prize-avatar {
+            .box-shadow(0 3px 5px rgba(0, 0, 0, .3));
+            background: @colorWhite;
+            position: relative;
+            padding: 6px;
+            margin: 10px auto;
+            text-align: center;
+            width: 100px;
+
+            &:hover {
+                .rotate(0deg);
+                .scale(1.2);
+            }
+
+            img {
+                .avatarPicture(80px);
+                max-width: 80px;
+            }
+
+            .podium-user-prize {
+                display: block;
+                font-size: @smallFontSize;
+                line-height: @smallLineHeight;
+                padding-top: 5px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+
+// Table Module
+// -------------------------
+
+// - Users Rank
+.table-users-rank {
+    tr > th,
+    tr > td {
+        padding: 8px;
+    }
+}

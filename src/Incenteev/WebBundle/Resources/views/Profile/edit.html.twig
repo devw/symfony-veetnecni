@@ -1,0 +1,45 @@
+{% extends 'WebBundle:Layout:app.html.twig' %}
+
+{% block title %}
+    {{ 'user.title.edit_profile'|trans }} -
+    Incenteev
+{% endblock %}
+
+{% block content %}
+<div class="block block-app">
+    <div class="block-app-container">
+        <div class="block-app-content">
+            <h1 class="block-app-title">
+                {{ 'user.title.edit_profile'|trans }}
+            </h1>
+            <form action="{{ path('profile_edit') }}" method="post" {{ form_enctype(form) }} class="form form-app">
+                {% form_theme form _self %}
+
+                {{ form_widget(form) }}
+
+                <div class="form-app-actions">
+                    <ul class="form-app-actions-list list list-actions">
+                        <li>
+                            <button type="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                                {{ 'form.action.save'|trans }}
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block _incenteev_profile_remove_avatar_row %}
+    <div class="controls">
+        <span class="form-app-avatar">
+            <img src="{{ get_avatar(app.user) }}" class="app-avatar">
+            <span class="app-avatar-action">
+                {{ form_widget(form) }}
+                {{ 'user.label.current_avatar'|trans }}
+            </span>
+        </span>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="incenteev.comment.acl.comment" class="Incenteev\WebBundle\Comment\Acl\CommentAcl">
+            <argument type="service" id="incenteev.comment.utils" />
+            <argument type="service" id="security.context" />
+        </service>
+
+        <service id="incenteev.comment.acl.thread" class="Incenteev\WebBundle\Comment\Acl\ThreadAcl">
+            <argument type="service" id="incenteev.comment.utils" />
+            <argument type="service" id="security.context" />
+        </service>
+
+        <service id="incenteev.comment.utils" class="Incenteev\WebBundle\Comment\CommentUtils" public="false">
+            <argument type="service" id="doctrine" />
+        </service>
+    </services>
+
+</container>

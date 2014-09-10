@@ -1,0 +1,109 @@
+// ------------------------------
+// comment module
+// ------------------------------
+
+
+// Core
+// -------------------------
+
+
+// TODO - Refactor this as comments are CRAPPY and the html too.
+.comment {
+    margin-top: 30px;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    > .comment-message {
+        background: darken(@colorWhite, 3%);
+        margin-bottom: @normalFontSize;
+
+        > .comment-author, > .comment-container {
+            padding-bottom: 5px;
+            padding-top: 5px;
+        }
+
+        > .comment-author {
+            padding-left: 5px;
+            padding-right: 5px;
+            text-align: center;
+            width: 50px;
+
+            .comment-author-avatar {
+                border: 1px solid @colorWhite;
+                height: 50px;
+                width: 50px;
+                max-width: 50px;
+            }
+        }
+
+        > .comment-container {
+            padding-right: 5px;
+
+            > .comment-author-name {
+                color: @contentColor;
+                font-size: @smallFontSize;
+                font-weight: bold;
+                line-height: @smallLineHeight;
+                margin: 0;
+                text-shadow: @contentShadowColor;
+            }
+
+            > .comment-content {
+                color: @contentColor;
+                font-size: @normalFontSize;
+                line-height: @normalLineHeight;
+            }
+
+            > .comment-metas {
+                font-size: @miniFontSize;
+                line-height: @miniLineHeight;
+
+                > .comment-meta-link {
+                    cursor: pointer;
+                }
+
+                > .comment-reply {
+                    display: inline;
+                }
+
+                > time {
+                    color: @colorGray;
+                    display: inline-block;
+                    .ie7-inline-block();
+                }
+            }
+        }
+
+        > .comment-input-container {
+            padding: 5px;
+        }
+    }
+
+    > .comment-reply {
+        margin-left: 60px;
+
+        > .comment {
+            margin-top: 0;
+        }
+
+        .comment-message > .comment-author {
+            text-align: center;
+            width: 32px;
+
+            .comment-author-avatar {
+                height: 32px;
+                max-width: 32px;
+                width: 32px;
+            }
+        }
+    }
+}
+
+
+// Current user comment
+// -------------------------
+.comment.comment-own > .comment-message {
+    border-left: 3px solid @colorBlue;
+}

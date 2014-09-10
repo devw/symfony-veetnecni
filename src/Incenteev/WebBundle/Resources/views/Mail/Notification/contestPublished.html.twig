@@ -1,0 +1,36 @@
+{# Mail sent when a contest has just been published #}
+
+{% block subject %}
+{% autoescape false %}
+    {{ 'mail.contest_published.subject'|trans({'%contest_name%': contest.name}) }}
+{% endautoescape %}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+    {{ 'mail.contest_published.title'|trans }}
+
+    {{ 'mail.contest_published.content'|trans({'%contest_name%': contest.name}) }}
+
+    {{ url('contest_show', {'id': contest.id}) }}
+{% endautoescape %}
+{% endblock %}
+
+{% block body_html %}
+{% embed "WebBundle:Mail:layout.html.twig" %}
+
+    {% set background_url = get_background(contest) %}
+    {% set avatar_url = get_avatar(contest) %}
+
+    {% block content %}
+        {{ 'mail.contest_published.content'|trans({'%user_name%': recipient.firstName, '%contest_name%': contest.name})|markdown }}
+
+        <p class="main-button">
+            <a href="{{ url('contest_show', {'id': contest.id}) }}">
+                {{ 'mail.action.display_contest'|trans }}
+            </a>
+        </p>
+    {% endblock %}
+
+{% endembed %}
+{% endblock %}

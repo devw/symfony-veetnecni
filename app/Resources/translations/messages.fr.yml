@@ -1,0 +1,670 @@
+admin:
+    breadcrumb:
+        organization:
+            edition: Edition de l'organisation
+        organization_management: Gestion de l'organisation
+        teams:
+            creation: Nouvelle équipe
+            display: %team_name%
+            edition: Edition
+            main: Equipes
+        users:
+            creation: Nouvel utilisateur
+            display: %user_name%
+            edition: Edition
+            main: Utilisateurs
+    links:
+        organization: Organisation
+        teams: Equipes
+        users: Utilisateurs
+    menu:
+        organization: Organisation
+        teams: Equipes
+        users: Utilisateurs
+    title:
+        organization_management: Gestion de l'organisation
+
+confirmation:
+    action:
+        participate: Participer
+        save: Sauvegarder
+        save_and_continue: Sauvegarder et continuer
+        skip: Ignorer cette étape
+    help:
+        avatar: La taille recommandée pour votre photo de profil est de 200x200 pixels ou plus.
+    info:
+        about_incenteev: Vos collègues participent déjà au challenge. Rejoignez-les !
+        already_in: Votre participation à ce challenge a déjà été acceptée.
+        choose_avatar: Les photos de profil permettent à vos collègues de vous identifier plus facilement. Et elles rendent le challenge plus amusant. Vous pouvez aussi choisir une image amusante, décalée ou artistique pour vous représenter.
+        confirmation_needed: Vous devez [confirmer votre participation](%link%) au challenge avant de mettre à jour vos résultats.
+        invited_by: |
+            **%inviter_name%** vous a invité à rejoindre le challenge **%organization_name%** "%contest_name%" sur Incenteev - une application Web où vous pouvez participer au challenge, consulter vos classements, interagir et vous amuser avec vos collègues.
+        why_confirm_participation: |
+            Nous vous demandons de confirmer votre participation pour être sûrs que vous n'avez pas été invité(e) par erreur.
+            Après avoir confirmé votre participation, nous vous enverrons de temps en temps un e-mail pour vous informer des classements, des dernières discussions, etc.
+    label:
+        accept: J'accepte le règlement et confirme ma participation à ce challenge
+        accept_without_rules: Je confirme ma participation à ce challenge
+        avatar: Choisissez une image sur votre ordinateur
+    page_title:
+        confirm_participation: Confirmez votre participation
+        upload_photo: Ajoutez votre photo
+        welcome: Complétez votre inscription
+    step:
+        choose_avatar: Ajoutez votre photo
+        general_information: Créez votre profil
+        participation_confirmation: Confirmez votre participation
+    subtitle:
+        confirm_participation: Si vous souhaitez participer au challenge, confirmez simplement votre participation ci-dessous.
+        upload_photo: Ajoutez votre photo de profil ci-dessous. Vous pouvez aussi choisir une image amusante pour vous représenter.
+        welcome: Veuillez compléter les informations ci-dessous pour participer au challenge. Ça ne prendra qu'une minute !
+    title:
+        already_accepted: Vous avez déjà rejoint le challenge "%contest_name%" !
+        choose_avatar: Pourquoi dois-je ajouter ma photo de profil ?
+        confirmation: Confirmez votre participation
+        confirm_participation: Souhaitez-vous participer au challenge "%contest_name%" ?
+        contest_info: Quelques mots sur le challenge
+        upload_photo: Ajoutez votre photo de profil
+        welcome: Bienvenue dans le challenge %organization_name% "%contest_name%" !
+        why_confirm_participation: Pourquoi dois-je confirmer ma participation ?
+
+contest:
+    action:
+        create_contest: Créer un challenge
+        go_to_contest: Aller sur la page du challenge
+        list_contest: Liste des challenges
+    background:
+        camels_in_desert: Chameaux dans le désert
+        christmas: Noël
+        circus: Cirque
+        color_lines: Lignes de couleur
+        cooking: Cuisine
+        golf: Golf
+        grass: Herbe
+        partnership: Partenariat
+        pontoon_blue_sea: Ponton et mer bleue
+        purple_stars: Étoiles (violet)
+        race: Course
+        ski: Ski
+        snowboarder: Snowboarder
+        snowflakes: Flocons
+        speedometer: Vitesse
+        spices: Spices
+        stars: Étoiles
+        stopwatch: Chronomètre
+        tropical_beach: Île tropicale
+        universe: Univers
+    customization:
+        background_position:
+            center: Centré
+            left: Gauche
+            right: Droite
+        background_repeat: Mosaïque
+        overlay:
+            dark: Sombre
+            light: Clair
+    flash:
+        data_grid:
+            invalid_data: Les données que vous avez entrées sont invalides. Leur enregistrement a échoué.
+            partially_saved: Certaines données que vous avez entrées sont invalides. Vos changements ont été partiellement sauvegardés.
+            saving_failed: Une erreur est survenue durant l'enregistrement de vos changements.
+        successful_delete: Le challenge a été supprimé avec succès.
+    label:
+        avatar: Logo
+        background: Choisissez un thème préconçu
+        background_color: Couleur d'arrière-plan
+        background_position: Position de l'arrière-plan
+        background_repeat: Arrière-plan en mosaïque
+        data: Données
+        data_name: Mesure pour le classement des participants
+        description: Description
+        duration: Durée
+        end_date: Date de fin
+        granularity: Les données seront entrées
+        invitation_text: Introduction des e-mails d'invitation
+        link_color: Couleur des liens
+        name: Nom
+        overlay: Recouvrement
+        participants: Participants
+        prizes: Prix
+        reminder_periodicity: Les e-mails de rappel seront envoyés
+        reminder_text: Introduction des e-mails de rappel
+        result_update:
+            admins: Gestionnaires seulement
+            admins_and_user: Gestionnaires et participants (les participants ne peuvent mettre à jour que leurs propres résultats)
+        rules: Règlement
+        start_date: Date de début
+        styles: Ou personnalisez le vôtre
+        summary_periodicity: Les e-mails de résumé seront envoyés
+        summary_text: Introduction des e-mails de résumé
+        unit: Unité de mesure
+        updated_by_participants: Permissions pour la mise à jour
+        upload_image: Image d'arrière-plan
+    granularity:
+        day: À la journée
+        month: Au mois
+        week: À la semaine
+    help:
+        avatar: La taille recommandée pour le logo est de 200x200 pixels ou plus.
+        background: La taille recommandée pour l'image d'arrière-plan est de 1920x1080px et moins de 500ko.
+        button_disabled: Ce bouton est verrouillé pour votre sécurité. Appuyez sur le cadenas pour déverrouiller.
+        data_name: '**ex.**: Chiffre d''affaire, Marge, Nombre de commandes, Nombre de contrats, Nombre de palettes, etc.'
+        disabled_after_launch: Cette propriété ne peux pas être modifiée après le lancement du challenge
+        granularity: |
+            Sélectionnez "À la journée" ou "À la semaine" pour les challenges courts (entre 1 jour et 3 mois).
+            Sélectionnez "À la semaine" ou "Au mois" pour les challenges plus longs (plus de 3 mois).
+        invitation_text: Ce texte sera l'introduction des invitations. Les e-mails d'invitation seront envoyés au lancement du challenge.
+        reminder_text: Ce texte sera l'introduction des rappels. Les e-mails de rappel rappelleront aux participants/gestionnaires de mettre à jour les résultats.
+        summary_text: Ce texte sera l'introduction des résumés. Les e-mails de résumé tiendront les participants/gestionnaires informés des classements.
+        theme_not_saved: Voyez vos modifications instantanément : elles ne sont sauvegardées que lorsque vous cliquez sur "Sauvegarder".
+        unit: '**ex.**: k€, €, Commandes, Contrats, Palettes, etc.'
+        updated_by_participants: Détermine qui devra mettre à jour les résultats du challenge.
+    info:
+        confirm_delete: |
+            Vous êtes sur le point de supprimer ce challenge. Toutes les équipes, participants et prix seront supprimés et il ne sera pas possible de faire marche arrière.
+            Êtes-vous CERTAIN de vouloir supprimer ce challenge ?
+        confirm_delete_participants: |
+            Vous êtes sur le point de supprimer ces participants du challenge. Toutes leurs données seront supprimées et il ne sera plus possible de faire marche arrière.
+            Êtes-vous CERTAIN de vouloir les supprimer de ce challenge ?
+        duration: %count% jour|%count% jours
+        duration_range: Du %start_date% au %end_date%
+        grid_saving: Enregistrement en cours...
+        not_set: Non renseigné
+        rank: '{1} 1er prix|]1, Inf] %count%ème prix'
+        user_confirmed: Confirmé
+        user_pending: En attente
+    menu_header:
+        display: Affichage
+        manage: Gestion
+        preview: Prévisualisation
+        set_up: Configuration
+    menu:
+        about: À propos
+        appearance: Thème
+        data: Données
+        description: Description
+        email_content: E-mails
+        general: Informations générales
+        launch: Récapitulatif et Lancement
+        participants: Participants
+        preview: Prévisualisation
+        prizes: Dotations
+        results: Classement individuel
+        show: Afficher
+        summary: Récapitulatif
+        team_results: Classement par équipe
+        teams: Équipes
+        update_all_results: Mettre à jour les résultats
+        update_data: Mettre à jour mes résultats
+    title:
+        about: À propos
+        appearance: Thème
+        contest_title: Challenge %contest_name%
+        data: Données
+        description: Description
+        email_content: E-mails
+        general: Informations générales
+        launch: Récapitulatif et Lancement
+        participants: Participants
+        preview: Prévisualisation
+        prizes: Dotations
+        results: Classement individuel
+        show: Afficher
+        summary: Récapitulatif
+        team_results: Classement par équipe
+        teams: Équipes
+        update_all_results: Mettre à jour les résultats
+        update_data: Mettre à jour mes résultats
+
+contest_data:
+    info:
+        js_needed: L'utilisation de Javascript est nécessaire pour cette interface.
+        not_started_yet: Vous ne pouvez mettre à jour les résultats que pour les challenges actifs mais le challenge "%contest_name%" n'a pas encore commencé.
+
+contest_list:
+    info:
+        draft: Brouillon
+        no_contest: Vous ne faites partie d'aucun challenge pour le moment. Pourquoi ne pas en créer un ?
+        no_published_contest: Vous ne faites partie d'aucun challenge qui est publié. Pour en créer un, merci d'utiliser une tablette ou un ordinateur.
+        published: Publié
+    label:
+        dates: Dates :
+    title:
+        listing: Liste des challenges
+
+contest_settings:
+    action:
+        clone: Dupliquer
+        delete: Supprimer
+        launch: Lancer
+        remove_participants: Supprimer les participants
+        save: Sauvegarder
+        save_and_continue: Sauvegarder et continuer
+    flash:
+        already_launched: Ce challenge est déjà lancé.
+        successful_edit:
+            cloned: Le challenge a été dupliqué avec succès.
+            data: Les réglages des données ont été mis à jour avec succès.
+            description: La description a été mise à jour avec succès.
+            general: Le challenge a été mis à jour avec succès.
+            launched: Le challenge a été lancé avec succès.
+            participants: Les participants ont été ajoutés au challenge.
+            prizes: Les prix ont été mis à jour avec succès.
+            remove_participants: Les participants ont été supprimés du challenge.
+            teams: Les équipes ont été mises à jour avec succès.
+    info:
+        confirm_launch: |
+            Êtes-vous sur de vouloir lancer le challenge maintenant ?
+
+            Les dates, la granularité des données et l'unité de mesure
+            ne pourront plus être modifiées.
+
+            Les invitations seront également envoyées aux participants.
+    state:
+        launched: Votre challenge est déjà lancé.
+        invalid: Des erreurs ont été trouvées dans ce challenge. Vous devez les corriger avant de pouvoir le lancer.
+        valid: Félicitations ! Ce challenge peut maintenant être lancé.
+        warning: Les points suivants peuvent poser problème. Jetez-y un œil afin de confirmer que le challenge est prêt à être lancé.
+    subtitle:
+        all_results: Mettez à jour les résultats des participants. Les résultats sont automatiquement sauvegardés quand vous les saisissez. Vous pouvez copier-coller depuis un fichier Excel. Utilisez Ctrl+Z/Cmd+Z pour annuler une modification.
+        appearance: Personnalisez la façon dont votre challenge apparaît pour les participants.
+        data: Les données du challenge définissent la manière de mesurer les résultats pour classer les participants.
+        edition: Changez les paramètres de base de votre challenge, et sa durée.
+        email_content: Personnalisez les e-mails que les participants recevront.
+        participants: Ajoutez des participants à votre challenge. Aucune invitation n'est envoyée tant que vous ne lancez pas le challenge.
+        prizes: Créez et gérez les dotations. Vous pouvez glisser-déposer les dotations pour les réorganiser.
+        summary: Vous y êtes presque ! Vérifiez que tous les paramètres de votre challenge sont corrects et cliquez sur Lancer.
+        teams: Ajoutez des équipes pour afficher un classement par équipe en plus du classement individuel.
+    title:
+        administration: Administration
+        all_results: Mettre à jour les résultats du challenge "%contest_name%"
+        appearance: Thème du challenge "%contest_name%"
+        data: Données du challenge "%contest_name%"
+        edition: Informations générales du challenge "%contest_name%"
+        email_content: E-mails du challenge "%contest_name%"
+        participants: Participants du challenge "%contest_name%"
+        prizes: Dotations du challenge "%contest_name%"
+        rules: Règlement du challenge "%contest_name%"
+        summary: Récapitulatif du challenge "%contest_name%"
+        teams: Équipes du challenge "%contest_name%"
+
+contest_show:
+    action:
+        administration: Administration
+        edit: Éditer
+        results: Classement individuel
+        show: Afficher
+    info:
+        available: Ce challenge n'est pas encore lancé. Pour participer, revenez dans...
+        no_description: Pas de description pour ce challenge.
+        no_rules: Pas de règles pour ce challenge.
+        no_wall_preview: La discussion sera disponible dès le lancement du concours.
+        not_launched_yet: |
+            Ce challenge n'est pas encore lancé, il s'agit d'une prévisualisation.
+            Vous pouvez [le publier](%link%) pour le lancer.
+    page_title:
+        all_results: Mettre à jour les résultats
+    placeholder:
+        post_comment: Exprimez-vous
+    results:
+        name: Nom
+        rank: '#'
+        score: Score
+    stats:
+        position: Position
+        remaining_days: Jours restants
+        score: Score
+    title:
+        about: Voici quelques informations utiles sur le challenge.
+        all_results: Mettre à jour les résultats
+        confirmed_participants: Participants
+        discussion: Discussion
+        results: Classement individuel
+        team_results: Classement par équipe
+        unconfirmed_participants: Non-confirmés
+
+contest_team:
+    action:
+        add_team_row: Ajouter une nouvelle équipe
+    help:
+        empty_team: Vous pouvez glisser-déposer des utilisateurs pour les ajouter à n'importe quelle équipe.
+    label:
+        name: Nom
+        participations: Membres
+
+error:
+    title:
+        404: Oups ! Mauvaise direction !
+        other: Oups ! Houston nous avons un problème !
+    info:
+        404: |
+            Il semblerait que vous vous soyez trompé de chemin.
+            Ne vous inquiétez pas, cela arrive aux meilleurs !
+        other: Nous sommes au courant du problème. Cependant, vous pouvez nous envoyer un mail à %support_mail% afin de nous faire savoir ce que vous étiez en train de faire quand ce problème est survenu.
+
+feedback:
+    action:
+        submit: Envoyer mon commentaire
+    flash:
+        empty: Le message ne peut être vide
+        error: Il y a eu une erreur lors de la soumission du formulaire. Merci de réessayer.
+        sent: Merci pour votre retour. Nous allons y répondre plus vite que la lumière.
+    placeholder:
+        enter_comment: Vos suggestions, idées et problèmes vont grandement nous aider.
+    title:
+        feedback: Comment pouvons-nous améliorer cette page pour vous ?
+
+form:
+    action:
+        save: Sauvegarder
+    check:
+        unload: Un formulaire (ou plus) a changé sur cette page. Êtes-vous sûr de vouloir quitter cette page sans le sauvegarder ?
+        unsubmitted_form: Un autre formulaire a changé sur cette page. Êtes-vous sûr de vouloir continuer la soumission de ce formulaire ? Les changements de l'autre formulaire seront perdus.
+    placeholder:
+        email: john@supercorp.com
+        password: Mot de passe
+
+layout:
+    action:
+        go_to_app: Aller sur Incenteev
+        organization_management: Gestion de l'organisation
+        profile: Mon profil
+        signup: S'inscrire
+        view_less: Réduire
+        view_more: Lire la suite
+    messages:
+        loading: Chargement...
+    title:
+        main: Incenteev
+
+invitation:
+    info:
+        current_participants: Participants actuels
+        no_participants: Pas de participant pour ce challenge.
+        no_user_found: Aucun utilisateur trouvé
+    label:
+        enter_emails: Saisir les adresses e-mail des personnes à inviter
+        owners: Gestionnaires du challenge
+    placeholder:
+        enter_emails: Entrez les adresses e-mail des personnes que vous voulez inviter...
+
+organization:
+    breadcrumb:
+        organization_display: %organization_name%
+    label:
+        language: Langue pour toute l'organisation
+        name: Nom
+    title:
+        edit: Organisation
+        organization: Organisation
+
+organization_team:
+    action:
+        create: Ajouter une nouvelle équipe
+        edit: Éditer
+    info:
+        no_member: Aucun membre dans cette équipe actuellement
+        no_team: Il n'y a pas encore d'équipe
+        no_user_found: Aucun utilisateur trouvé
+        users_without_team: Utilisateurs sans équipe
+    label:
+        avatar: Avatar
+        members: Membres
+        name: Nom
+    placeholder:
+        enter_name: Commencer à taper un nom...
+    title:
+        create: Création d'une nouvelle équipe
+        edit: Edition d'une équipe
+        list: Équipes
+        show: Vue de l'équipe "%team_name%"
+
+password_recovery:
+    action:
+        recover: Retrouver mon mot de passe
+        update: Mettre à jour mon mot de passe
+    info:
+        email_sent: |
+            Un e-mail avec les instructions pour retrouver votre mot de passe a été envoyé à **%email%**.
+
+            Si vous ne l'avez pas reçu dans quelques minutes, vérifiez votre dossier de spam.
+        fill_in_email: Entrez votre adresse e-mail, et nous vous enverrons un e-mail avec les instructions pour mettre à jour votre mot de passe.
+        fill_in_new_password: Définissez votre nouveau mot de passe ci-dessous.
+    label:
+        email: E-mail
+    title: Mot de passe oublié
+
+periodicity:
+    action:
+        customize: Personnaliser
+    day:
+        friday: Ven.
+        monday: Lun.
+        thursday: Jeu.
+        tuesday: Mar.
+        saturday: Sam.
+        sunday: Dim.
+        wednesday: Mer.
+    hour:
+        h0: '00:00'
+        h1: '01:00'
+        h2: '02:00'
+        h3: '03:00'
+        h4: '04:00'
+        h5: '05:00'
+        h6: '06:00'
+        h7: '07:00'
+        h8: '08:00'
+        h9: '09:00'
+        h10: '10:00'
+        h11: '11:00'
+        h12: '12:00'
+        h13: '13:00'
+        h14: '14:00'
+        h15: '15:00'
+        h16: '16:00'
+        h17: '17:00'
+        h18: '18:00'
+        h19: '19:00'
+        h20: '20:00'
+        h21: '21:00'
+        h22: '22:00'
+        h23: '23:00'
+    info:
+        no_hours_found: Aucune heure trouvée
+    label:
+        days: Jours
+        hours: Heures
+        weeks: Semaines
+    placeholder:
+        hours: Sélectionner des heures
+    presets:
+        day:
+            custom: Personnaliser
+            daily: Tous les jours
+            every_mon_wed_fri: Tous les lundi, mercredi et vendredi
+            every_tue_thu: Tous les mardi et jeudi
+            weekday: Tous les jours de la semaine (lundi à vendredi)
+        week:
+            custom: Personnaliser
+            every_week: Toutes les semaines
+            first_week: Première semaine du mois
+            last_week: Dernière semaine du mois
+    summary:
+        day_and_hours: Tous les %days% à %hours%
+        every_days: Tous les jours à %hours%
+        list_join: '%first% et %last%'
+        never_days: Jamais (aucun jour sélectionné)
+        never_hours: Jamais (aucune heure sélectionnée)
+        never_weeks: Jamais (aucune semaine sélectionnée)
+        week:
+            w1: premier
+            w2: deuxième
+            w3: troisième
+            w4: quatrième
+            w5: dernier
+        week_days_and_hours: Le %weeks% %days% du mois à %hours%|Les %weeks% %days% du mois à %hours%
+    week:
+        w1: 1ère sem. du m.
+        w2: 2ème sem. du m.
+        w3: 3ème sem. du m.
+        w4: 4ème sem. du m.
+        w5: Dernière sem. du m.
+
+prize:
+    action:
+        add_prize_row: Ajouter un autre prix
+        duplicate_prize: Dupliquer le prix
+    label:
+        avatar: Photo
+        description: Description
+        name: Nom
+    placeholder:
+        name: Nom
+
+registration:
+    info:
+        account_activated: Votre compte est maintenant activé.
+        have_account: Déjà inscrit ?
+        subscription_saved: Nous avons bien reçu votre e-mail et nous vous informerons dès notre lancement.
+    label:
+        organization: Organisation
+    title:
+        confirm: Enregistrement
+        confirmed: Félicitations %username% !
+        register: S'inscrire
+        registered: Félicitations !
+
+result_submission:
+    action:
+        edit: Éditer
+        save: Sauvegarder
+    flash:
+        successful_data_submit: Vos résultats ont été envoyés avec succès.
+    info:
+        total: 'Total :'
+        update_data: Veuillez mettre à jour votre %measure%.
+    subtitle:
+        submit_data: Mettez à jour vos résultats pour les différentes périodes dans le formulaire ci-dessous. N'entrez que des chiffres.
+    title:
+        edit_results: Éditer les résultats de "%user_name%"
+        update_results: Mettez à jour les résultats
+
+security:
+    action:
+        log_in: Connexion
+        log_out: Déconnexion
+    info:
+        forgot_password: Mot de passe oublié ?
+        not_register: Pas encore de compte ?
+    label:
+        email: Adresse e-mail
+        password: Mot de passe
+    placeholder:
+        enter_email: jean@supercorp.com
+        enter_password: Regardez le Post-It sur votre écran...
+    title:
+        log_in: Connexion
+
+user:
+    action:
+        create: Créer un nouvel utilisateur
+        edit: Éditer
+        edit_profile: Éditer
+        show: Voir le profil
+    help:
+        password: Vous utiliserez ce mot de passe pour vous connecter et participer au challenge
+    info:
+        no_user: Il n'y a aucun utilisateur
+    label:
+        avatar: Avatar
+        current_avatar: Retirer l'image courante
+        email: Email
+        first_name: Prénom
+        last_name: Nom
+        name: Nom
+        password: Choisissez un mot de passe
+        roles: Rôles
+    role:
+        admin: Admin
+        contest_creator: Créateur de challenge
+    title:
+        admin_create: Créer un nouvel utilisateur
+        admin_edit: Éditer un utilisateur
+        admin_list: Utilisateurs
+        admin_panel: Panneau d'administration
+        admin_profile: Profil d'utilisateur
+        edit_profile: Edition du profil
+        profile: Mon profil
+
+mail:
+    comment_reply:
+        initial_author_subject: %author% a répondu à votre commentaire
+        different_author_subject: %author% a répondu au commentaire de %initial_author%
+        initial_author_content: %author% vient juste de répondre à votre message dans le challenge "%contest_name%".
+        different_author_content: %author% vient juste de répondre au message de %initial_author% dans le challenge "%contest_name%".
+        original_message: Message original :
+        action: Répondre au message
+    contest_published:
+        title: Le challenge "%contest_name%" a été publié !
+        subject: Le challenge "%contest_name%" a été publié !
+        content: |
+            Bonjour %user_name%,
+            Le challenge %contest_name% vient juste d'être lancé. Les participants ont été avertis par e-mail.
+            Cliquez sur le lien ci-dessous pour accéder au challenge.
+    invitation:
+        title: Invitation
+        subject: Invitation à rejoindre le challenge %contest_name%
+        content_html: |
+            Bonjour %user_name%,
+
+            Vous avez été invité à rejoindre le challenge **%contest_name%**. Vous devez confirmer votre participation en cliquant sur le lien ci-dessous.
+        content_txt: |
+            Bonjour %user_name%,
+
+            Vous avez été invité à rejoindre le challenge %contest_name%. Vous devez confirmer votre participation en cliquant sur le lien ci-dessous.
+    organizationInvitation:
+        subject: Invitation à rejoindre l'organisation %organization_name%
+        title: Invitation
+        content_html: |
+            Bonjour %user_name%,
+
+            Vous avez été invité à rejoindre l'organisation **%organization_name%**. Vous devez terminer votre enregistrement en cliquant sur le lien ci-dessous.
+        content_txt: |
+            Bonjour %user_name%,
+
+            Vous avez été invité à rejoindre l'organisation %organization_name%. Vous devez terminer votre enregistrement en cliquant sur le lien ci-dessous.
+    dataEntryReminder:
+        content_html: |
+            Bonjour %user_name%,
+
+            Vous devez mettre à jour vos résultats pour le challenge **%contest_name%**. Merci de cliquer sur le lien ci-dessous pour mettre à jour vos données.
+        content_txt: |
+            Bonjour %user_name%,
+
+            Vous devez mettre à jour vos résultats pour le challenge %contest_name%. Merci de cliquer sur le lien ci-dessous pour mettre à jour vos données.
+        subject: Veuillez mettre à jour vos résultats pour le challenge %contest_name%
+        title: N'oubliez pas de mettre à jour vos résultats
+    resetting:
+        content_html: "Pour réinitialiser votre mot de passe, merci de vous rendre sur le lien suivant: [%confirmationUrl%](%confirmationUrl%)."
+        title: Bonjour **%username%**,
+    summary:
+        subject: %user_name%, voici ce qui se passe dans le challenge %contest_name%
+        title:
+            board: Classement individuel
+            pending_users: Utilisateurs n'ayant pas encore confirmé leur participation
+            not_updated_users: Utilisateurs n'ayant pas mis à jour leurs résultats
+            top_messages: Commentaires
+        content: |
+            **%user_name%**,
+
+            Voici ce qui se passe dans le challenge %contest_name%.
+        info:
+            no_message: |
+                Il n'y a pas eu de commentaire dans ce challenge. Heureusement il n'est pas encore terminé et vous pouvez en poster un ! :)
+            no_participants: Ce challenge n'a aucun participant.
+    action:
+        display_contest: Aller sur le challenge
+        participate: Participer
+        show_results: Afficher tous les résultats
+        update_results: Mettre à jour vos résultats

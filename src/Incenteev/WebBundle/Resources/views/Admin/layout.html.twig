@@ -1,0 +1,32 @@
+{% extends 'WebBundle:Layout:app.html.twig' %}
+
+{% block title %}
+    {{ 'admin.title.organization_management'|trans }} -
+    Incenteev
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <aside class="span3">
+        <div class="widget">
+            <nav class="menu menu-sidebar">
+                {% set menu = knp_menu_get('WebBundle:MenuBuilder:organizationAdministrationMenu') %}
+
+                {{ knp_menu_render(menu, {'currentClass' : 'active', 'template': 'WebBundle:Menu:app.html.twig'}) }}
+            </nav>
+        </div>
+    </aside>
+    <section class="span9">
+        <div class="block block-app">
+            <div class="block-app-container">
+                <div class="block-app-content">{% block inner_content '' %}</div>
+            </div>
+        </div>
+        <footer class="footer">
+            {{ block('footer_content') }}
+        </footer>
+    </section>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

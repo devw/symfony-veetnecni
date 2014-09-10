@@ -1,0 +1,94 @@
+// ------------------------------
+// Message Module
+// ------------------------------
+
+
+// Core
+// -------------------------
+.message {
+    background-color: @messageWarningBackgroundColor;
+    border: 1px solid fade(@colorBlack, 5%);
+    color: @contentColor;
+    font-size: @smallFontSize;
+    line-height: @smallLineHeight;
+    margin-bottom: @normalLineHeight;
+    padding: @normalFontSize;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+
+    .message-content,
+    p,
+    ul {
+        margin-bottom: 5px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    ul {
+        margin-bottom: 0;
+    }
+
+    .close {
+        line-height: @normalLineHeight;
+        position: relative;
+        right: 0;
+        top: -3px;
+    }
+}
+
+
+// Rounded message
+// -------------------------
+.message-rounded {
+    .border-radius(4px);
+}
+
+
+// Block message
+// -------------------------
+.message-block {
+    .box-sizing(border-box);
+    width: 100%;
+}
+
+
+// Sticked message
+// -------------------------
+.message-sticked {
+    border-left: 0;
+    border-right: 0;
+    margin: 10px -10px 20px;
+
+    .close {
+        right: 0;
+        top: -5px;
+    }
+}
+
+
+// Types message
+// -------------------------
+
+// - Success message
+.message.message-success {
+    background-color: @successBackground;
+    border-color: @successBorder;
+    color: @successText;
+}
+
+
+// - Error message
+.message.message-error {
+    background-color: @errorBackground;
+    border-color: @errorBorder;
+    color: @errorText;
+}
+
+
+// - Info message
+.message.message-info {
+    background-color: @infoBackground;
+    border-color: @infoBorder;
+    color: @infoText;
+}

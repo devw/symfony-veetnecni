@@ -1,0 +1,163 @@
+{% extends 'WebBundle:Contest/Main:base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/web/vendor/css/countdown/jquery.countdown.css', 'vendors') }}">
+{% endblock %}
+
+{% block title %}
+    {{ 'contest.title.contest_title'|trans({'%contest_name%': contest.name}) }}
+    - Incenteev
+{% endblock %}
+
+{% block contest_title %}
+    {{ parent() }}
+    <small>{{ 'contest_show.title.results'|trans }}</small>
+{% endblock %}
+
+{% block inner_content %}
+    {% if contest.started or not contest.published %}
+        {% set prizes = contest.prizes %}
+
+        {% if board|length >= 3 %}
+            {% set podium_places = 3 %}
+            {% set podium_users = board|slice(0, podium_places) %}
+            <ul class="podium podium-users">
+                {% for item in podium_users %}
+                    {% set prize = attribute(prizes, loop.index)|default(null) %}
+                    <li class="podium-user podium-user-{{ loop.index }}">
+                        <span class="podium-user-rank">{{ loop.index }}</span>
+                        <figure class="podium-user-avatar" title="{{ item.participation.user.name }}" rel="tooltip" data-placement="bottom">
+                            <img src="{{ get_avatar(item.participation.user) }}" alt="">
+                            <figcaption class="podium-user-caption">
+                                {{ item.participation.user.firstName }}
+                            </figcaption>
+                        </figure>
+                        <p class="podium-user-score">
+                            <strong>{{ item.score|float_val }}</strong>
+                            {{ contest.unit }}
+                        </p>
+                        {% if prize is not null %}
+                            {% set prize_avatar = get_avatar(prize) %}
+                            {% if prize_avatar is not null %}
+                                <p class="podium-user-prize-avatar" {% if prize.description is not empty %}rel="popover" {% endif %}data-placement="bottom" data-content="&lt;img src='{{ prize_avatar }}' alt=''&gt; {{ prize.description }}" title="{{ prize.name }}">
+                                    <img src="{{ prize_avatar }}" alt="">
+                                    <span class="podium-user-prize hidden-phone">{{ prize.name }}</span>
+                                </p>
+                            {% else %}
+                                <p class="podium-user-prize-avatar" {% if prize.description is not empty %}rel="popover" {% endif %}data-placement="bottom" data-content=" {{ prize.description }}" data-original-title="{{ prize.name }}">
+                                    <span class="podium-user-prize hidden-phone">{{ prize.name }}</span>
+                                </p>
+                            {% endif %}
+                        {% else %}
+                            <p class="podium-user-prize-avatar visible-phone"></p>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            {% set podium_places = 0 %}
+        {% endif %}
+
+        {% set ranked_users = board|slice(podium_places) %}
+
+        {% if ranked_users is not empty %}
+            <table class="table table-users-rank">
+                <thead>
+                    <tr>
+                        <th class="rank-users-position">{{ 'contest_show.results.rank'|trans }}</th>
+                        <th>
+                            {{ 'contest_show.results.name'|trans }}
+                        </th>
+                        <th class="rank-users-score">{{ contest.dataName }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in ranked_users %}
+                    {% set rank = loop.index + podium_places %}
+                    {% set prize = attribute(prizes, rank)|default(null) %}
+                    {% set prize_avatar = prize is null ? null : get_avatar(prize) %}
+                    <tr class="user{% if item.participation.user is sameas(app.user) %} rank-users-current{% endif %}">
+                        <td class="rank-users-position">{{ rank }}</td>
+                        <td>
+                            <img src="{{ get_avatar(item.participation.user) }}" alt="" class="user-avatar">
+                            <span class="user-name">
+                                {{ item.participation.user.name }}
+                                {% if prize is not null %}
+                                    {% if prize_avatar is null %}
+                                        <span class="list-podium-user-prize" title="{{ prize.name }}">- <strong>{{ prize.name }}</strong></span>
+                                    {% endif %}
+                                {% endif %}
+                            </span>
+                        </td>
+                        <td class="rank-users-score">
+                            <span rel="tooltip" title="{{ item.score|float_val }} {{ contest.unit }}">{{ item.score|float_val }}</span>
+                            {% if prize is not null %}
+                                {% if prize_avatar is not null %}
+                                    <img src="{{ prize_avatar }}" alt="{{ prize.name }}" title="{{ prize.name }}" rel="tooltip" class="rank-users-prize">
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+
+        <h5 class="secondary-title">
+            <i class="sprite-icon-feedback"></i>
+            {{ 'contest_show.title.discussion'|trans }}
+        </h5>
+        {% if not contest.published %}
+            <em>{{ 'contest_show.info.no_wall_preview'|trans }}</em>
+        {% endif %}
+        <div id="fos_comment_thread"></div>
+    {% else %}
+        <div class="row-fluid">
+            <div class="span2"></div>
+            <div class="span8">
+                <h4 class="center">{{ 'contest_show.info.available'|trans }}</h4>
+                <div id="contest-countdown" class="countdown clearfix"></div>
+                <hr>
+                <h5 class="secondary-title">{{ 'contest_show.title.discussion'|trans }}</h5>
+                {% if not contest.published %}
+                    <em>{{ 'contest_show.info.no_wall_preview'|trans }}</em>
+                {% endif %}
+                <div id="fos_comment_thread"></div>
+            </div>
+            <div class="span2"></div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block extra_javascripts %}
+    {# TODO - Handle the file in an other way #}
+    {% set user_locale = app.request.locale|slice(0, 2) %}
+    <script type="text/javascript" src="{{ asset('bundles/web/vendor/js/countdown/jquery.countdown-' ~ user_locale ~ '.js', 'vendors') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/web/vendor/js/timeago/jquery.timeago.' ~ user_locale ~ '.js', 'vendors') }}"></script>
+    <script type="text/javascript">
+        jQuery(function ($) {
+            var countdownDate = new Date({{ contest.startDate|date('Y') }}, {{ contest.startDate|date('m') }} - 1, {{ contest.startDate|date('d') }});
+            $('#contest-countdown').countdown({until: countdownDate});
+        });
+    </script>
+    {% javascripts '@FOSCommentBundle/Resources/assets/js/comments.js' package='vendors' %}
+        <script type="text/javascript">
+            // thread id
+            var fos_comment_thread_id = 'contest-{{ contest.id }}';
+
+            // api base url to use for initial requests
+            var fos_comment_thread_api_base_url = '{{ path('fos_comment_get_threads') }}';
+
+            // Snippet for asynchronously loading the comments
+            (function () {
+                var fos_comment_script = document.createElement('script');
+                fos_comment_script.async = true;
+                fos_comment_script.src = '{{ asset_url }}';
+                fos_comment_script.type = 'text/javascript';
+
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(fos_comment_script);
+            })();
+        </script>
+    {% endjavascripts %}
+{% endblock %}

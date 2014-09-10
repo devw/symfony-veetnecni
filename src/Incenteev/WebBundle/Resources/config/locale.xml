@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="incenteev.locale.available_locales" type="collection">
+            <!-- en should be the first language to be the fallback in case of nothing else can be used to determine the locale. -->
+            <parameter>en</parameter>
+            <parameter>fr_FR</parameter>
+            <parameter>fr</parameter>
+        </parameter>
+    </parameters>
+
+    <services>
+        <service id="incenteev.locale.listener" class="Incenteev\WebBundle\EventListener\LocaleListener">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="security.context" />
+            <argument>%incenteev.locale.available_locales%</argument>
+        </service>
+    </services>
+
+</container>

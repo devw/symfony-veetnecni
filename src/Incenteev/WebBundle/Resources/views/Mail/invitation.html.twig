@@ -1,0 +1,48 @@
+{# Mail sent when inviting new users to a contest #}
+
+{% block subject %}
+{% autoescape false %}
+    {{ 'mail.invitation.subject'|trans({'%contest_name%': participation.contest.name}) }}
+{% endautoescape %}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+    {{ 'mail.invitation.title'|trans }}
+
+    {% if participation.contest.invitationText is not null %}
+        {{ participation.contest.invitationText|replace({'%user_name%': participation.user.firstName, '%contest_name%': participation.contest.name}) }}
+    {% else %}
+        {{ 'mail.invitation.content_txt'|trans({'%user_name%': participation.user.firstName, '%contest_name%': participation.contest.name}) }}
+    {% endif %}
+
+    {{ url('confirmation_accept_invitation', {'token': participation.token, 'id': participation.contest.id}) }}
+{% endautoescape %}
+{% endblock %}
+
+{% block body_html %}
+{% embed "WebBundle:Mail:layout.html.twig" %}
+
+    {% set contest_styles = participation.contest.styles %}
+
+    {% set background_url = get_background(participation.contest)|default(null) %}
+    {% set avatar_url = get_avatar(participation.contest)|default(null) %}
+
+    {% block title %}{{ participation.contest.name }}{% endblock %}
+
+    {% block content %}
+        {% if participation.contest.invitationText is not null %}
+            {{ participation.contest.invitationText|replace({'%user_name%': participation.user.firstName, '%contest_name%': participation.contest.name})|markdown }}
+        {% else %}
+            {{ 'mail.invitation.content_html'|trans({'%user_name%': participation.user.firstName, '%contest_name%': participation.contest.name})|markdown }}
+        {% endif %}
+
+        <p class="main-button">
+            <a href="{{ url('confirmation_accept_invitation', {'token': participation.token, 'id': participation.contest.id}) }}">
+                {{ 'mail.action.participate'|trans }}
+            </a>
+        </p>
+    {% endblock %}
+
+{% endembed %}
+{% endblock %}

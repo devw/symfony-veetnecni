@@ -1,0 +1,82 @@
+worker_processes  4;
+daemon            off;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    log_format  main  '[nginx] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  logs/access.log  main;
+    error_log   logs/error.log  notice;
+
+    client_max_body_size 10m;
+
+    sendfile    on;
+    tcp_nopush  on;
+
+    keepalive_timeout  65;
+
+
+    gzip  on;
+
+
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    # define the $https variable based on the forwarded proto
+    map $http_x_forwarded_proto $https {
+        default off;
+        https on;
+    }
+
+    server {
+        server_name  localhost;
+        listen       <%= ENV['PORT'] %>;
+
+        # find a way to configure this through erb
+        root  /app/www/web;
+
+        if ($https = "off") {
+            return 301 https://$http_host$request_uri;
+        }
+
+        #site root is redirected to the app boot script
+        location = / {
+            try_files @site @site;
+        }
+        #all other locations try other files first and go to our front controller if none of them exists
+        location / {
+            try_files $uri $uri/ @site;
+        }
+
+        # deny access to .htaccess, .svn .bzr .git files
+        location ~ /\.(ht|svn|bzr|git) {
+            deny  all;
+            access_log      off;
+            log_not_found   off;
+        }
+
+        #return 404 for all php files as we do have a front controller
+        location ~ \.php$ {
+            return 404;
+        }
+
+        location @site {
+            fastcgi_pass   unix:/tmp/php-fpm.socket;
+            fastcgi_param  SCRIPT_FILENAME $document_root/app.php;
+            fastcgi_ignore_client_abort on;
+            #cache up to 256k, also sets headers size cache to 16k
+            fastcgi_buffers 16 16k;
+            #uncomment if your headers are more than 16k (e.g. huge cookies)
+            #fastcgi_buffer_size 32k;
+            fastcgi_param HTTPS $https;
+            include fastcgi_params;
+        }
+    }
+}

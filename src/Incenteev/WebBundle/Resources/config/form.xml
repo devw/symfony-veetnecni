@@ -1,0 +1,115 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="incenteev.form.registration" class="Incenteev\WebBundle\Form\Type\RegistrationType" parent="fos_user.registration.form.type">
+            <tag name="form.type" alias="incenteev_registration" />
+            <argument type="service" id="incenteev.form.listener.name_guesser" />
+        </service>
+
+        <service id="incenteev.form.listener.name_guesser" class="Incenteev\WebBundle\Form\EventListener\NameGuesserListener" public="false">
+            <argument type="service" id="incenteev.util.name_guesser" />
+        </service>
+
+        <service id="incenteev.form.contest" class="Incenteev\WebBundle\Form\Type\ContestType">
+            <tag name="form.type" alias="incenteev_contest" />
+        </service>
+
+        <service id="incenteev.form.contest_data" class="Incenteev\WebBundle\Form\Type\ContestDataType">
+            <tag name="form.type" alias="incenteev_contest_data" />
+        </service>
+
+        <service id="incenteev.form.contest_invitation" class="Incenteev\WebBundle\Form\Type\ContestInvitationType">
+            <tag name="form.type" alias="incenteev_contest_invitation" />
+        </service>
+
+        <service id="incenteev.form.contest_appearance" class="Incenteev\WebBundle\Form\Type\ContestAppearanceType">
+            <tag name="form.type" alias="incenteev_contest_appearance" />
+        </service>
+
+        <service id="incenteev.form.contest_email_content" class="Incenteev\WebBundle\Form\Type\ContestEmailContentType">
+            <tag name="form.type" alias="incenteev_contest_email_content" />
+        </service>
+
+        <service id="incenteev.form.contest_accept" class="Incenteev\WebBundle\Form\Type\ContestAcceptType">
+            <tag name="form.type" alias="incenteev_contest_accept" />
+        </service>
+
+        <service id="incenteev.form.submit_data" class="Incenteev\WebBundle\Form\Type\SubmitDataType">
+            <tag name="form.type" alias="incenteev_submit_data" />
+        </service>
+
+        <service id="incenteev.form.data_entry" class="Incenteev\WebBundle\Form\Type\DataEntryType">
+            <tag name="form.type" alias="incenteev_data_entry" />
+        </service>
+
+        <service id="incenteev.form.prize" class="Incenteev\WebBundle\Form\Type\PrizeType">
+            <tag name="form.type" alias="incenteev_prize" />
+        </service>
+
+        <service id="incenteev.form.periodicity" class="Incenteev\WebBundle\Form\Type\PeriodicityType">
+            <tag name="form.type" alias="incenteev_periodicity" />
+        </service>
+
+        <service id="incenteev.form.profile" class="Incenteev\WebBundle\Form\Type\ProfileType">
+            <tag name="form.type" alias="incenteev_profile" />
+        </service>
+
+        <service id="incenteev.form.organization" class="Incenteev\WebBundle\Form\Type\OrganizationType">
+            <tag name="form.type" alias="incenteev_organization" />
+        </service>
+
+        <service id="incenteev.form.organization_team" class="Incenteev\WebBundle\Form\Type\OrganizationTeamType">
+            <tag name="form.type" alias="incenteev_organization_team" />
+        </service>
+
+        <service id="incenteev.form.admin_user" class="Incenteev\WebBundle\Form\Type\AdminUserType">
+            <tag name="form.type" alias="incenteev_admin_user" />
+        </service>
+
+        <service id="incenteev.form.invited_registration" class="Incenteev\WebBundle\Form\Type\InvitedRegistrationType">
+            <tag name="form.type" alias="incenteev_invited_registration" />
+        </service>
+
+        <service id="incenteev.form.contest_team_collection" class="Incenteev\WebBundle\Form\Type\ContestTeamCollectionType">
+            <tag name="form.type" alias="incenteev_contest_team_collection" />
+        </service>
+
+        <service id="incenteev.form.contest_team" class="Incenteev\WebBundle\Form\Type\ContestTeamType">
+            <tag name="form.type" alias="incenteev_contest_team" />
+        </service>
+
+        <service id="incenteev.form.type_extension.help" class="Incenteev\WebBundle\Form\Extension\HelpTypeExtension">
+            <tag name="form.type_extension" alias="form" />
+        </service>
+
+        <service id="incenteev.form.type.member_list" class="Incenteev\WebBundle\Form\Type\MemberListType">
+            <tag name="form.type" alias="incenteev_member_list" />
+        </service>
+
+        <service id="incenteev.form.type.unit_number" class="Incenteev\WebBundle\Form\Type\UnitNumberType">
+            <tag name="form.type" alias="incenteev_unit_number" />
+        </service>
+
+        <service id="incenteev.form.type.translated_default_text" class="Incenteev\WebBundle\Form\Type\TranslatedDefaultTextType">
+            <tag name="form.type" alias="incenteev_translated_default_text" />
+            <argument type="service" id="translator" />
+        </service>
+
+        <service id="incenteev.form.type.avatar" class="Incenteev\WebBundle\Form\Type\AvatarType">
+            <tag name="form.type" alias="incenteev_avatar" />
+        </service>
+
+        <service id="incenteev.form.type.builtin_background_choice" class="Incenteev\WebBundle\Form\Type\BuiltinBackgroundChoiceType">
+            <tag name="form.type" alias="incenteev_builtin_background_choice" />
+        </service>
+
+        <service id="incenteev.form.type.profile_registration" class="Incenteev\WebBundle\Form\Type\ProfileRegistrationType">
+            <tag name="form.type" alias="incenteev_profile_registration" />
+        </service>
+    </services>
+
+</container>

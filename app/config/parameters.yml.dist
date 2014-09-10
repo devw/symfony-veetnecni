@@ -1,0 +1,27 @@
+parameters:
+    database_host:     localhost
+    database_port:     ~
+    database_name:     XXXXX
+    database_user:     XXXXX
+    database_password: XXXXX
+
+    mailer_delivery_address: ~
+
+    router.request_context.host: localhost
+    router.request_context.scheme: http
+    request_context.base_path: ""
+    request_context.base_url: ""
+
+    secret:            CHANGE_ME
+    mandrill_api_key: ASK_ME_TO_SIMON
+    google_analytics_account: ~
+    index_pages: false
+
+    amazon_access_key: ~
+    amazon_secret_key: ~
+    amazon_bucket: dummy
+
+    assets_version: ~
+    trust_proxy_headers: false
+    session_handler: session.handler.native_file # set it to "incenteev.session.doctrine.handler" to use the DB
+    prod_logging_level: warning

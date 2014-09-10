@@ -1,0 +1,60 @@
+{% extends 'WebBundle:Admin:layout.html.twig' %}
+
+{% block title %}
+    {{ 'admin.breadcrumb.users.main'|trans }}
+    - {{ 'admin.breadcrumb.organization_management'|trans }}
+    - Incenteev
+{% endblock %}
+
+{% block breadcrumb %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{{ path('admin_home') }}">{{ 'admin.breadcrumb.organization_management'|trans }}</a>
+            <span class="divider">></span>
+        </li>
+        <li>
+            <a href="{{ path('admin_user_list') }}">{{ 'admin.breadcrumb.users.main'|trans }}</a>
+            <span class="divider">></span>
+        </li>
+        <li class="active">{{ 'admin.breadcrumb.users.display'|trans({'%user_name%': user.name}) }}</li>
+    </ul>
+{% endblock %}
+
+{% block inner_content %}
+<h1 class="block-app-title">
+    <span class="block-app-title-content">
+        {{ 'user.title.admin_profile'|trans }}
+    </span>
+    <span class="block-app-title-actions">
+        <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn button-info">
+            {{ 'user.action.edit'|trans }}
+        </a>
+    </span>
+</h1>
+
+<div class="details">
+    <div class="details-group">
+        <span class="details-label">{{ 'user.label.first_name'|trans }}</span>
+
+        <p class="details-content">{{ user.firstName }}</p>
+    </div>
+    <div class="details-group">
+        <span class="details-label">{{ 'user.label.last_name'|trans }}</span>
+
+        <p class="details-content">{{ user.lastName }}</p>
+    </div>
+    <div class="details-group">
+        <span class="details-label">{{ 'user.label.email'|trans }}</span>
+
+        <p class="details-content">{{ user.email }}</p>
+    </div>
+    {# TODO add the roles #}
+    <div class="details-group">
+        <span class="details-label">{{ 'user.label.avatar'|trans }}</span>
+
+        <div class="details-content">
+            <img src="{{ get_avatar(user) }}" class="thumbnail">
+        </div>
+    </div>
+</div>
+{% endblock %}

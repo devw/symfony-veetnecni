@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="incenteev.reminder.manager" class="Incenteev\WebBundle\Reminder\ReminderManager">
+            <call method="addSender">
+                <argument>data_entry</argument>
+                <argument type="service" id="incenteev.reminder.data_entry" />
+            </call>
+            <call method="addSender">
+                <argument>summary</argument>
+                <argument type="service" id="incenteev.reminder.summary_sender" />
+            </call>
+        </service>
+
+        <service id="incenteev.reminder.data_entry" class="Incenteev\WebBundle\Reminder\DataEntrySender" public="false">
+            <argument type="service" id="doctrine" />
+            <argument type="service" id="incenteev.mailer" />
+            <argument type="service" id="incenteev.contest.data_entry_manager" />
+            <argument type="service" id="translator" />
+        </service>
+
+        <service id="incenteev.reminder.summary_sender" class="Incenteev\WebBundle\Reminder\SummarySender" public="false">
+            <argument type="service" id="incenteev.mailer" />
+            <argument type="service" id="doctrine" />
+            <argument type="service" id="incenteev.contest.data_entry_manager" />
+            <argument type="service" id="translator" />
+        </service>
+    </services>
+
+</container>

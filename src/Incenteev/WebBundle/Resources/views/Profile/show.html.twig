@@ -1,0 +1,49 @@
+{% extends 'WebBundle:Layout:app.html.twig' %}
+
+{% block title %}
+    {{ 'user.title.profile'|trans }} -
+    Incenteev
+{% endblock %}
+
+{% block content %}
+<div class="block block-app">
+    <div class="block-app-container">
+        <div class="block-app-content">
+            <h1 class="block-app-title">
+                <span class="block-app-title-content">
+                    {{ 'user.title.profile'|trans }}
+                </span>
+                <span class="block-app-title-actions">
+                    <a href="{{ path('profile_edit') }}" class="btn button-info">
+                        {{ 'user.action.edit_profile'|trans }}
+                    </a>
+                </span>
+            </h1>
+            <div class="details">
+                <div class="details-group">
+                    <span class="details-label">{{ 'user.label.first_name'|trans }}</span>
+
+                    <p class="details-content">{{ user.firstName }}</p>
+                </div>
+                <div class="details-group">
+                    <span class="details-label">{{ 'user.label.last_name'|trans }}</span>
+
+                    <p class="details-content">{{ user.lastName }}</p>
+                </div>
+                <div class="details-group">
+                    <span class="details-label">{{ 'user.label.email'|trans }}</span>
+
+                    <p class="details-content">{{ user.email }}</p>
+                </div>
+                <div class="details-group">
+                    <span class="details-label">{{ 'user.label.avatar'|trans }}</span>
+
+                    <div class="details-content">
+                        <img src="{{ get_avatar(user) }}" class="thumbnail">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

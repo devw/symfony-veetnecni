@@ -1,0 +1,107 @@
+{
+    "name": "incenteev/incenteev",
+    "autoload": {
+        "psr-0": { "Incenteev": "src/" }
+    },
+    "repositories": {
+        "gaufrette": {
+            "type": "vcs",
+            "url": "git://github.com/stof/Gaufrette.git"
+        },
+        "lessphp": {
+            "type": "vcs",
+            "url": "git://github.com/Incenteev/lessphp.git"
+        },
+        "user-bundle": {
+            "type": "vcs",
+            "url": "git://github.com/stof/FOSUserBundle.git"
+        }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "2.1.*",
+        "amazonwebservices/aws-sdk-for-php": "1.5.*",
+        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "doctrine/doctrine-bundle": "1.0.*",
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "dev-master",
+        "friendsofsymfony/comment-bundle": "2.0.*",
+        "friendsofsymfony/jsrouting-bundle": "1.0.*",
+        "friendsofsymfony/user-bundle": "dev-fosub_2",
+        "fzaninotto/faker": "*",
+        "henrikbjorn/stampie-bundle": "dev-master",
+        "imagine/Imagine": "dev-develop",
+        "knplabs/gaufrette": "dev-amazon_metadata as 0.1.3",
+        "knplabs/knp-gaufrette-bundle": "0.1.*",
+        "knplabs/knp-markdown-bundle": "1.2.*",
+        "knplabs/knp-menu-bundle": "2.0.*",
+        "kriswallsmith/buzz": "dev-master",
+        "leafo/lessphp": "dev-recursion",
+        "incenteev/composer-parameter-handler": "1.0.*",
+        "jms/serializer-bundle": "1.0.*",
+        "nelmio/js-logger-bundle": "dev-master",
+        "tijsverkoyen/css-to-inline-styles": "dev-master",
+        "twig/extensions": "1.0.*",
+        "stof/doctrine-extensions-bundle": "1.1.*",
+        "stof/stampie-extra": "dev-master",
+        "symfony/assetic-bundle": "2.1.*",
+        "symfony/monolog-bundle": "2.1.*",
+        "sensio/distribution-bundle": "2.1.*",
+        "sensio/generator-bundle": "2.1.*",
+        "white-october/pagerfanta-bundle": "dev-master",
+        "willdurand/expose-translation-bundle": "dev-master"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ]
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml",
+            "env-map": {
+                "LS__GOOGLE_ANALYTICS_ACCOUNT": "google_analytics_account",
+                "LS__MANDRILL_KEY": "mandrill_api_key",
+                "LS__DELIVERY_ADDRESS": "mailer_delivery_address",
+                "LS__SECRET": "secret",
+                "LS__DB_HOST": "database_host",
+                "LS__DB_PORT": "database_port",
+                "LS__DB_NAME": "database_name",
+                "LS__DB_USER": "database_user",
+                "LS__DB_PASSWORD": "database_password",
+                "LS__REQUEST_CONTEXT_HOST": "router.request_context.host",
+                "LS__REQUEST_CONTEXT_SCHEME": "router.request_context.scheme",
+                "LS__REQUEST_CONTEXT_BASE_PATH": "request_context.base_path",
+                "LS__REQUEST_CONTEXT_BASE_URL": "request_context.base_url",
+                "LS__INDEX_PAGES": "index_pages",
+                "LS__AMAZON_BUCKET": "amazon_bucket",
+                "LS__AMAZON_ACCESS_KEY": "amazon_access_key",
+                "LS__AMAZON_SECRET_KEY": "amazon_secret_key",
+                "LS__TRUST_PROXY_HEADERS": "trust_proxy_headers",
+                "LS__SESSION_HANDLER": "session_handler",
+                "LS__LOGGING_LEVEL": "prod_logging_level",
+                "HEROKU_ASSETS_VERSION": "assets_version",
+                "HEROKU_DATABASE_HOST": "database_host",
+                "HEROKU_DATABASE_PORT": "database_port",
+                "HEROKU_DATABASE_DB": "database_name",
+                "HEROKU_DATABASE_USER": "database_user",
+                "HEROKU_DATABASE_PASSWORD": "database_password"
+            }
+        },
+        "symfony-assets-install": "symlink",
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web"
+    }
+}

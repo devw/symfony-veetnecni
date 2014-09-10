@@ -1,0 +1,94 @@
+{# Mail sent when a reply is posted on the wall of the contest #}
+
+{% block subject %}
+{% autoescape false %}
+{% if comment.author is sameas(comment.parent.author) %}
+    {{ 'mail.comment_reply.initial_author_subject'|trans({'%author%': comment.authorName}) }}
+{% else %}
+    {{ 'mail.comment_reply.different_author_subject'|trans({'%author%': comment.authorName, '%initial_author%': comment.parent.authorName}) }}
+{% endif %}
+{% endautoescape %}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+{% if comment.author is sameas(comment.parent.author) %}
+    {{ 'mail.comment_reply.initial_author_content'|trans({'%author%': comment.authorName, '%contest_name%': contest.name}) }}
+{% else %}
+    {{ 'mail.comment_reply.different_author_content'|trans({'%author%': comment.authorName, '%initial_author%': comment.parent.authorName, '%contest_name%': contest.name}) }}
+{% endif %}
+
+    {{ comment.authorName }}
+    {{ comment.body }}
+
+    {{ 'mail.comment_reply.original_message'|trans }}
+
+    {{ comment.parent.authorName }}
+    {{ comment.parent.body }}
+
+    {{ url('contest_show', {'id': contest.id}) }}
+{% endautoescape %}
+{% endblock %}
+
+{% block body_html %}
+{% embed "WebBundle:Mail:layout.html.twig" %}
+
+    {% set background_url = get_background(contest) %}
+    {% set avatar_url = get_avatar(contest) %}
+
+    {% block content %}
+    {% if comment.author is sameas(comment.parent.author) %}
+        {{ 'mail.comment_reply.initial_author_content'|trans({'%author%': comment.authorName, '%contest_name%': contest.name})|markdown }}
+    {% else %}
+        {{ 'mail.comment_reply.different_author_content'|trans({'%author%': comment.authorName, '%initial_author%': comment.parent.authorName, '%contest_name%': contest.name})|markdown }}
+    {% endif %}
+
+        <table border="0" cellspacing="0" cellpadding="3">
+            <tbody>
+                <tr>
+                    <td width="50" align="center" rowspan="2">
+                        <img src="{{ get_avatar(comment.author) }}" alt="" class="user-avatar" width="50">
+                    </td>
+                    <td>
+                        <strong>{{ comment.authorName }}</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ comment.body }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="soften">
+
+        <p><i>{{ 'mail.comment_reply.original_message'|trans }}</i></p>
+
+        <table border="0" cellspacing="0" cellpadding="3">
+            <tbody>
+            <tr>
+                <td width="50" align="center" rowspan="2">
+                    <img src="{{ get_avatar(comment.parent.author) }}" alt="" class="user-avatar" width="50">
+                </td>
+                <td>
+                    <strong>{{ comment.parent.authorName }}</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ comment.parent.body }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="main-button">
+            <a href="{{ url('contest_show', {'id': contest.id}) }}">
+                {{ 'mail.comment_reply.action'|trans }}
+            </a>
+        </p>
+    {% endblock %}
+
+{% endembed %}
+{% endblock %}

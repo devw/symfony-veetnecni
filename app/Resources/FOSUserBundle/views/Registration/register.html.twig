@@ -1,0 +1,21 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="block block-user-administration">
+    <div class="block-container">
+        <h3 class="block-title">{{ 'registration.title.register'|trans }}</h3>
+        <form action="{{ path("fos_user_registration_register") }}" method="POST" class="form form-user-administration">
+            <div class="form-user-administration-content">
+                {{ form_widget(form) }}
+            </div>
+
+            <button class="btn btn-large btn-primary button-submit" type="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" autocomplete="off">
+                {{ 'layout.register'|trans({}, 'FOSUserBundle') }}
+            </button>
+        </form>
+    </div>
+    <p class="block-user-administration-links">
+        {{ 'registration.info.have_account'|trans }} <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    </p>
+</div>
+{% endblock %}

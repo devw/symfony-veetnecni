@@ -1,0 +1,77 @@
+{% extends 'WebBundle:Layout:showcase.html.twig' %}
+{% trans_default_domain "showcase" %}
+
+{% block content %}
+<div class="banner">
+    <div class="container banner-picture">
+        <h1>{{ 'title.main'|trans }}</h1>
+
+        <p>{{ 'title.main_placeholder'|trans }}</p>
+    </div>
+</div>
+
+<div class="subbanner">
+    <div class="container">
+        <h2>{{ 'title.coming_soon'|trans }}</h2>
+        <p>{{ 'title.coming_soon_placeholder'|trans }}</p>
+
+        <form action="{{ path("showcase_home") }}" method="POST" class="form form-notify-inline">
+            {{ form_widget(form, {'attr': {'class': 'form-notify-inline-content'}}) }}
+            <button type="submit" class="btn btn-primary button-submit" data-loading-text="{{ 'messages.loading'|trans }}" data-tid="loading-button">
+                {{ 'action.coming_soon'|trans }}
+            </button>
+        </form>
+
+        <div class="social-link">
+            {% include 'WebBundle:Showcase:socialLinks.html.twig' %}
+        </div>
+
+        {# TODO - Uncomment as soon as we want people to use the app
+        <form action="{{ path("fos_user_registration_register") }}" method="POST" class="form form-signup-inline">
+            {{ form_widget(form, {'attr': {'class': 'form-signup-inline-content'}}) }}
+            <button type="submit" class="btn btn-large button-submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" data-tid="loading-button">
+                {{ 'showcase.action.sign_me_up'|trans }}
+            </button>
+        </form>
+        #}
+    </div>
+</div>
+
+<div class="container">
+    <div class="marketing">
+        <h1>{{ 'title.marketing'|trans }}</h1>
+
+        <p class="marketing-placeholder">{{ 'title.marketing_placeholder'|trans }}</p>
+
+        <div class="row">
+            <div class="span6">
+                <i class="showcase-icon-graphic"></i>
+
+                <h2>{{ 'title.power_of_sales_contests'|trans }}</h2>
+
+                <p>{{ 'info.power_of_sales_contests'|trans }}</p>
+            </div>
+
+            <div class="span6">
+                <i class="showcase-icon-wand"></i>
+
+                <h2>{{ 'title.benefits_of_incenteev'|trans }}</h2>
+
+                <p>{{ 'info.benefits_of_incenteev'|trans }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <ul class="footer-links">
+            <li>© Incenteev 2012</li>
+            <li><a href="mailto:{{ incenteev_support_mail }}">{{ 'action.contact_support'|trans }}</a></li>
+            <li>
+                {% include 'WebBundle:Showcase:socialLinks.html.twig' %}
+            </li>
+        </ul>
+    </div>
+</footer>
+{% endblock %}

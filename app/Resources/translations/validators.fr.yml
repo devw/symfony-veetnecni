@@ -1,0 +1,30 @@
+organization:
+    already_exists: Cette organisation existe déjà.
+
+contest:
+    date_order: La date de fin doit être postérieure à la date de début
+    name:
+        not_blank: Le nom du challenge ne doit pas être vide.
+        unchanged: Le nom du challenge devrait être changé.
+    description:
+        not_blank: La description du challenge ne devrait pas être vide.
+    rules:
+        not_blank: Le règlement du challenge ne devrait pas être vide.
+    start_date:
+        not_blank: La date de début ne doit pas être vide.
+    end_date:
+        not_blank: La date de fin ne doit pas être vide.
+    unit:
+        not_blank: L'unité du challenge ne doit pas être vide.
+    data_name:
+        not_blank: La mesure du challenge ne doit pas être vide.
+    participations:
+        min_count: Le challenge devrait avoir au minimum {{ limit }} participant.|Le challenge doit avoir au minimum {{ limit }} participants.
+    prizes:
+        min_count: Le challenge devrait avoir au minimum {{ limit }} prix.|Le challenge doit avoir au minimum {{ limit }} prix.
+
+prize:
+    rank_already_used: Ce rang est déjà associé à un autre prix.
+
+invitation:
+    already_used: Cette adresse email est déjà enregistrée dans une autre organisation.

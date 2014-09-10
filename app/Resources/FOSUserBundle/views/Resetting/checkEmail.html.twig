@@ -1,0 +1,13 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="block block-user-administration">
+    <div class="block-container">
+        <h3 class="block-title">{{ 'password_recovery.title'|trans }}</h3>
+        {{ 'password_recovery.info.email_sent'|trans({'%email%': email})|markdown }}
+    </div>
+    <p class="block-user-administration-links">
+        {{ 'registration.info.have_account'|trans }} <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    </p>
+</div>
+{% endblock %}

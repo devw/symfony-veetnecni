@@ -1,0 +1,33 @@
+{% extends 'WebBundle:Admin:layout.html.twig' %}
+
+{% block title %}
+    {{ 'admin.title.organization_management'|trans }} -
+    Incenteev
+{% endblock %}
+
+{% block inner_content %}
+<h1 class="block-app-title">
+    {{ 'admin.title.organization_management'|trans }}
+</h1>
+
+<ul class="list list-thumbnails list-admin-actions">
+    <li>
+        <a href="{{ path('organization_edit') }}" class="thumbnail list-thumbnails-item">
+            <i class="list-thumbnails-item-avatar sprite-admin-edit"></i>
+            <span class="list-thumbnails-item-name">{{ 'admin.links.organization'|trans }}</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_user_list') }}" class="thumbnail list-thumbnails-item">
+            <i class="list-thumbnails-item-avatar sprite-admin-user"></i>
+            <span class="list-thumbnails-item-name">{{ 'admin.links.users'|trans }}</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_team_list') }}" class="thumbnail list-thumbnails-item">
+            <i class="list-thumbnails-item-avatar sprite-admin-users"></i>
+            <span class="list-thumbnails-item-name">{{ 'admin.links.teams'|trans }}</span>
+        </a>
+    </li>
+</ul>
+{% endblock %}

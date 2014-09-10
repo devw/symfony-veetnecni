@@ -1,0 +1,12 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="block block-user-administration">
+    <div class="block-container">
+        <h3 class="block-title">{{ 'registration.title.confirmed'|trans({'%username%': user.username}) }}</h3>
+        <p>{{ 'registration.info.account_activated'|trans }}</p>
+        <hr>
+        <a href="{{ path('contest_list') }}" class="main-button">{{ 'layout.action.go_to_app'|trans }}</a>
+    </div>
+</div>
+{% endblock %}

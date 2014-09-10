@@ -1,0 +1,35 @@
+{% extends 'WebBundle:Contest/Main:base.html.twig' %}
+
+{% block title %}
+    {{ 'result_submission.title.update_results'|trans() }}
+    - {{ 'contest.title.contest_title'|trans({'%contest_name%': contest.name}) }}
+    - Incenteev
+{% endblock %}
+
+{% block contest_title %}
+    {{ parent() }}
+    <small>{{ 'result_submission.subtitle.submit_data'|trans }}</small>
+{% endblock %}
+
+{% block inner_content %}
+    <form action="{{ path('contest_submit_data', {'id': contest.id}) }}" method="post" {{ form_enctype(form) }}
+          data-check-unload="true" data-item-target=".data-item" data-total-target=".data-total" class="form form-app form-horizontal form-results">
+
+        {{ form_widget(form) }}
+
+        <p class="form-results-total">
+            {{ 'result_submission.info.total'|trans }}
+            <output class="data-total">{{ score }}</output> {{ contest.unit }}
+        </p>
+
+        <div class="form-app-actions">
+            <ul class="form-app-actions-list list list-actions">
+                <li>
+                    <button type="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                        {{ 'result_submission.action.save'|trans }}
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </form>
+{% endblock %}

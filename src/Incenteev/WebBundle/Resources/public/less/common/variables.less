@@ -1,0 +1,157 @@
+// ------------------------------
+// - LESS Variables
+// ------------------------------
+
+
+// Grays
+// -------------------------
+@colorWhite:      #ffffff;
+@colorWhiteSmoke: #f5f5f5;
+@colorLightGray:  #cbcbcb;
+@colorGray:       #959595;
+@colorDarkGray:   #666666;
+@colorBlack:      #000000;
+
+
+// Main colors
+// -------------------------
+@colorBlue:      #0088cc;
+@colorTurquoise: #45bcd1;
+@colorRed:       #e63030;
+@colorOrange:    #fa6900;
+@colorYellow:    #f7e8bc;
+
+
+// Responsive Stuff
+// -------------------------
+
+// This is the value used to add negative margin and positive padding according to your resolutions to given elements
+// so that they are well placed on the viewport
+@responsiveSpacement: 20px;
+
+
+// Typography
+// -------------------------
+@fontToLineHeightValue:   1.5; // This value allows getting the line height according to the font-size. Generally between 1.4 and 1.7
+
+
+// - Text Sizes
+@highFontSize:              17px;
+@highLineHeight:            round(@fontToLineHeightValue * @highFontSize);
+
+@normalFontSize:            13px;
+@normalLineHeight:          round(@fontToLineHeightValue * @normalFontSize);
+
+@smallFontSize:             12px;
+@smallLineHeight:           round(@fontToLineHeightValue * @smallFontSize);
+
+@miniFontSize:              10px;
+@miniLineHeight:            round(@fontToLineHeightValue * @miniFontSize);
+
+@contentColor:              lighten(@colorBlack, 30%);
+@contentShadowColor:        0 1px 0 @colorWhite;
+@marketingContentColor:     @colorDarkGray;
+@marketingPlaceholderColor: @colorDarkGray;
+
+@placeholderContentColor:   lighten(@contentColor, 50%);
+@helpContentColor:          lighten(@contentColor, 40%);
+@informationContentColor:   lighten(@contentColor, 12%);
+
+
+// Layout
+// -------------------------
+@borderColor:                @colorLightGray;
+
+// - App
+@appBorderColor:             lighten(@colorLightGray, 5%);
+@bodyBackgroundColor:        @colorTurquoise;
+@bodyGradientStartColor:     lighten(@colorBlue, 5%);
+@bodyGradientEndColor:       lighten(@colorTurquoise, 15%);
+@bodyGradientDirection:      120deg;
+@contestAvatarBackground:    @colorWhite;
+
+// - Showcase
+@showcaseBackgroundColor:    darken(@colorWhite, 4%);
+
+@bannerColor:                @colorWhite;
+@bannerBackgroundColor:      #020031;
+@bannerGradientStartColor:   @bannerBackgroundColor;
+@bannerGradientEndColor:     #6d3353;
+@bannerGradientDirection:    80deg;
+
+@subbannerBackgroundColor:   @showcaseBackgroundColor;
+@subbannerBorderTopColor:    @colorWhite;
+@subbannerBorderBottomColor: @borderColor;
+
+@footerBackgroundColor:      @showcaseBackgroundColor;
+@footerBorderTopColor:       darken(@colorWhite, 9%);
+
+
+// Modules
+// -------------------------
+
+// - Block
+@blockBackgroundColor:          @colorWhite;
+
+// - Card
+@cardBackgroundColor:           @colorWhite;
+
+// - Forms
+@errorColor:                    @colorRed;
+@errorBackgroundColor:          lighten(@errorColor, 40%);
+@errorContentColor:             darken(@errorColor, 20%);
+@errorContentShadowColor:       lighten(@errorColor, 70%);
+
+@formLabelColor:                darken(@colorDarkGray, 20%);
+@formHelpBackgroundColor:       @infoBackground;
+@formHelpBorderColor:           darken(@formHelpBackgroundColor, 10%);
+@formTopBorderColor:            darken(@colorWhite, 11%);
+
+// - Menu
+@menuActiveBackgroundColor:     darken(@colorWhite, 5%);
+
+// - Message
+@messageWarningBackgroundColor: @colorYellow;
+
+// - Rank
+@rankGradientStartColor:        darken(@colorWhite, 2%);
+@rankGradientEndColor:          darken(@colorWhite, 12%);
+
+// - List
+@listParticipantsBorderColor:   darken(@colorWhite, 7%);
+@listPodiumBackgroundColor:     darken(@colorWhite, 7%);
+@listPodiumPlateColor:          darken(@colorWhite, 8%);
+@listEntitiesThumbnail:         darken(@colorWhite, 2%);
+@listTeamBackgroundColor:       @colorWhite;
+@listTeamItemBackgroundColor:   darken(@colorWhite, 7%);
+
+// - User
+@userAvatarBackgroundColor:     @colorWhite;
+
+// - Widget
+@widgetBackgroundColor:         @blockBackgroundColor;
+
+// - Data-Grid
+@dataGridBackgroundColor:       @colorWhiteSmoke;
+@dataGridActiveBackgroundColor: @colorWhite;
+
+// Sprites
+// -------------------------
+
+// - Logos
+@logoBig:                '../../img/logo-300.png@{assetVersion}';
+@logoNormal:             '../../img/logo-150.png@{assetVersion}';
+
+// - Sprites
+@iconShowcase:           '../../img/sprite-showcase.png@{assetVersion}';
+@iconSprite:             '../../img/sprite.png@{assetVersion}';
+@iconSpriteWhite:        '../../img/sprite-white.png@{assetVersion}';
+
+@adminSprite:            '../../img/admin-pictures-sprite.jpg@{assetVersion}';
+
+// - Pictures
+@podiumPicture:          '../../img/podium.jpg@{assetVersion}';
+
+// - Themes
+@overlayLightBackground: '../../img/transparent-white50.png@{assetVersion}';
+@overlayDarkBackground:  '../../img/transparent-black50.png@{assetVersion}';

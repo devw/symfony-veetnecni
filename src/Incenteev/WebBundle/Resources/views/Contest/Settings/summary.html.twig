@@ -1,0 +1,177 @@
+{% extends 'WebBundle:Contest/Settings:base.html.twig' %}
+
+{% block title %}
+    {{ 'contest.title.summary'|trans }}
+    - {{ 'contest.title.contest_title'|trans({'%contest_name%': contest.name}) }}
+    - Incenteev
+{% endblock %}
+
+{% block edit_title %}{{ 'contest_settings.title.summary'|trans({'%contest_name%': contest.name}) }}{% endblock edit_title %}
+{% block edit_subtitle %}{{ 'contest_settings.subtitle.summary'|trans }}{% endblock %}
+
+{% block edit_content %}
+{% set has_errors = errors is not empty %}
+
+<div class="details details-resume">
+    {% if not contest.published %}
+        {% if has_errors %}
+            {% set violations = errors %}
+            {% set class = 'error' %}
+            {% set violations_title = 'contest_settings.state.invalid' %}
+            {{ block('violation_list') }}
+        {% endif %}
+
+        {% if warnings is not empty %}
+            {% set violations = warnings %}
+            {% set class = 'important' %}
+            {% set violations_title = 'contest_settings.state.warning' %}
+            {{ block('violation_list') }}
+        {% endif %}
+    {% endif %}
+
+    <div class="details-group">
+        <span class="details-label">{{ 'contest.label.name'|trans }}</span>
+        <div class="details-content">
+            {% if contest.name is not null %}
+                {{ contest.name }}
+            {% else %}
+                <p class="details-help">{{ 'contest.info.not_set'|trans }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="details-group">
+        <span class="details-label">{{ 'contest.label.description'|trans }}</span>
+        <div class="details-content">
+            {% if contest.description is not null %}
+                <div class="well well-small">{{ contest.description|markdown }}</div>
+            {% else %}
+                <p class="details-help">{{ 'contest.info.not_set'|trans }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="details-group">
+        <span class="details-label">{{ 'contest.label.start_date'|trans }}</span>
+        <div class="details-content">
+            {% if contest.startDate is not null %}
+                <span class="label label-info">{{ contest.startDate|date('d/m/Y') }}</span>
+            {% else %}
+                <p class="details-help">{{ 'contest.info.not_set'|trans }}</p>
+            {% endif %}
+            <p class="details-help warning">{{ 'contest.help.disabled_after_launch'|trans }}</p>
+        </div>
+    </div>
+
+    <div class="details-group">
+        <span class="details-label">{{ 'contest.label.end_date'|trans }}</span>
+        <div class="details-content">
+            {% if contest.endDate is not null %}
+                <span class="label label-info">{{ contest.endDate|date('d/m/Y') }}</span>
+            {% else %}
+                <p class="details-help">{{ 'contest.info.not_set'|trans }}</p>
+            {% endif %}
+            <p class="details-help warning">{{ 'contest.help.disabled_after_launch'|trans }}</p>
+        </div>
+    </div>
+
+    <div class="details-group">
+        <span class="details-label">{{ 'contest.label.rules'|trans }}</span>
+        <div class="details-content">
+            {% if contest.rules is not null %}
+                <div class="well well-small">{{ contest.rules|markdown }}</div>
+            {% else %}
+                <p class="details-help">{{ 'contest.info.not_set'|trans }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="details-group">
+        <span class="details-label">{{ 'contest.label.data'|trans }}</span>
+        <div class="details-content">
+            {% if contest.dataName is not null %}
+                {{ contest.dataName }}
+            {% endif %}
+            {% if contest.unit is not null %}
+                ({{ contest.unit }})
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="details-group">
+        <span class="details-label">
+            {{ 'contest.label.participants'|trans }}
+            {% if contest.participations is not null %}
+                ({{ contest.participations|length }})
+            {% endif %}
+        </span>
+        <div class="details-content">
+            {% if contest.participations is not null %}
+                <ul class="thumbnails">
+                    {% for participation in contest.participations %}
+                        <li class="thumbnail card card-user">
+                            <img src="{{ get_avatar(participation.user) }}" class="card-avatar">
+                            <div class="card-data">
+                                <p class="card-data-name">{{ participation.user.name }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="details-help">{{ 'contest.info.not_set'|trans }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if not has_errors %}
+        <hr>
+        {% if contest.published %}
+            <p>
+                {{ 'contest_settings.state.launched'|trans }}
+                <a href="{{ path('contest_show', {'id': contest.id}) }}" class="btn button-success">{{ 'contest.action.go_to_contest'|trans }}</a>
+            </p>
+        {% else %}
+            <p>{{ 'contest_settings.state.valid'|trans }}</p>
+            <form action="{{ path('contest_settings_publish', {'id': contest.id}) }}" method="post" class="form form-contest-publish" data-confirm-submission="{{ 'contest_settings.info.confirm_launch'|trans }}">
+                <button type="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" autocomplete="off" class="btn button-submit button-success">
+                    <i class="sprite-icon-launch sprite-icon-white"></i>
+                    {{ 'contest_settings.action.launch'|trans }}
+                </button>
+            </form>
+        {% endif %}
+        {% if is_granted('ROLE_CONTEST_CREATOR') %}
+            <div class="clearfix">
+                <form method="POST" action="{{ path('contest_settings_clone', {'id': contest.id}) }}" class="form pull-left">
+                    <button type="submit" class="btn button-info button-big button-locked">
+                        {{ 'contest_settings.action.clone'|trans }}
+                    </button>
+                </form>
+                <form method="POST" action="{{ path('contest_delete', {'id': contest.id}) }}" class="form"
+                      data-confirm-submission="{{ 'contest.info.confirm_delete'|trans }}">
+                    <input type="hidden" name="_method" value="DELETE" />
+                    <button type="submit" class="btn button-danger button-locked">
+                        {{ 'contest_settings.action.delete'|trans }}
+                    </button>
+                </form>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block violation_list %}
+    <div class="message message-{{ class|default('') }}">
+        <p>
+        <strong>{{ violations_title|trans }}</strong>
+        </p>
+        <ul>
+            {% for violation in violations %}
+                <li>{{
+                    violation.messagePluralization is null
+                        ? violation.messageTemplate|trans(violation.messageParameters, 'validators')
+                        : violation.messageTemplate|transchoice(violation.messagePluralization, violation.messageParameters, 'validators')
+                }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

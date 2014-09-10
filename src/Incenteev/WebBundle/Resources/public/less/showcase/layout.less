@@ -1,0 +1,135 @@
+// ------------------------------
+// - Showcase Layout
+// ------------------------------
+
+
+// - Common
+// ----------------------
+body {
+    color: @contentColor;
+    position: relative;
+}
+
+h2 small {
+    display: block;
+}
+
+// - Banner
+// ----------------------
+.banner {
+    background: @bannerBackgroundColor;
+    #gradient > .directional(@bannerGradientStartColor, @bannerGradientEndColor, @bannerGradientDirection);
+    position: relative;
+    color: @bannerColor;
+    text-align: center;
+    padding: 40px 0;
+    margin-top: -@responsiveSpacement; /* Offset bottom margin on .navbar */
+    margin-right: -@responsiveSpacement;
+    margin-left: -@responsiveSpacement;
+    text-shadow: none;
+
+    .banner-picture {
+        background: url("@{logoBig}") no-repeat scroll 50% 55px transparent;
+        padding: 100px 0;
+    }
+
+    h1 {
+        font-size: 60px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 1;
+    }
+
+    p {
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 30px;
+        margin-bottom: 30px;
+    }
+}
+
+
+// - SubBanner
+// ----------------------
+.subbanner {
+    background-color: @subbannerBackgroundColor;
+    border-top: 1px solid @subbannerBorderTopColor;
+    border-bottom: 1px solid @subbannerBorderBottomColor;
+    margin-left: -@responsiveSpacement;
+    margin-right: -@responsiveSpacement;
+    padding-left: @responsiveSpacement;
+    padding-right: @responsiveSpacement;
+    text-align: center;
+    text-shadow: @contentShadowColor;
+
+    .social-link {
+        margin: 20px 0;
+    }
+}
+
+// - Marketing
+// ----------------------
+.marketing {
+    text-align: center;
+    color: @marketingContentColor;
+    padding-bottom: 70px;
+
+    h1 {
+        margin: 60px 0 10px;
+        font-size: 60px;
+        font-weight: 200;
+        line-height: 1;
+        letter-spacing: -1px;
+    }
+
+    h2 {
+        font-weight: 200;
+        margin-bottom: 5px;
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 1.5;
+        text-align: justify;
+    }
+
+    .marketing-placeholder {
+        margin-bottom: 40px;
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 25px;
+        color: @colorGray;
+        text-align: center;
+    }
+
+    img {
+        display: block;
+        margin: 0 auto 30px;
+    }
+}
+
+
+// - Footer
+// ----------------------
+.footer {
+    background-color: @footerBackgroundColor;
+    border-top: 1px solid @footerBorderTopColor;
+    margin-left: -@responsiveSpacement;
+    margin-right: -@responsiveSpacement;
+    margin-top: 70px;
+    padding: @responsiveSpacement;
+    text-shadow: @contentShadowColor;
+
+    p {
+        margin-bottom: 9px;
+    }
+
+    .footer-links {
+        margin: 0 20px;
+
+        li {
+            display: block;
+            padding: 10px;
+        }
+    }
+}

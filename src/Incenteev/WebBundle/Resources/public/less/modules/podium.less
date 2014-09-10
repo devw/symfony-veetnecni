@@ -1,0 +1,86 @@
+// ------------------------------
+// Podium Module
+// ------------------------------
+
+
+// User Podium
+// -------------------------
+.podium.podium-users {
+    margin-bottom: 40px;
+    display: table;
+    border: 1px solid @appBorderColor;
+    border-bottom: none;
+    margin-left: 0;
+    width: 100%;
+
+    .podium-user {
+        background: @listPodiumBackgroundColor;
+        display: table-row;
+
+        > .podium-user-rank,
+        > .podium-user-avatar,
+        > .podium-user-prize-avatar,
+        > .podium-user-score {
+            border-bottom: 1px solid @tableBorder;
+            display: table-cell;
+            padding: 5px 0;
+            vertical-align: middle;
+        }
+
+        > .podium-user-rank {
+            color: @colorOrange;
+            font-size: @highFontSize;
+            font-weight: bold;
+            line-height: @highLineHeight;
+            padding: 8px;
+            text-align: center;
+            width: 25px;
+        }
+
+        > .podium-user-avatar {
+            margin: 0;
+            text-align: left;
+
+            > img {
+                border: 2px solid @colorDarkGray;
+                .avatarPicture(40px);
+            }
+
+            > .podium-user-caption {
+                .text-overflow();
+                color: @contentColor;
+                display: inline-block;
+                text-shadow: @contentShadowColor;
+                vertical-align: middle;
+                width: 80px;
+                .ie7-inline-block();
+            }
+        }
+
+        > .podium-user-score {
+            font-size: @smallFontSize;
+            line-height: @smallLineHeight;
+            padding-right: 8px;
+            text-align: right;
+
+            strong {
+                font-size: @normalFontSize;
+                line-height: @normalLineHeight;
+            }
+        }
+
+        .podium-user-prize {
+            .text-overflow();
+            display: none;
+            font-weight: bold;
+        }
+
+        .podium-user-prize-avatar {
+            width: 35px;
+
+            img {
+                .avatarPicture();
+            }
+        }
+    }
+}

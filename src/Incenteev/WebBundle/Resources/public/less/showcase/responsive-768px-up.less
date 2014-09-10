@@ -1,0 +1,77 @@
+// ------------------------------
+// - Media Query for devices
+// - up to 768px
+// ------------------------------
+
+
+// - Layout
+// ---------------------
+.banner {
+    .box-shadow(~"inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2)");
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.subbanner {
+    padding: 15px 0;
+    margin: 0;
+}
+
+.footer {
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+
+    .footer-links li {
+        display: inline;
+        margin-right: 10px;
+    }
+}
+
+
+// - Blocks Module
+// --------------------
+.block.block-user-administration {
+    margin: 0 auto 100px;
+    width: 500px;
+
+    > .block-container {
+        .well;
+        margin: 150px auto 15px;
+        text-shadow: @contentShadowColor;
+    }
+}
+
+
+// - Forms Module
+// ---------------------
+.form.form-signup-inline {
+    > .form-signup-inline-content {
+        display: inline-block;
+        .ie7-inline-block();
+
+        > .control-group {
+            display: inline-block;
+            .ie7-inline-block();
+            margin: 0 9px;
+            vertical-align: middle;
+
+            > .control-label {
+                display: none;
+            }
+
+            > .controls input {
+                width: 150px;
+            }
+        }
+    }
+
+    > .btn-form-signup-inline-submit {
+        display: inline;
+        margin: 0 0 0 5px;
+        padding: 10px 0;
+        width: 160px;
+    }
+}

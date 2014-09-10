@@ -1,0 +1,31 @@
+{% extends 'WebBundle:Layout:app.html.twig' %}
+
+{% block title %}
+    {{ 'registration.title.confirm'|trans }} -
+    Incenteev
+{% endblock %}
+
+{% block content %}
+<div class="block block-app">
+    <div class="block-app-container">
+        <div class="block-app-content">
+            <h1 class="block-app-title">
+                {{ 'registration.title.confirm'|trans }}
+            </h1>
+            <form action="{{ path('registration_confirm', {'token': token}) }}" method="post" {{ form_enctype(form) }} class="form form-app">
+                {{ form_widget(form) }}
+
+                <div class="form-app-actions">
+                    <ul class="form-app-actions-list list list-actions">
+                        <li>
+                            <button type="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                                {{ 'form.action.save'|trans }}
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

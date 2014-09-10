@@ -1,0 +1,162 @@
+{% extends 'WebBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+<!--[if (gt IE 8) | (IEMobile)]><!-->
+    {% if app.debug %}
+        <link rel="stylesheet/less" href="{{ asset('bundles/web/less/app/main_js.less') }}" type="text/css">
+
+        <script type="text/javascript" src="{{ asset('bundles/web/vendor/js/less-1.3.1.min.js', 'vendors') }}"></script>
+    {% else %}
+        {% stylesheets 'bundles/web/less/app/main.less' filter='lessphp,cssrewrite' %}
+            <link rel="stylesheet" type="text/css" href="{{ asset_url }}">
+        {% endstylesheets %}
+    {% endif %}
+<!--<![endif]-->
+
+<!--[if (lt IE 9) & (!IEMobile)]>
+    {% stylesheets 'bundles/web/less/app/ie.less' filter='lessphp,cssrewrite' %}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}">
+    {% endstylesheets %}
+<![endif]-->
+
+{# TODO - Combine CSS files with Assetic #}
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/web/vendor/css/chosen/chosen.css', 'vendors') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/web/vendor/css/handsontable/jquery.handsontable.css', 'vendors') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/web/vendor/css/mdmagick/mdmagick.css', 'vendors') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/web/vendor/css/mdmagick/icon_font/style.css', 'vendors') }}" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ path('bazinga_exposetranslation_js', {'_locale': app.request.locale|slice(0, 2)}) }}"></script>
+    {% javascripts
+        'bundles/web/js/autocomplete.js'
+        'bundles/web/js/check_all.js'
+        'bundles/web/js/collection_handler.js'
+        'bundles/web/js/confirm_submission.js'
+        'bundles/web/js/feedback.js'
+        'bundles/web/js/form_total_calculator.js'
+        'bundles/web/js/grid_results.js'
+        'bundles/web/js/locked_button.js'
+        'bundles/web/js/markdown_editor.js'
+        'bundles/web/js/periodicity.js'
+        'bundles/web/js/prizes.js'
+        'bundles/web/js/team_management.js'
+        'bundles/web/js/theme.js'
+        'bundles/web/js/timeago.js'
+        'bundles/web/js/unload.js'
+        combine=true
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% block extra_javascripts '' %}
+{% endblock %}
+
+{% block body %}
+<div id="wrapper">
+    <header class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand brand-name" href="{{ path('contest_list') }}">Incenteev</a>
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                {% set is_logged = is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <div class="nav-collapse collapse">
+                    <ul class="nav pull-right">
+                        {% if is_logged %}
+                            <li>
+                                <a href="{{ path('contest_list') }}">
+                                    {{ 'contest.action.list_contest'|trans }}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_CONTEST_CREATOR') %}
+                            <li class="hidden-phone">
+                                <form class="navbar-form" action="{{ path('contest_create') }}" method="post">
+                                    <button type="submit" class="btn btn-link">
+                                        {{ 'contest.action.create_contest'|trans }}
+                                    </button>
+                                </form>
+                            </li>
+                        {% endif %}
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <i class="icon-user icon-white"></i>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% if is_logged %}
+                                    <li class="hidden-phone">
+                                        <a href="{{ path('profile_show') }}">{{ 'layout.action.profile'|trans }}</a>
+                                    </li>
+                                {% endif %}
+
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li class="hidden-phone">
+                                        <a href="{{ path('admin_home') }}">{{ 'layout.action.organization_management'|trans }}</a>
+                                    </li>
+                                {% endif %}
+
+                                {% if is_logged %}
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="{{ path('fos_user_security_logout') }}">{{ 'security.action.log_out'|trans }}</a>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a href="{{ path('fos_user_security_login') }}">{{ 'security.action.log_in'|trans }}</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="container" class="container {% block container_overlay '' %}">
+        <div id="page-container">
+            <div id="flash-messages">
+                {% for type in ['error', 'warning', 'success', 'info'] %}
+                    {% for message in app.session.flashbag.get(type) %}
+                        <div class="message message-{{ type }} message-rounded">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+
+            {% block breadcrumb '' %}
+
+            {% block content %}{% endblock content %}
+            {% block footer %}
+                <footer class="footer">
+                    {% block footer_content %}
+                        <form class="form form-feedback" action="{{ path('feedback_send') }}" method="POST" novalidate>
+                            <div class="control-group">
+                                <label class="control-label" for="feedback-message">
+                                    <i class="sprite-icon-feedback"></i>
+                                    {{ 'feedback.title.feedback'|trans }}
+                                </label>
+                                <div class="controls">
+                                    <textarea id="feedback-message" name="message" class="form-feedback-textarea" data-tid="message" placeholder="{{ 'feedback.placeholder.enter_comment'|trans }}" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-feedback-actions">
+                                <button type="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-info">
+                                    {{ 'feedback.action.submit'|trans }}
+                                </button>
+                            </div>
+                        </form>
+                    {% endblock %}
+                </footer>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

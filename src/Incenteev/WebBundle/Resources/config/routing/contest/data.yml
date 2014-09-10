@@ -1,0 +1,14 @@
+contest_data_show_results:
+    pattern:  /
+    defaults: { _controller: "WebBundle:Contest\Data:showResults" }
+    requirements: { _method: get }
+
+contest_data_load_results:
+    pattern:  /data
+    defaults: { _controller: "WebBundle:Contest\Data:getDataEntries" }
+    requirements: { _method: get, _format: json }
+
+contest_data_save_entry:
+    pattern:  /save
+    defaults: { _controller: "WebBundle:Contest\Data:saveDataEntry" }
+    requirements: { _method: post, _format: json }

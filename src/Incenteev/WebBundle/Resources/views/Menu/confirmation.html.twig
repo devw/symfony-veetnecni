@@ -1,0 +1,13 @@
+{% extends 'knp_menu_ordered.html.twig' %}
+
+{% block label %}
+    {{ item.label|trans(item.getExtra('translation_params', {}), item.getExtra('translation_domain', 'messages')) }}
+    {%- if matcher.isCurrent(item) %}
+        <span class="wizard-arrow"></span>
+    {%- endif %}
+{% endblock %}
+
+{% block list %}
+    {% set listAttributes = listAttributes|merge({'class': listAttributes.class|default('') ~ ' hidden-phone'}) %}
+    {{ parent() }}
+{% endblock %}

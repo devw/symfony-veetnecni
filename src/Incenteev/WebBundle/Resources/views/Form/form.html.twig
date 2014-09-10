@@ -1,0 +1,121 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_label %}
+    {% spaceless %}
+        {% if label is not sameas(false) %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
+            {{ parent() }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block form_row %}
+    {% spaceless %}
+        {% set has_help = help_text is not null %}
+        <div {{ block('widget_wrapper_attributes') }}>
+            {{ form_label(form) }}
+            <div class="controls">
+                {{ form_widget(form) }}
+                {% if has_help %}
+                    <div class="form-help-block">
+                        {{ help_text|trans|markdown }}
+                    </div>
+                {% endif %}
+            </div>
+            {{ form_errors(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block widget_wrapper_attributes %}
+    {% set wrapper_attr = wrapper_attr|default({})|merge(
+        {'class': (wrapper_attr.class|default('') ~ ' control-group ' ~ (errors is empty ? '' : 'form-error'))|trim}
+    ) %}
+    {% for attrname, attrvalue in wrapper_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}
+{% endblock %}
+
+{% block checkbox_row %}
+    {% spaceless %}
+        {% set has_help = help_text is not null %}
+        <div {{ block('widget_wrapper_attributes') }}>
+            <div class="controls">
+                {{ form_widget(form) }}
+                {{ form_label(form) }}
+                {% if has_help %}
+                    <div class="form-help-block">
+                        {{ help_text|trans|markdown }}
+                    </div>
+                {% endif %}
+            </div>
+            {{ form_errors(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block choice_widget_expanded %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+        {% for child in form %}
+            {% set child_label_attr = child.vars.label_attr %}
+            {% set child_label = child.vars.label %}
+            {% if child.vars.required %}
+                {% set child_label_attr = child_label_attr|merge({'class': (child_label_attr.class|default('') ~ ' required')|trim}) %}
+            {% endif %}
+            {% if child_label is empty %}
+                {% set child_label = child.vars.name|humanize %}
+            {% endif %}
+            <label{% for attrname, attrvalue in child_label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                {{ form_widget(child) }}
+                {{ block(label_block_name|default('choice_label_standard')) }}
+            </label>
+        {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block incenteev_builtin_background_choice_widget %}
+    {% spaceless %}
+        {% if expanded %}
+            {% set label_block_name = 'choice_label_image' %}
+            {{ block('choice_widget_expanded') }}
+        {% else %}
+            {{ form_widget(form) }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block choice_label_standard %}
+    {{ child_label|trans({}, child.vars.translation_domain) }}
+{% endblock %}
+
+{% block choice_label_image %}
+    <img src="{{ get_static_asset_url() ~ '/' ~ child.vars.value }}">
+{% endblock %}
+
+{% block incenteev_prize_widget %}
+    {{ form_widget(form, {'attr': attr|merge({'class': (label_attr.class|default('') ~ ' prize-item')|trim})}) }}
+{% endblock %}
+
+{% block incenteev_data_entry_row %}
+    {% set label = form.date.vars.data|localizeddate('short', 'none') %}
+    {% if interval is not null %}
+        {% set label = label ~ ' - ' ~ date(form.date.vars.data).add(interval).modify('-1 day')|localizeddate('short', 'none') %}
+    {% endif %}
+    {{ form_row(form.value, {'label': label}) }}
+{% endblock %}
+
+{% block incenteev_unit_number_widget %}
+    <div class="form-input-append">
+        {{ form_widget(form) }}
+        <span class="add-on form-add-on">{{ unit }}</span>
+    </div>
+{% endblock %}
+
+{% block incenteev_member_list_widget %}
+    {% spaceless %}
+        {{ form_widget(form, {'attr': attr|merge({
+            'data-source-url': path(list_route, list_route_params),
+            'data-provide': 'autocomplete-multiple'
+        })}) }}
+    {% endspaceless %}
+{% endblock %}

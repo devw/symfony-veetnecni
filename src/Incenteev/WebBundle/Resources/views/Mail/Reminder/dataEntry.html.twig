@@ -1,0 +1,58 @@
+{# Mail sent to remind users to update their data #}
+
+{% block subject %}
+{% autoescape false %}
+    {{ 'mail.dataEntryReminder.subject'|trans({'%contest_name%': participation.contest.name}) }}
+{% endautoescape %}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+    {{ 'mail.dataEntryReminder.title'|trans }}
+
+    {% if participation.contest.reminderText is not null %}
+        {{ participation.contest.reminderText|replace({'%user_name%': participation.user.name, '%contest_name%': participation.contest.name}) }}
+    {% else %}
+        {{ 'mail.dataEntryReminder.content_txt'|trans({'%user_name%': participation.user.name, '%contest_name%': participation.contest.name}) }}
+    {% endif %}
+
+    {% if participation.accepted %}
+        {{ url('contest_submit_data', {'id': participation.contest.id}) }}
+    {% else %}
+        {{ url('confirmation_accept_invitation', {'id': participation.contest.id, 'token': participation.token}) }}
+    {% endif %}
+{% endautoescape %}
+{% endblock %}
+
+{% block body_html %}
+{% embed "WebBundle:Mail:layout.html.twig" %}
+
+    {% set contest_styles = participation.contest.styles %}
+
+    {% set background_url = get_background(participation.contest)|default(null) %}
+    {% set avatar_url = get_avatar(participation.contest)|default(null) %}
+
+    {% block title %}{{ app.user.organization.name }}{% endblock %}
+
+    {% block content %}
+        {% if participation.contest.reminderText is not null %}
+            {{ participation.contest.reminderText|replace({'%user_name%': participation.user.name, '%contest_name%': participation.contest.name})|markdown }}
+        {% else %}
+            {{ 'mail.dataEntryReminder.content_html'|trans({'%user_name%': participation.user.name, '%contest_name%': participation.contest.name})|markdown }}
+        {% endif %}
+
+
+        {% if participation.accepted %}
+            {% set url = url('contest_submit_data', {'id': participation.contest.id}) %}
+        {% else %}
+            {% set url = url('confirmation_accept_invitation', {'id': participation.contest.id, 'token': participation.token}) %}
+        {% endif %}
+        <p class="main-button">
+            <a href="{{ url }}">
+                {{ 'mail.action.update_results'|trans }}
+            </a>
+        </p>
+    {% endblock %}
+
+{% endembed %}
+{% endblock %}

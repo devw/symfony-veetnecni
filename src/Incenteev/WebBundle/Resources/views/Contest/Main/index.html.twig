@@ -1,0 +1,98 @@
+{% extends 'WebBundle:Layout:app.html.twig' %}
+
+{% block title %}
+    {{ 'contest_list.title.listing'|trans }} -
+    Incenteev
+{% endblock %}
+
+{% block content %}
+<div class="block block-app">
+    <div class="block-app-container">
+        <div class="block-app-content">
+            <h1 class="block-app-title">{{ 'contest_list.title.listing'|trans }}</h1>
+            {% if contests is not empty %}
+                <ul class="thumbnails">
+                    {% set has_published_contest = false %}
+                    {% for contest in contests %}
+                        <li class="thumbnail card card-contest{% if not contest.published %} hidden-phone{% endif %}">
+                            {% set route = contest.published ? 'contest_show' : 'contest_settings_general' %}
+                            {% set published_trans = contest.published ? 'contest_list.info.published' : 'contest_list.info.draft' %}
+                            {% set published_label = contest.published ? 'success' : 'warning' %}
+                            {% set view_text = contest.published ? 'contest.menu.show' : 'contest.menu.preview' %}
+                            {% if contest.published %}
+                                {% set has_published_contest = true %}
+                            {% endif %}
+                            <div class="media">
+                                {# TODO - Handle default avatars in a better way #}
+                                <figure class="card-figure">
+                                    <a href="{{ path(route, {'id': contest.id}) }}">
+                                        <img src="{{ get_avatar(contest)|default(asset('bundles/web/img/contest-avatar.jpg')) }}" alt="" class="card-avatar">
+                                    </a>
+                                    <figcaption class="card-caption label label-{{ published_label }}">{{ published_trans|trans }}</figcaption>
+                                </figure>
+                                <div class="media-body card-data">
+                                    <h4 class="media-heading">
+                                        <a href="{{ path(route, {'id': contest.id}) }}">{{ contest.name }}</a>
+                                    </h4>
+                                    <p class="card-data-detail">
+                                        {{ 'contest_list.label.dates'|trans }} {{ contest.startDate|date('d/m/Y') }} - {{ contest.endDate|date('d/m/Y') }}
+                                    </p>
+                                </div>
+                            </div>
+                            <ul class="list card-data-actions">
+                                <li>
+                                    <a href="{{ path('contest_show', {'id': contest.id}) }}">{{ view_text|trans }}</a>
+                                </li>
+                                {% if contest.hasOwner(app.user) %}
+                                    <li>
+                                        <a href="{{ path('contest_settings_general', {'id': contest.id}) }}">{{ 'contest_show.action.edit'|trans }}</a>
+                                    </li>
+                                {% endif %}
+                                {% if is_granted('ROLE_CONTEST_CREATOR') %}
+                                    <li>
+                                        <form method="POST" action="{{ path('contest_settings_clone', {'id': contest.id}) }}" class="form">
+                                            <button type="submit" class="submit btn btn-link">
+                                                {{ 'contest_settings.action.clone'|trans }}
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form method="POST" action="{{ path('contest_delete', {'id': contest.id}) }}" class="form"
+                                              data-confirm-submission="{{ 'contest.info.confirm_delete'|trans }}">
+                                            <input type="hidden" name="_method" value="DELETE" />
+                                            <button type="submit" class="submit btn btn-link">
+                                                {{ 'contest_settings.action.delete'|trans }}
+                                            </button>
+                                        </form>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+
+                    {% if not has_published_contest %}
+                        <li class="visible-phone">
+                            {{ 'contest_list.info.no_published_contest'|trans }}
+                        </li>
+                    {% endif %}
+                </ul>
+            {% else %}
+                <p>{{ 'contest_list.info.no_contest'|trans }}</p>
+            {% endif %}
+
+            <hr>
+
+            {% if is_granted('ROLE_CONTEST_CREATOR') %}
+                <form action="{{ path('contest_create') }}" method="post" class="form form-contest-creation hidden-phone">
+                    <p class="form-app-actions">
+                        <button type="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-success">
+                            <i class="sprite-icon-launch"></i>
+                            {{ 'contest.action.create_contest'|trans }}
+                        </button>
+                    </p>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

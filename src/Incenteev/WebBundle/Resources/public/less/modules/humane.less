@@ -1,0 +1,82 @@
+html,
+body {
+    min-height: 100%;
+}
+
+.humane {
+    .transition(all 0.6s ease-in-out);
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    position: fixed;
+    z-index: 100000;
+}
+
+.humane,
+.humane.humane-info {
+    .border-radius(0 0 3px 3px);
+    .translate(0, -100px);
+    background-color: @infoBackground;
+    border: 1px solid @infoBorder;
+    border-top: none;
+    color: darken(@infoText, 10%);
+    font-family: Helvetica Neue, Helvetica, sans-serif;
+    font-size: @baseFontSize;
+    font-weight: bold;
+    left: 30%;
+    line-height: @baseLineHeight;
+    opacity: 0;
+    padding: 7px;
+    text-align: center;
+    text-shadow: 0 1px -1px @infoBorder;
+    top: 0px;
+    width: 40%;
+}
+
+.humane p,
+.humane ul {
+    margin: 0;
+    padding: 0;
+}
+
+.humane ul {
+    list-style: none;
+}
+
+.humane.humane-warning {
+    background-color: @warningBackground;
+    border-color: darken(@warningText, 10%);
+    color: darken(@warningText, 10%);
+    text-shadow: 0 1px -1px @warningBorder;
+}
+
+.humane.humane-success {
+    background-color: @successBackground;
+    border-color: @successBorder;
+    color: darken(@successText, 10%);
+    text-shadow: 0 -1px -1px @successBorder;
+}
+
+.humane.humane-error {
+    background-color: @errorBackground;
+    border-color: @errorBorder;
+    color: darken(@errorText, 10%);
+    text-shadow: 0 -1px -1px @errorBorder;
+}
+
+.humane.humane-animate {
+    .translate(0, 0);
+    opacity: 1;
+}
+
+.humane.humane-animate:hover {
+    opacity: 0.7;
+}
+
+.humane.humane-js-animate {
+    .translate(0, 0);
+    opacity: 1;
+}
+
+.humane.humane-js-animate:hover {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+    opacity: 0.7;
+}

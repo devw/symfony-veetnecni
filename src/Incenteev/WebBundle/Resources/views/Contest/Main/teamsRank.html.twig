@@ -1,0 +1,104 @@
+{% extends 'WebBundle:Contest/Main:base.html.twig' %}
+
+{% block title %}
+    {{ 'contest_show.title.team_results'|trans }}
+    - Incenteev
+{% endblock %}
+
+{% block contest_title %}
+    {{ parent() }}
+    <small>{{ 'contest_show.title.team_results'|trans }}</small>
+{% endblock %}
+
+{% block inner_content %}
+    {% if team_board|length >= 3 %}
+        {% set podium_places = 3 %}
+        {% set podium_teams = team_board|slice(0, podium_places) %}
+        <ul class="podium podium-users">
+            {% for item in podium_teams %}
+                <li class="podium-user podium-user-{{ loop.index }}">
+                    <span class="podium-user-rank">{{ loop.index }}</span>
+                    <figure class="podium-user-avatar">
+                        <img src="{{ get_avatar(item.team)|default(asset('bundles/web/img/team-avatar.jpg')) }}" alt="">
+                        <figcaption class="podium-user-caption" title="{{ item.team.name }}">
+                            {{ item.team.name }}
+                        </figcaption>
+                    </figure>
+                    <p class="podium-user-score">
+                        <strong>{{ item.score|float_val }}</strong>
+                        {{ contest.unit }}
+                    </p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% set podium_places = 0 %}
+    {% endif %}
+
+    {% set ranked_teams = team_board|slice(podium_places) %}
+
+    {% if ranked_teams is not empty %}
+        <table class="table table-users-rank">
+            <thead>
+                <tr>
+                    <th class="rank-users-position">{{ 'contest_show.results.rank'|trans }}</th>
+                    <th>
+                        {{ 'contest_show.results.name'|trans }}
+                    </th>
+                    <th class="rank-users-score">{{ contest.dataName }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in ranked_teams %}
+                {% set rank = loop.index + podium_places %}
+                <tr class="user">{# TODO - Find the team of the current user #}
+                    <td class="rank-users-position">{{ rank }}</td>
+                    <td>
+                        <img src="{{ get_avatar(item.team)|default(asset('bundles/web/img/team-avatar.jpg')) }}" alt="" class="user-avatar">
+                        <span class="user-name">
+                            {{ item.team.name }}
+                        </span>
+                    </td>
+                    <td class="rank-users-score">
+                        <span rel="tooltip" title="{{ item.score|float_val }} {{ contest.unit }}">{{ item.score|float_val }}</span>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <h5 class="secondary-title">
+        <i class="sprite-icon-feedback"></i>
+        {{ 'contest_show.title.discussion'|trans }}
+    </h5>
+    {% if not contest.published %}
+        <em>{{ 'contest_show.info.no_wall_preview'|trans }}</em>
+    {% endif %}
+    <div id="fos_comment_thread"></div>
+{% endblock %}
+
+{% block extra_javascripts %}
+    {# TODO - Handle the file in an other way #}
+    <script type="text/javascript" src="{{ asset('bundles/web/vendor/js/countdown/jquery.countdown-' ~ app.request.locale|slice(0, 2) ~ '.js', 'vendors') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/web/vendor/js/timeago/jquery.timeago.' ~ app.request.locale|slice(0, 2) ~ '.js', 'vendors') }}"></script>
+    {% javascripts '@FOSCommentBundle/Resources/assets/js/comments.js' package='vendors' %}
+        <script type="text/javascript">
+            // thread id
+            var fos_comment_thread_id = 'contest-{{ contest.id }}';
+
+            // api base url to use for initial requests
+            var fos_comment_thread_api_base_url = '{{ path('fos_comment_get_threads') }}';
+
+            // Snippet for asynchronously loading the comments
+            (function () {
+                var fos_comment_script = document.createElement('script');
+                fos_comment_script.async = true;
+                fos_comment_script.src = '{{ asset_url }}';
+                fos_comment_script.type = 'text/javascript';
+
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(fos_comment_script);
+            })();
+        </script>
+    {% endjavascripts %}
+{% endblock %}

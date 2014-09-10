@@ -1,0 +1,68 @@
+{% extends 'WebBundle:Contest/Main:base.html.twig' %}
+
+{% block contest_title %}
+    {{ parent() }}
+    <small>{{ 'contest_show.title.about'|trans }}</small>
+{% endblock %}
+
+{% block inner_content %}
+    <div class="details">
+        <div class="details-group">
+            <span class="details-label">{{ 'contest.label.duration'|trans }}</span>
+
+            <div class="details-content">
+                {% if contest.startDate is defined and contest.endDate is defined %}
+                    <span class="label label-info">{{ contest.startDate|date('d/m/Y') }}</span>
+                    -
+                    <span class="label label-info">{{ contest.endDate|date('d/m/Y') }}</span>
+                {% else %}
+                    {{ 'contest.info.not_set'|trans }}
+                {% endif %}
+            </div>
+        </div>
+
+        {% if contest.description is not null %}
+            <div class="details-group">
+                <span class="details-label">{{ 'contest.label.description'|trans }}</span>
+
+                <div class="details-content">
+                    <div class="well well-small">{{ contest.description|markdown }}</div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if contest.rules is not null %}
+            <div class="details-group">
+                <span class="details-label">{{ 'contest.label.rules'|trans }}</span>
+
+                <div class="details-content">
+                    <div class="well well-small">{{ contest.rules|markdown }}</div>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="details-group">
+            <span class="details-label">{{ 'contest.label.participants'|trans }}</span>
+
+            <div class="details-content">
+                <ul class="thumbnails">
+                    {% for item in participants %}
+                        <li class="thumbnail card card-user">
+                            <img src="{{ get_avatar(item.user) }}" alt="" class="card-avatar">
+                            <div class="card-data">
+                                <p class="card-data-name" title="{{ item.user.name }}">{{ item.user.name }}</p>
+                                {% set has_confirmed = item.accepted %}
+                                {% set confirmation_trans = has_confirmed ? 'contest.info.user_confirmed' : 'contest.info.user_pending' %}
+                                {% set confirmation_label = has_confirmed ? 'success' : 'warning' %}
+                                <span class="label label-{{ confirmation_label }} card-data-status">{{ confirmation_trans|trans }}</span>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% if participants.haveToPaginate %}
+                    {{ pagerfanta(participants) }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

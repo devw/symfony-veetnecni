@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <!-- TODO Improve the way the sender is configured -->
+        <parameter key="incenteev.mailer.sender">support@incenteev.com</parameter>
+        <parameter key="incenteev.mailer.sender_name">Incenteev team</parameter>
+        <parameter key="incenteev.feedback.address">support@incenteev.com</parameter>
+    </parameters>
+
+    <services>
+        <service id="incenteev.mailer" class="Incenteev\WebBundle\Mailer\Mailer">
+            <argument type="service" id="incenteev.mailer.stampie.spool_mailer" />
+            <argument type="service" id="twig" />
+            <argument>%incenteev.mailer.sender%</argument>
+            <argument>%incenteev.mailer.sender_name%</argument>
+            <argument type="service" id="incenteev.mailer.style_inliner" />
+            <!-- inject the TwigEngine in a dummy way just to ensure that it gets initialized to add the "app" global variable -->
+            <argument type="service" id="templating.engine.twig" />
+        </service>
+
+        <service id="incenteev.mailer.fos_user" class="Incenteev\WebBundle\Mailer\FOSMailer" public="false">
+            <argument type="service" id="incenteev.mailer" />
+            <argument type="service" id="router" />
+            <argument>%fos_user.registration.confirmation.template%</argument>
+            <argument>%fos_user.resetting.email.template%</argument>
+        </service>
+
+        <service id="incenteev.mailer.buzz.message_factory" class="Buzz\Message\Factory\Factory" public="false" />
+        <service id="incenteev.mailer.buzz.client" class="Buzz\Client\Curl" public="false">
+            <call method="setVerifyPeer">
+                <argument>false</argument>
+            </call>
+        </service>
+
+        <service id="buzz" class="Buzz\Browser" public="false">
+            <argument type="service" id="incenteev.mailer.buzz.client" />
+            <argument type="service" id="incenteev.mailer.buzz.message_factory" />
+        </service>
+
+        <service id="incenteev.mailer.stampie.listener.logger" class="Stampie\Extra\EventListener\LoggerListener">
+            <tag name="monolog.logger" channel="stampie" />
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="logger" on-invalid="ignore" />
+        </service>
+
+        <service id="incenteev.mailer.listener.spool_mailer" class="Incenteev\WebBundle\EventListener\SpoolMailerListener">
+            <tag name="monolog.logger" channel="stampie" />
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="incenteev.mailer.stampie.spool_mailer" />
+            <argument type="service" id="logger" on-invalid="ignore" />
+        </service>
+
+        <service id="incenteev.mailer.stampie.spool_mailer" class="Stampie\Extra\SpoolMailer" public="false">
+            <argument type="service" id="hb_stampie.mailer" />
+        </service>
+
+        <service id="incenteev.mailer.style_inliner" class="Incenteev\WebBundle\Mailer\CssToInlineStylesInliner" public="false">
+            <argument>%kernel.charset%</argument>
+        </service>
+    </services>
+</container>

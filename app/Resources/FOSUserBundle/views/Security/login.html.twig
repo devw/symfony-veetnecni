@@ -1,0 +1,55 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="block block-user-administration">
+    <div class="block-container">
+        <h3 class="block-title">{{ 'security.title.log_in'|trans }}</h3>
+        <form action="{{ path("fos_user_security_check") }}" method="POST" class="form form-user-administration form-without-label">
+            <div class="form-user-administration-content">
+                {% if error %}
+                    <div class="form-error">{{ error|trans({}, 'FOSUserBundle') }}</div>
+                {% endif %}
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                <div class="control-group">
+                    <label class="control-label" for="username">{{ 'security.label.email'|trans }}</label>
+                    <div class="controls">
+                        {% spaceless %}
+                            <input type="text" placeholder="{{ 'security.placeholder.enter_email'|trans }}" id="username" name="_username" value="{{ last_username }}" class="span5" />
+                        {% endspaceless %}
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="password">{{ 'security.label.password'|trans }}</label>
+                    <div class="controls">
+                        {% spaceless %}
+                            <input type="password" placeholder="{{ 'security.placeholder.enter_password'|trans }}" id="password" name="_password" class="span5" />
+                        {% endspaceless %}
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                        {% spaceless %}
+                            <label for="remember_me" class="checkbox">
+                                <input type="checkbox" id="remember_me" name="_remember_me" checked="checked" value="on" />
+                                {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                            </label>
+                        {% endspaceless %}
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-large btn-primary button-submit" type="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" autocomplete="off">
+                {{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}
+            </button>
+        </form>
+    </div>
+    <p class="block-user-administration-links">
+        {#<a href="{{ path('fos_user_registration_register') }}">{{ 'security.info.not_register'|trans }} </a>#}
+        <a href="{{ path('fos_user_resetting_request') }}">{{ 'security.info.forgot_password'|trans }}</a>
+    </p>
+</div>
+{% endblock %}

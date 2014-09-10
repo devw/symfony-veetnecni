@@ -1,0 +1,54 @@
+contest_settings_summary:
+    pattern:  /summary
+    defaults: { _controller: "WebBundle:Contest\Settings:summary" }
+    requirements: { _method: get }
+
+contest_settings_publish:
+    pattern:  /publish
+    defaults: { _controller: "WebBundle:Contest\Settings:publish" }
+    requirements: { _method: post }
+
+contest_settings_clone:
+    pattern:  /clone
+    defaults: { _controller: "WebBundle:Contest\Settings:clone" }
+    requirements: { _method: post }
+
+contest_settings_invite:
+    pattern:  /invite
+    defaults: { _controller: "WebBundle:Contest\Settings:invite" }
+    requirements: { _method: get|post }
+
+contest_settings_participants_delete:
+    pattern:  /participants/delete
+    defaults: { _controller: "WebBundle:Contest\Settings:deleteParticipants" }
+    requirements: { _method: post }
+
+contest_settings_teams:
+    pattern:  /teams
+    defaults: { _controller: "WebBundle:Contest\Settings:teams" }
+    requirements: { _method: get|post }
+
+contest_settings_general:
+    pattern:  /
+    defaults: { _controller: "WebBundle:Contest\Settings:edit" }
+    requirements: { _method: get|post }
+
+contest_settings_data:
+    pattern:  /data
+    defaults: { _controller: "WebBundle:Contest\Settings:data" }
+    requirements: { _method: get|post }
+
+contest_settings_prizes:
+    pattern:  /prizes
+    defaults: { _controller: "WebBundle:Contest\Settings:prizes" }
+    requirements: { _method: get|post }
+
+contest_settings_appearance:
+    pattern:  /appearance
+    defaults: { _controller: "WebBundle:Contest\Settings:appearance" }
+    requirements: { _method: get|post }
+
+contest_settings_email_content:
+    pattern:  /emails
+    defaults: { _controller: "WebBundle:Contest\Settings:emailContent" }
+    requirements: { _method: get|post }

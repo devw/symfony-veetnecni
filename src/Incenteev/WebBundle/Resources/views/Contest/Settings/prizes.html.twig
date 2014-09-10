@@ -1,0 +1,60 @@
+{% extends 'WebBundle:Contest/Settings:base.html.twig' %}
+
+{% block title %}
+    {{ 'contest.title.prizes'|trans }}
+    - {{ 'contest.title.contest_title'|trans({'%contest_name%': contest.name}) }}
+    - Incenteev
+{% endblock %}
+
+{% block edit_title %}{{ 'contest_settings.title.prizes'|trans({'%contest_name%': contest.name}) }}{% endblock edit_title %}
+{% block edit_subtitle %}{{ 'contest_settings.subtitle.prizes'|trans }}{% endblock %}
+
+{% block edit_content %}
+<form action="{{ path('contest_settings_prizes', {'id': contest.id}) }}" method="post" {{ form_enctype(form) }} class="form form-prize" data-check-unload="true">
+    {% form_theme form _self %}
+
+    {{ form_widget(form, {'attr': {'class': 'form-app-prizes-container collection'}}) }}
+
+    <div class="form-app-actions">
+        <ul class="form-app-actions-list list list-actions">
+            <li>
+                <button type="submit" name="continue" value="true" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                    {{ 'contest_settings.action.save_and_continue'|trans }}
+                </button>
+            </li>
+            <li>
+                <button type="submit" name="stay" value="true" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                    {{ 'contest_settings.action.save'|trans }}
+                </button>
+            </li>
+        </ul>
+    </div>
+</form>
+{% endblock %}
+
+{% block _collection_entry_details_remove_avatar_row %}
+    <div class="controls">
+        <span class="form-app-avatar">
+            {% set prize = form.parent.parent.vars.data %}
+            {% if prize.avatarPath is defined and prize.avatarPath is not null %}
+                <img src="{{ get_avatar(prize) }}" class="app-avatar">
+                <span class="app-avatar-action">
+                    {{ form_widget(form) }}
+                    {{ 'user.label.current_avatar'|trans }}
+                </span>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}
+
+{% block _collection_entry_row %}
+    <div class="control-group">
+        {{ form_label(form) }}
+        <div class="controls controls-row" data-target="#{{ id }}_details">
+            <div class="controls-cell form-prize-item-rank-value">{{ form.rank.vars.data ? form.rank.vars.data : 1 }}</div>
+            <div class="controls-cell">
+                {{ form_widget(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+admin_home:
+    pattern:  /
+    defaults: { _controller: "WebBundle:Admin\Main:index" }
+
+organization:
+    resource: organization.yml
+    prefix: /organization
+
+user:
+    resource: admin/user.yml
+    prefix: /users
+
+team:
+    resource: admin/team.yml
+    prefix: /teams

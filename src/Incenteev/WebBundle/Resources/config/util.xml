@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="incenteev.util.assets_bucket">assets-incenteev</parameter>
+        <parameter key="incenteev.util.default_base_url">%router.request_context.scheme%://%router.request_context.host%%request_context.base_path%</parameter>
+    </parameters>
+
+    <services>
+        <service id="incenteev.util.pagerfanta.view" class="Pagerfanta\View\OptionableView" public="false">
+            <tag name="pagerfanta.view" alias="bootstrap_centered" />
+            <argument type="service" id="pagerfanta.view.twitter_bootstrap_translated" />
+            <argument type="collection">
+                <argument key="css_container_class">pagination pagination-centered</argument>
+            </argument>
+        </service>
+
+        <service id="incenteev.util.base_url_resolver.request" class="Incenteev\WebBundle\Util\RequestUrlResolver" public="false">
+            <argument type="service" id="service_container" />
+            <argument>%incenteev.util.default_base_url%</argument>
+        </service>
+
+        <service id="incenteev.util.base_url_resolver.uploads.local" class="Incenteev\WebBundle\Util\SuffixedUrlResolver" public="false">
+            <argument type="service" id="incenteev.util.base_url_resolver.request" />
+            <argument>uploads</argument>
+        </service>
+
+        <service id="incenteev.util.base_url_resolver.uploads.amazon" class="Incenteev\WebBundle\Util\AmazonUrlResolver" public="false">
+            <argument>%amazon_bucket%</argument>
+        </service>
+
+        <service id="incenteev.util.base_url_resolver.assets" class="Incenteev\WebBundle\Util\AmazonUrlResolver" public="false">
+            <argument>%incenteev.util.assets_bucket%</argument>
+            <argument type="constant">AmazonS3::REGION_US_STANDARD</argument>
+        </service>
+
+        <service id="incenteev.util.s3" class="AmazonS3" public="false">
+            <argument type="collection">
+                <argument key="key">%amazon_access_key%</argument>
+                <argument key="secret">%amazon_secret_key%</argument>
+                <argument key="certificate_authority">true</argument>
+            </argument>
+        </service>
+
+        <service id="incenteev.util.name_guesser" class="Incenteev\WebBundle\Util\NameGuesser" public="false" />
+    </services>
+</container>

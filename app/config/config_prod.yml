@@ -1,0 +1,27 @@
+imports:
+    - { resource: config.yml }
+
+doctrine:
+    orm:
+        metadata_cache_driver: apc
+        result_cache_driver: apc
+        query_cache_driver: apc
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: %prod_logging_level%
+            handler:      nested
+        nested:
+            type:  stream
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: debug
+
+knp_gaufrette:
+    filesystems:
+        uploads:
+            adapter: amazon
+
+web:
+    uploads_url_resolver: amazon

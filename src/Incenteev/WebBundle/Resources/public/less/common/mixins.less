@@ -1,0 +1,52 @@
+// ------------------------------
+// Mixins
+// ------------------------------
+
+// Layout
+// -------------------------
+.bodyStyle() {
+    background-attachment: fixed;
+    background-color: @bodyBackgroundColor;
+    background-repeat: no-repeat;
+    color: @contentColor;
+    margin: 0;
+    position: relative;
+}
+
+
+// Avatars
+// -------------------------
+.avatarPicture(@height: 32px) {
+    border: none;
+    height: @height;
+    width: @height;
+}
+
+
+// Buttons
+// -------------------------
+.buttonHover() {
+    > i {
+        background-image: url("@{iconSpriteWhite}");
+    }
+}
+
+.buttonMainHover() {
+    .buttonBackground(@colorOrange, darken(@colorOrange, 5%), @colorWhite);
+    .buttonHover();
+}
+
+.buttonInfoHover() {
+    .buttonBackground(@btnInfoBackgroundHighlight, darken(@btnInfoBackgroundHighlight, 5%), @colorWhite);
+    .buttonHover();
+}
+
+.buttonSuccessHover() {
+    .buttonBackground(@btnSuccessBackgroundHighlight, darken(@btnSuccessBackgroundHighlight, 5%), @colorWhite);
+    .buttonHover();
+}
+
+.buttonDangerHover() {
+    .buttonBackground(@btnDangerBackgroundHighlight, darken(@btnDangerBackgroundHighlight, 5%), @colorWhite);
+    .buttonHover();
+}

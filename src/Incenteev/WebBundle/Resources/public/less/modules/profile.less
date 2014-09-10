@@ -1,0 +1,34 @@
+// ------------------------------
+// Profile Module
+// ------------------------------
+
+
+// User Profile
+// -------------------------
+.profile-user {
+    display: block;
+    padding: @normalFontSize;
+
+    &:hover {
+        text-decoration: none;
+
+        .profile-user-name {
+            text-decoration: underline;
+        }
+    }
+
+    .profile-user-avatar {
+        float: left;
+        margin-right: 10px;
+
+        img {
+            .avatarPicture();
+        }
+    }
+
+    .profile-user-name {
+        color: @contentColor;
+        font-size: @normalFontSize;
+        line-height: @normalLineHeight;
+    }
+}

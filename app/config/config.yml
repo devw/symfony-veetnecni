@@ -1,0 +1,156 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: en }
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
+    form:            true
+    csrf_protection: true
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        assets_version: %assets_version%
+        packages:
+            vendors:
+                version: 201212071108
+    default_locale:  en
+    trust_proxy_headers: %trust_proxy_headers% # Whether or not the Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
+    session:
+        save_path: "%kernel.root_dir%/sessions/%kernel.environment%"
+        handler_id: %session_handler%
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+    globals:
+        google_analytics_account: %google_analytics_account%
+        index_pages: %index_pages%
+    form:
+        resources:
+            - 'WebBundle:Form:form.html.twig'
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:
+        - WebBundle
+        - TwigBundle
+    #java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        lessphp: ~
+        #closure:
+        #    jar: %kernel.root_dir%/Resources/java/compiler.jar
+        #yui_css:
+        #    jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+        naming_strategy: incenteev.doctrine.naming_strategy
+        dql:
+            numeric_functions:
+                ifnull: Incenteev\WebBundle\Doctrine\Query\IfNull
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Incenteev\WebBundle\Entity\User
+    service:
+        mailer: incenteev.mailer.fos_user
+    resetting:
+        email:
+            template: WebBundle:Mail:passwordResetting.html.twig
+    registration:
+        form:
+            type: incenteev_registration
+            validation_groups: ['FullRegistration']
+
+hb_stampie:
+    adapter: buzz
+    mailer: mandrill
+    server_token: %mandrill_api_key%
+    extra:
+        delivery_address: %mailer_delivery_address%
+
+fos_comment:
+    db_driver: orm
+    class:
+        model:
+            comment: Incenteev\WebBundle\Entity\Comment
+            thread: Incenteev\WebBundle\Entity\Thread
+    acl: ~
+    service:
+        acl:
+            comment: incenteev.comment.acl.comment
+            thread: incenteev.comment.acl.thread
+            vote: fos_comment.acl.vote.roles
+
+fos_rest:
+    view:
+        view_response_listener: true
+
+knp_gaufrette:
+    adapters:
+        local_files:
+            local:
+                directory: '%kernel.root_dir%/../web/uploads'
+                create: true
+        amazon:
+            amazon_s3:
+                amazon_s3_id: incenteev.util.s3
+                bucket_name: %amazon_bucket%
+    filesystems:
+        uploads:
+            adapter: local_files
+            alias: incenteev.util.upload_filesystem
+
+knp_markdown:
+    parser:
+        service: markdown.parser.sundown
+    sundown:
+        extensions:
+            fenced_code_blocks:   true
+            no_intra_emphasis:    true
+            tables:               true
+            autolink:             true
+            strikethrough:        true
+            lax_html_blocks:      true
+        render_flags:
+            filter_html:          true
+            hard_wrap:            true
+
+sensio_framework_extra:
+    router:  { annotations: false }
+    request: { converters: false }
+    view:    { annotations: false }
+    cache:   { annotations: false }
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
+
+web:
+    uploads_url_resolver: local
+
+white_october_pagerfanta:
+    default_view: bootstrap_centered

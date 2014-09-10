@@ -1,0 +1,39 @@
+// ------------------------------
+// States Module
+// ------------------------------
+
+
+// Layout
+// -------------------------
+html.js .hidden-js,
+html.js .form-feedback-actions,
+html.js .form-comment-actions {
+    display: none;
+}
+
+
+// Comment
+// -------------------------
+.comment {
+    .is-deleted {
+        font-style: italic;
+    }
+}
+
+
+// Form
+// -------------------------
+.form.is-form-focused {
+    .form-comment-textarea {
+        height: 100px;
+    }
+
+    .form-feedback-textarea {
+        min-height: 100px;
+    }
+
+    .form-feedback-actions,
+    .form-comment-actions {
+        display: block;
+    }
+}

@@ -1,0 +1,16 @@
+main:
+    resource: contest/main.yml
+
+confirmation:
+    resource: contest/confirmation.yml
+    prefix: /{id}/invitation/{token}
+
+data:
+    resource: contest/data.yml
+    prefix: /{id}/results
+    requirements: { id: '\d+' }
+
+settings:
+    resource: contest/settings.yml
+    prefix: /{id}/settings
+    requirements: { id: '\d+' }

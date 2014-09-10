@@ -1,0 +1,146 @@
+// ------------------------------
+// List Module
+// ------------------------------
+
+
+// Core
+// -------------------------
+.list {
+    list-style: none;
+    margin-bottom: 0;
+    margin-left: 0;
+
+    > .list-header {
+        font-weight: bold;
+        margin-bottom: 10px;
+        margin-top: 25px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+}
+
+
+// Inline List
+// -------------------------
+.list.list-inline {
+    > li {
+        display: inline;
+    }
+}
+
+
+// Contests, Teams list
+// -------------------------
+.list.list-thumbnails {
+    text-align: center;
+
+    > li {
+        background-color: @listEntitiesThumbnail;
+        display: inline-block;
+        .ie7-inline-block();
+        margin: 0 20px 20px;
+        vertical-align: top;
+
+        .list-thumbnails-item {
+            .clearfix();
+            margin: 0;
+            padding: 13px 10px 10px;
+            position: relative;
+            text-align: center;
+            width: 160px;
+
+            &:hover {
+                text-decoration: none;
+            }
+
+            .list-thumbnails-item-avatar {
+                .avatarPicture(150px);
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .list-thumbnails-item-name {
+                margin-top: 5px;
+            }
+        }
+
+        .actions > a {
+            vertical-align: middle;
+        }
+    }
+}
+
+
+// Actions list
+// -------------------------
+.list.list-actions {
+    > li {
+        margin-bottom: 10px;
+
+        .button,
+        .btn {
+            .box-sizing(border-box);
+            width: 100%;
+        }
+
+        .list-actions-item {
+            padding-bottom: 9px;
+            padding-top: 9px;
+        }
+    }
+}
+
+.list.list-actions.right {
+    text-align: right;
+}
+
+
+// Actions list
+// -------------------------
+.list.list-admin-actions {
+    > li .list-thumbnails-item {
+        width: 100px;
+
+        .list-thumbnails-item-avatar {
+            .avatarPicture(100px);
+        }
+    }
+}
+
+
+// Teams list
+// -------------------------
+.list.list-team {
+    .border-radius(3px);
+    background-color: @listTeamBackgroundColor;
+    border: 1px solid @borderColor;
+    min-height: 30px;
+    padding: 5px 10px;
+
+    > li {
+        .border-radius(3px);
+        cursor: move;
+        background: @listTeamItemBackgroundColor;
+        border: 1px solid @borderColor;
+        display: inline-block;
+        .ie7-inline-block();
+        margin: 5px;
+        padding: 7px;
+
+        .icon-remove {
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        &.ui-state-disabled {
+            background: none;
+            cursor: auto;
+        }
+    }
+
+    &.list-unselected-users .icon-remove {
+        display: none;
+    }
+}

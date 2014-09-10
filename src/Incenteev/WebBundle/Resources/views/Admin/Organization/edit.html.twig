@@ -1,0 +1,38 @@
+{% extends 'WebBundle:Admin:layout.html.twig' %}
+
+{% block title %}
+    {{ 'admin.breadcrumb.organization.edition'|trans }}
+    - {{ 'admin.breadcrumb.organization_management'|trans }}
+    - Incenteev
+{% endblock %}
+
+{% block breadcrumb %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{{ path('admin_home') }}">{{ 'admin.breadcrumb.organization_management'|trans }}</a>
+            <span class="divider">></span>
+        </li>
+        <li class="active">{{ 'admin.breadcrumb.organization.edition'|trans }}</li>
+    </ul>
+{% endblock %}
+
+{% block inner_content %}
+<h1 class="block-app-title">
+    {{ 'organization.title.edit'|trans }}
+</h1>
+
+<form action="{{ path('organization_edit') }}" method="post" {{ form_enctype(form) }} class="form form-app">
+
+    {{ form_widget(form) }}
+
+    <div class="form-app-actions">
+        <ul class="form-app-actions-list list list-actions">
+            <li>
+                <button type="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                    {{ 'form.action.save'|trans }}
+                </button>
+            </li>
+        </ul>
+    </div>
+</form>
+{% endblock %}

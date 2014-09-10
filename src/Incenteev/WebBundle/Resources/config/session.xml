@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="incenteev.session.doctrine.table">sessions</parameter>
+    </parameters>
+
+    <services>
+        <service id="incenteev.session.doctrine.handler" class="Symfony\Bridge\Doctrine\HttpFoundation\DbalSessionHandler" public="false">
+            <argument type="service" id="database_connection" />
+            <argument>%incenteev.session.doctrine.table%</argument>
+        </service>
+
+        <service id="incenteev.session.doctrine.schema_listener" class="Incenteev\WebBundle\Doctrine\Listener\SessionSchemaListener">
+            <tag name="doctrine.event_listener" lazy="true" event="postGenerateSchema" />
+            <argument type="service" id="incenteev.session.doctrine.schema" />
+        </service>
+
+        <service id="incenteev.session.doctrine.schema" class="Symfony\Bridge\Doctrine\HttpFoundation\DbalSessionHandlerSchema" public="false">
+            <argument>%incenteev.session.doctrine.table%</argument>
+        </service>
+    </services>
+</container>

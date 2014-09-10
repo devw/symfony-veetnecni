@@ -1,0 +1,63 @@
+{% extends 'WebBundle:Layout:app.html.twig' %}
+
+{% set contest_styles = contest.styles %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% set background_url = get_background(contest) %}
+
+    <style type="text/css">
+        body {
+            {% if contest_styles.background_color|default(null) is not null %}
+                background-color: {{ contest_styles.background_color }};
+                background-image: none;
+            {% endif %}
+
+            {% if background_url is not null %}
+                background-image: url('{{ background_url }}');
+            {% endif %}
+        }
+    </style>
+{% endblock %}
+
+{% block body_background_position %}
+{% if contest_styles.background_position|default(null) is not null %}background-{{ contest_styles.background_position }}{% endif %}
+{% endblock %}
+
+{% block body_background_repeat %}
+{% if contest_styles.background_repeat|default(false) %} background-repeat{% endif %}
+{% endblock %}
+
+{% block container_overlay %}
+{% if contest_styles.overlay|default(null) is not null %} overlay-{{ contest_styles.overlay }}{% endif %}
+{% endblock %}
+
+{% block body %}
+<header class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand brand-name" href="{{ path('contest_list') }}">Incenteev</a>
+        </div>
+    </div>
+</header>
+
+<div id="container" class="container">
+    <div id="flash-messages">
+        {% for type in ['error', 'warning', 'success', 'info'] %}
+            {% for message in app.session.flashbag.get(type) %}
+                <div class="message message-{{ type }}">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <section class="block block-app">
+        <div class="block-app-container">
+            <div class="block-app-content">
+                {% block content %}{% endblock content %}
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

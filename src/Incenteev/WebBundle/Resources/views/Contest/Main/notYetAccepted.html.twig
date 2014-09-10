@@ -1,0 +1,18 @@
+{% extends 'WebBundle:Contest/Main:base.html.twig' %}
+
+{% block title %}
+    {{ 'confirmation.title.not_accepted'|trans({'%contest_name%': participation.contest.name}) }}
+    - {{ 'contest.title.contest_title'|trans({'%contest_name%': contest.name}) }}
+    - Incenteev
+{% endblock %}
+
+{% block contest_title %}
+    {{ parent() }}
+    <small>{{ 'confirmation.title.confirmation'|trans }}</small>
+{% endblock %}
+
+{% block inner_content %}
+    {{ 'confirmation.info.confirmation_needed'|trans({
+        '%link%': path('confirmation_accept_invitation', {'id': participation.contest.id, 'token': participation.token, 'target': 'submit'})
+    })|markdown }}
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'WebBundle:Admin:layout.html.twig' %}
+
+{% block title %}
+    {{ 'admin.breadcrumb.users.main'|trans }}
+    - {{ 'admin.breadcrumb.organization_management'|trans }}
+    - Incenteev
+{% endblock %}
+
+{% block breadcrumb %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{{ path('admin_home') }}">{{ 'admin.breadcrumb.organization_management'|trans }}</a>
+            <span class="divider">></span>
+        </li>
+        <li class="active">{{ 'admin.breadcrumb.users.main'|trans }}</li>
+    </ul>
+{% endblock %}
+
+{% block inner_content %}
+<h1 class="block-app-title">
+    <span class="block-app-title-content">
+        {{ 'user.title.admin_list'|trans }}
+    </span>
+    <span class="block-app-title-actions">
+        <a href="{{ path('admin_user_create') }}" class="btn button-info">
+            {{ 'user.action.create'|trans }}
+        </a>
+    </span>
+</h1>
+
+{% if users is not empty %}
+    <table class="table table-striped table-users-admin">
+        <thead>
+            <tr>
+                <th></th>
+                {% for role in roles %}
+                    <th class="user-roles">
+                        {{ role|trans }}
+                    </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td class="user">
+                    <img src="{{ get_avatar(user) }}" alt="" class="user-avatar">
+                    <span class="user-name">{{ user.name }}</span>
+                </td>
+                {% for role, displayedRole in roles %}
+                    <td class="user-roles">
+                        {% if role in user.rawRoles %}
+                            <i class="icon-ok-sign"></i>
+                        {% else %}
+                            <i class="icon-remove-sign"></i>
+                        {% endif %}
+                    </td>
+                {% endfor %}
+                <td>
+                    <ul class="list">
+                        <li>
+                            <a href="{{ path('admin_user_edit', {'id': user.id}) }}">
+                                <i class="icon-edit"></i>
+                                {{ 'user.action.edit'|trans }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_user_show', {'id': user.id}) }}">
+                                <i class="icon-search"></i>
+                                {{ 'user.action.show'|trans }}
+                            </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if users.haveToPaginate %}
+        {{ pagerfanta(users) }}
+    {% endif %}
+{% else %}
+    <p>{{ 'user.info.no_user'|trans }}</p>
+{% endif %}
+
+<ul class="list list-actions right">
+    <li>
+        <a href="{{ path('admin_user_create') }}" class="btn button-info">
+            {{ 'user.action.create'|trans }}
+        </a>
+    </li>
+</ul>
+{% endblock %}

@@ -1,0 +1,41 @@
+// ------------------------------
+// Builtin Module
+// ------------------------------
+
+
+// - Background
+//--------------------
+.builtin.builtin-background {
+    .clearfix();
+
+    label {
+        .border-radius(4px);
+        cursor: pointer;
+        float: left;
+        margin-bottom: @normalFontSize;
+        margin-right: @normalFontSize;
+        height: 73px;
+        padding: 3px;
+        width: 130px;
+
+        &.selected {
+            .box-shadow(0 0 5px @colorBlue);
+            background-color: @colorBlue;
+        }
+
+        input {
+            margin-right: 10px;
+        }
+
+        img {
+            .border-radius(4px);
+            display: inline;
+            height: 100%;
+            width: 100%;
+        }
+
+        &:hover {
+            .scale(1.2);
+        }
+    }
+}

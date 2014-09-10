@@ -1,0 +1,30 @@
+organization:
+    already_exists: This organization already exists.
+
+contest:
+    date_order: The end date should be after the start date.
+    name:
+        not_blank: The contest name should not be empty.
+        unchanged: The contest name should be changed from the default one.
+    description:
+        not_blank: The contest description should not be empty.
+    rules:
+        not_blank: The contest rules should not be empty.
+    start_date:
+        not_blank: The start date should not be empty.
+    end_date:
+        not_blank: The end date should not be empty.
+    unit:
+        not_blank: The contest unit should not be empty.
+    data_name:
+        not_blank: The contest measure should not be empty.
+    participations:
+        min_count: The contest should have at least {{ limit }} participant.|The contest should have at least {{ limit }} participants.
+    prizes:
+        min_count: The contest should have at least {{ limit }} prize.|The contest should have at least {{ limit }} prizes.
+
+prize:
+    rank_already_used: This rank is already associated to another prize.
+
+invitation:
+    already_used: This email is already registered in a separate organization.

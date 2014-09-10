@@ -1,0 +1,37 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="block block-user-administration">
+    <div class="block-container">
+        <h3 class="block-title">{{ 'password_recovery.title'|trans }}</h3>
+        <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="form form-user-administration">
+            <div class="form-user-administration-content">
+                {% if invalid_username is defined %}
+                    <div class="form-error">
+                        {{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}
+                    </div>
+                {% endif %}
+
+                <p>{{ 'password_recovery.info.fill_in_email'|trans }}</p>
+                <hr>
+
+                <div class="control-group">
+                    <label class="control-label" for="username">{{ 'password_recovery.label.email'|trans }}</label>
+                    <div class="controls">
+                        <input type="text" id="username" name="username" required="required" placeholder="{{ 'security.placeholder.enter_email'|trans }}" class="span5" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-user-administration-actions">
+                <button class="btn btn-large btn-primary button-submit" type="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" autocomplete="off">
+                    {{ 'password_recovery.action.recover'|trans }}
+                </button>
+            </div>
+        </form>
+    </div>
+    <p class="block-user-administration-links">
+        {{ 'registration.info.have_account'|trans }} <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    </p>
+</div>
+{% endblock %}

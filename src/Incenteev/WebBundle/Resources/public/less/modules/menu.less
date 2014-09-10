@@ -1,0 +1,87 @@
+// ------------------------------
+// Menu Module
+// ------------------------------
+
+
+// Sidebar Menu
+// -------------------------
+.menu.menu-sidebar {
+    .border-radius(4px);
+    margin-bottom: 20px;
+
+    .menu-sidebar-content {
+        border-bottom: 0;
+        margin-bottom: 0;
+        padding: 0;
+
+        .menu-header {
+            color: @contentColor;
+            display: block;
+            font-size: @smallFontSize;
+            line-height: @smallLineHeight;
+            font-weight: bold;
+            margin: 0;
+            padding: 8px 11px 0;
+            text-shadow: @contentShadowColor;
+        }
+
+        li.active .menu-link {
+                font-weight: bold;
+        }
+
+        li.active .menu-link,
+        .menu-link:hover {
+            background-color: @menuActiveBackgroundColor;
+            border-left-color: @colorOrange;
+            color: @colorDarkGray;
+            text-align: left;
+            text-decoration: none;
+        }
+
+        > li {
+            text-align: left;
+
+            &:first-child {
+                .border-top-left-radius(4px);
+                .border-top-right-radius(4px);
+            }
+
+            &:last-child {
+                .border-bottom-left-radius(4px);
+                .border-bottom-right-radius(4px);
+            }
+
+            .menu-link {
+                border-left: 3px solid transparent;
+                display: block;
+                font-size: @normalFontSize;
+                line-height: @normalLineHeight;
+                margin: 0 0 -1px;
+                padding: 2px 6px;
+                position: relative;
+                text-shadow: @contentShadowColor;
+            }
+
+            .menu-action-container {
+                padding: 5px;
+
+                .menu-action {
+                    .box-sizing(border-box);
+                    display: block;
+                    text-align: left;
+                    padding: 9px 11px;
+                    width: 100%;
+                }
+            }
+
+            ul {
+                list-style: none;
+                margin: 0;
+            }
+        }
+    }
+
+    .menu-sidebar-content + .menu-sidebar-content {
+        margin-top: 15px;
+    }
+}

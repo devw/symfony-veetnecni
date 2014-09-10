@@ -1,0 +1,90 @@
+{% extends 'WebBundle:Contest/Settings:base.html.twig' %}
+
+{% block title %}
+    {{ 'contest.title.appearance'|trans }}
+    - {{ 'contest.title.contest_title'|trans({'%contest_name%': contest.name}) }}
+    - Incenteev
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% set background_url = get_background(contest) %}
+    {% if background_url is not null %}
+        <style type="text/css">
+            {% autoescape 'css' %}
+            .theme-example .theme-example-body {
+                background-image: url('{{ background_url }}');
+            }
+            {% endautoescape %}
+        </style>
+    {% endif %}
+{% endblock %}
+
+{% block edit_title %}{{ 'contest_settings.title.appearance'|trans({'%contest_name%': contest.name}) }}{% endblock %}
+{% block edit_subtitle %}{{ 'contest_settings.subtitle.appearance'|trans }}{% endblock %}
+
+{% block edit_content %}
+    <form action="{{ path('contest_settings_appearance', {'id': contest.id}) }}" method="post" {{ form_enctype(form) }}
+        class="form form-app form-appearance" data-check-unload="true">
+        {% form_theme form _self %}
+
+        <h4>{{ 'contest.label.background'|trans }}</h4>
+        {{ form_row(form.background.builtin) }}
+
+        <hr>
+
+        <h4>{{ 'contest.label.styles'|trans }}</h4>
+        <div class="form-appearance-customization">
+            {{ form_row(form.background.new) }}
+        </div>
+        {{ form_rest(form) }}
+
+        <div class="form-app-actions">
+            <ul class="form-app-actions-list list list-actions">
+                <li>
+                    <button type="submit" name="continue" value="true" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                        {{ 'contest_settings.action.save_and_continue'|trans }}
+                    </button>
+                </li>
+                <li>
+                    <button type="submit" name="stay" value="true" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                        {{ 'contest_settings.action.save'|trans }}
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </form>
+{% endblock %}
+
+{% block _incenteev_contest_appearance_background_remove_background_row %}
+    <div class="controls">
+        <span class="form-app-avatar">
+            <img src="{{ get_background(form.parent.parent.vars.data) }}" class="app-background">
+            <span class="app-avatar-action">
+                {{ form_widget(form) }}
+                {{ 'user.label.current_avatar'|trans }}
+            </span>
+        </span>
+    </div>
+{% endblock %}
+
+{% block _incenteev_contest_appearance_styles_background_repeat_row %}
+    {% spaceless %}
+        {% set has_help = help_text is not null %}
+        <div {{ block('widget_wrapper_attributes') }}>
+            {{ form_label(form) }}
+            <div class="controls">
+                {{ form_widget(form) }}
+                {% if has_help %}
+                    <div class="form-help-block">
+                        {{ help_text|trans|markdown }}
+                    </div>
+                {% endif %}
+            </div>
+            {{ form_errors(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _incenteev_contest_appearance_background_label %}{% endblock %}
+{% block _incenteev_contest_appearance_styles_label %}{% endblock %}

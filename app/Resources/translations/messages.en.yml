@@ -1,0 +1,670 @@
+admin:
+    breadcrumb:
+        organization:
+            edition: Organization Edition
+        organization_management: Organization Management
+        teams:
+            creation: New team
+            display: %team_name%
+            edition: Edition
+            main: Teams
+        users:
+            creation: New user
+            display: %user_name%
+            edition: Edition
+            main: Users
+    links:
+        organization: Organization
+        teams: Teams
+        users: Users
+    menu:
+        organization: Organization
+        teams: Teams
+        users: Users
+    title:
+        organization_management: Organization Management
+
+confirmation:
+    action:
+        participate: Participate
+        save: Save
+        save_and_continue: Save and continue
+        skip: Skip this step
+    help:
+        avatar: The recommended size for your profile picture is 200x200 pixels or more.
+    info:
+        about_incenteev: Your colleagues are already participating to the contest. Join them now!
+        already_in: Your participation to the contest has already been accepted.
+        choose_avatar: Profile photos make it easier for you colleagues to identify you. And they make the contest more fun. You can also choose a fun or artistic picture as an avatar.
+        confirmation_needed: You need to [confirm your participation](%link%) in this contest before you can update your results.
+        invited_by: |
+            **%inviter_name%** invited you to join **%organization_name%** contest "%contest_name%" on Incenteev - a Web app where you can participate to the contest, check your rankings, interact and have fun with your colleagues.
+        why_confirm_participation: |
+            We require you to confirm your participation in order to make sure you were not invited here by mistake.
+            After you've confirmed your participation, we'll send you occasional emails to keep you posted on the contest rankings, discussions, etc.
+    label:
+        accept: I accept the rules and confirm my participation to this contest
+        accept_without_rules: I confirm my participation to this contest
+        avatar: Select an image file on your computer
+    page_title:
+        confirm_participation: Confirm participation
+        upload_photo: Add profile photo
+        welcome: Complete Signup
+    step:
+        choose_avatar: Add your photo
+        participation_confirmation: Confirm participation
+        general_information: Create profile
+    subtitle:
+        confirm_participation: If you want to participate in the contest, simply confirm your participation below.
+        upload_photo: Add your profile photo below. You can also choose a fun picture as an avatar.
+        welcome: Please update your information below in order to get started and participate to the contest. It will only take 1 min.
+    title:
+        already_accepted: You already joined le challenge "%contest_name%"!
+        choose_avatar: Why should I add a profile photo?
+        confirmation: Confirm your participation
+        confirm_participation: Do you want to be part of the contest "%contest_name%"?
+        contest_info: A few words about the contest
+        upload_photo: Add your profile photo
+        welcome: Welcome to the %organization_name% contest "%contest_name%"!
+        why_confirm_participation: Why should I confirm my participation?
+
+contest:
+    action:
+        create_contest: Create a contest
+        go_to_contest: Go to the contest
+        list_contest: Contest list
+    background:
+        camels_in_desert: Camels in desert
+        christmas: Christmas
+        circus: Circus
+        color_lines: Color lines
+        cooking: Cooking
+        golf: Golf
+        grass: Grass
+        pontoon_blue_sea: Pontoon and blue sea
+        partnership: Partnership
+        purple_stars: Stars (Purple)
+        race: Race
+        ski: Ski
+        snowboarder: Snowboarder
+        snowflakes: Snowflakes
+        speedometer: Speedometer
+        spices: Spices
+        stars: Stars
+        stopwatch: Stopwatch
+        tropical_beach: Tropical beach
+        universe: Universe
+    customization:
+        background_position:
+            center: Center
+            left: Left
+            right: Right
+        background_repeat: mosaic
+        overlay:
+            dark: Dark
+            light: Light
+    flash:
+        data_grid:
+            invalid_data: The data you entered is invalid. Saving it failed.
+            partially_saved: Some of the data you entered are invalid. Your changes have only been saved partially.
+            saving_failed: An error occured while saving your changes.
+        successful_delete: The contest has been deleted successfully.
+    label:
+        avatar: Logo
+        background: Pick a premade theme
+        background_color: Background color
+        background_position: Background position
+        background_repeat: Mosaic background
+        data: Data
+        data_name: Measure for the ranking of participants
+        description: Description
+        duration: Duration
+        end_date: End date
+        granularity: Data will be entered
+        invitation_text: Introduction of invitation emails
+        link_color: Links color
+        name: Name
+        overlay: Overlay
+        participants: Participants
+        prizes: Prizes
+        reminder_periodicity: Reminder emails will be sent
+        reminder_text: Introduction of reminder emails
+        result_update:
+            admins: Managers only
+            admins_and_user: Managers and participants (participants can only update their own results)
+        rules: Rules
+        start_date: Start date
+        styles: Or customize your own
+        summary_periodicity: Summary emails will be sent
+        summary_text: Introduction of summary emails
+        unit: Unit of measure
+        updated_by_participants: Result update permissions
+        upload_image: Background image
+    granularity:
+        day: Daily
+        month: Monthly
+        week: Weekly
+    help:
+        avatar: The recommended size for the logo is 200x200px or more.
+        background: The recommended size for the background image is 1920x1080px and less than 500KB.
+        button_disabled: This button is locked for your safety. Press padlock icon to unlock.
+        data_name: '**e.g.**: Revenue, Profit, Number of orders, Number of contracts, Number of pallets, etc.'
+        disabled_after_launch: This setting cannot be modified after launching the contest
+        granularity: |
+            Choose "Daily" or "Weekly" for short contests (1 day to 3 months).
+            Choose "Weekly" or "Monthly" for longer contests (more than 3 months).
+        invitation_text: This text will be the introduction of invitations. Invitation emails will be sent when you launch the contest.
+        reminder_text: This text will be the introduction of reminders. Reminder emails will remind participants/managers to update results.
+        summary_text: This text will be the introduction of summaries. Summary emails will keep participants/managers up to date about rankings.
+        theme_not_saved: See your changes instantly; they're not saved until you click "Save".
+        unit: '**e.g.**: k€, €, Orders, Contracts, Pallets, etc.'
+        updated_by_participants: Defines who will have to update results in the contest.
+    info:
+        confirm_delete: |
+            You are about to delete this contest. Every teams, participants and prizes will be removed and it won't be possible to go back.
+            Are you SURE you want to delete this contest?
+        confirm_delete_participants: |
+            You are about to remove these participants from this contest. All of their data will be removed and it won't be possible to go back.
+            Are you SURE you want to remove them from this contest?
+        duration: %count% day|%count% days
+        duration_range: From %start_date% to %end_date%
+        grid_saving: Saving...
+        not_set: Not set
+        rank: '{1} 1st prize|{2} 2nd prize|{3} 3rd prize|[4, Inf] %count%th prize'
+        user_confirmed: Confirmed
+        user_pending: Pending
+    menu_header:
+        display: Display
+        manage: Manage
+        preview: Preview
+        set_up: Set-up
+    menu:
+        about: About
+        appearance: Theme
+        data: Data
+        description: Description
+        email_content: Emails
+        general: General information
+        launch: Summary and Launch
+        participants: Participants
+        preview: Preview
+        prizes: Prizes
+        results: Individual ranking
+        show: Show
+        summary: Summary
+        team_results: Team ranking
+        teams: Teams
+        update_all_results: Update results
+        update_data: Update my results
+    title:
+        about: About
+        appearance: Theme
+        contest_title: Contest %contest_name%
+        data: Data
+        description: Description
+        email_content: Emails
+        general: General information
+        launch: Summary and Launch
+        prizes: Prizes
+        participants: Participants
+        preview: Preview
+        results: Individual ranking
+        show: Show
+        summary: Summary
+        team_results: Team ranking
+        teams: Teams
+        update_all_results: Update results
+        update_data: Update my results
+
+contest_data:
+    info:
+        js_needed: The use of Javascript is needed for this interface.
+        not_started_yet: You can only update results for started contests but the contest "%contest_name%" is not started yet.
+
+contest_list:
+    info:
+        draft: Draft
+        no_contest: You are not in any contest yet. What about creating one?
+        no_published_contest: You are not in any published contest yet. To create one, please use a tablet or a computer.
+        published: Published
+    label:
+        dates: Dates:
+    title:
+        listing: Contest list
+
+contest_settings:
+    action:
+        clone: Clone
+        delete: Delete
+        launch: Launch
+        remove_participants: Remove participants
+        save: Save
+        save_and_continue: Save and continue
+    flash:
+        already_launched: This contest was already launched.
+        successful_edit:
+            cloned: The contest has been cloned successfully.
+            data: The data settings have been updated successfully.
+            description: The description has been updated successfully.
+            general: The contest has been updated successfully.
+            launched: The contest has been launched successfully.
+            participants: The participants have been added to the contest.
+            prizes: The prizes have been updated successfully.
+            remove_participants: The participants have been removed from the contest.
+            teams: The teams have been updated successfully.
+    info:
+        confirm_launch: |
+            Are you sure you want to launch the contest now?
+
+            The dates, the granularity of data and the unit of measure
+            will not be editable anymore.
+
+            The invitations will also be sent to the participants.
+    state:
+        launched: Your contest has already been launched.
+        invalid: Some issues have been found in this contest. You need to fix them before launching it.
+        valid: Congrats! This contest can now be launched.
+        warning: Some potential mistakes have been detected. Take a look at them to be sure that the contest is ready to be launched.
+    subtitle:
+        all_results: Update participant results. Results are automatically saved as you enter them. You can copy-paste from an Excel file. Hit Ctrl+Z/Cmd+Z to cancel a modification.
+        appearance: Customize the way your contest looks for participants.
+        data: Contest data defines how the results are measured in order to rank participants.
+        edition: Change basic contest and time settings.
+        email_content: Customize the emails participants will receive.
+        participants: Add participants to your contest. No invitation will be sent until you launch the contest.
+        prizes: Create and manage prizes. You can drag and drop the prizes to change their rank.
+        summary: You're almost there! Check if everything is OK with your contest and click Launch.
+        teams: Add teams to display team ranking in addition to individual ranking.
+    title:
+        administration: Administration
+        all_results: Update results of contest "%contest_name%"
+        appearance: Theme of contest "%contest_name%"
+        data: Data of contest "%contest_name%"
+        edition: General information of contest "%contest_name%"
+        email_content: Emails for contest "%contest_name%"
+        participants: Participants of contest "%contest_name%"
+        prizes: Prizes of contest "%contest_name%"
+        rules: Rules of contest "%contest_name%"
+        summary: Summary of contest "%contest_name%"
+        teams: Teams of contest "%contest_name%"
+
+contest_show:
+    action:
+        administration: Administration
+        edit: Edit
+        results: Individual ranking
+        show: Display
+    info:
+        available: This contest is not launched yet. To participate, come back in...
+        no_description: No description for this contest.
+        no_rules: No rules for this contest.
+        no_wall_preview: The discussion will be available on contest launch.
+        not_launched_yet: |
+            This contest is not launched yet. You are viewing it in preview mode.
+            You can [publish it](%link%) to go live.
+    page_title:
+        all_results: Update results
+    placeholder:
+        post_comment: What's on your mind?
+    results:
+        name: Name
+        rank: '#'
+        score: Score
+    stats:
+        position: Position
+        remaining_days: Remaining Days
+        score: Score
+    title:
+        about: Here is some useful information about the contest.
+        all_results: Update results
+        confirmed_participants: Participants
+        discussion: Discussion
+        results: Individual ranking
+        team_results: Team ranking
+        unconfirmed_participants: Unconfirmed People
+
+contest_team:
+    action:
+        add_team_row: Add a new team
+    help:
+        empty_team: You can drag & drop users to add them to any team.
+    label:
+        name: Name
+        participations: Members
+
+error:
+    title:
+        404: Whoops! Wrong turn!
+        other: Whoops! Houston we have got a problem!
+    info:
+        404: |
+            It seems that you may have taken a wrong turn.
+            Don’t worry, it happens to the best of us.
+        other: We are aware of the issue. However, you can email us at %support_mail% and let us know what you were doing when this error occurred. It will greatly help us solving the issue.
+
+feedback:
+    action:
+        submit: Send Feedback
+    flash:
+        empty: The feedback message cannot be empty
+        error: There was a problem while submitting the form. Please try again.
+        sent: Thank you for your feedback, we will answer it faster than light.
+    placeholder:
+        enter_comment: Your suggestions, ideas, complaints will greatly help us.
+    title:
+        feedback: How can we make this page better for you?
+
+form:
+    action:
+        save: Save
+    check:
+        unload: One or more forms on this page have changed. Are you sure you want to leave this page without submitting it?
+        unsubmitted_form: Another form on this page has been changed. Are you sure you want to continue with this form submission? Changes in the other form will be lost.
+    placeholder:
+        email: john@awesomecorp.com
+        password: Password
+
+invitation:
+    info:
+        current_participants: Current participants
+        no_participants: No participant for this contest.
+        no_user_found: No user found
+    label:
+        enter_emails: Enter the email addresses of people you want to invite
+        owners: Contest managers
+    placeholder:
+        enter_emails: Start typing the email addresses of people you want to invite...
+
+layout:
+    action:
+        go_to_app: Go to Incenteev
+        organization_management: Organization Management
+        profile: My profile
+        signup: Sign-up
+        view_more: View more
+        view_less: View less
+    messages:
+        loading: Loading...
+    title:
+        main: Incenteev
+
+organization:
+    breadcrumb:
+        organization_display: %organization_name%
+    label:
+        language: Language for the whole organization
+        name: Name
+    title:
+        edit: Organization settings
+        organization: Organization
+
+organization_team:
+    action:
+        create: Add a new team
+        edit: Edit
+    info:
+        no_member: There is no member in this team yet
+        no_team: There is no team yet
+        no_user_found: No user found
+        users_without_team: Users without a team
+    label:
+        avatar: Avatar
+        members: Members
+        name: Name
+    placeholder:
+        enter_name: Start typing the name of someone...
+    title:
+        create: Creating a new team
+        edit: Editing a team
+        list: Teams
+        show: '"%team_name%" Team view'
+
+password_recovery:
+    action:
+        recover: Recover password
+        update: Update password
+    info:
+        email_sent: |
+            An email with instructions on how to reset your password has been sent to **%email%**.
+
+            If you do not receive it within a few minutes, check your spam folder.
+        fill_in_email: Enter your email address, and we will send you instructions on how to reset your password.
+        fill_in_new_password: Enter a new password for your account below.
+    label:
+        email: Email
+    title: Password Recovery
+
+periodicity:
+    action:
+        customize: Customize
+    day:
+        friday: Fri.
+        monday: Mon.
+        saturday: Sat.
+        sunday: Sun.
+        thursday: Thu.
+        tuesday: Tue.
+        wednesday: Wed.
+    hour:
+        h0: '00:00'
+        h1: '01:00'
+        h2: '02:00'
+        h3: '03:00'
+        h4: '04:00'
+        h5: '05:00'
+        h6: '06:00'
+        h7: '07:00'
+        h8: '08:00'
+        h9: '09:00'
+        h10: '10:00'
+        h11: '11:00'
+        h12: '12:00'
+        h13: '13:00'
+        h14: '14:00'
+        h15: '15:00'
+        h16: '16:00'
+        h17: '17:00'
+        h18: '18:00'
+        h19: '19:00'
+        h20: '20:00'
+        h21: '21:00'
+        h22: '22:00'
+        h23: '23:00'
+    info:
+        no_hours_found: No hours found
+    label:
+        days: Days
+        hours: Hours
+        weeks: Weeks
+    placeholder:
+        hours: Select some hours
+    presets:
+        day:
+            custom: Customize
+            daily: Every day
+            every_mon_wed_fri: Every Monday, Wednesday, and Friday
+            every_tue_thu: Every Tuesday, and Thursday
+            weekday: Every weekday (Monday to Friday)
+        week:
+            custom: Customize
+            every_week: Every week
+            first_week: First week of the month
+            last_week: Last week of the month
+    summary:
+        day_and_hours: Every %days% at %hours%
+        every_days: Every day at %hours%
+        list_join: '%first% and %last%'
+        never_days: Never (no days selected)
+        never_hours: Never (no hours selected)
+        never_weeks: Never (no weeks selected)
+        week:
+            w1: first
+            w2: second
+            w3: third
+            w4: fourth
+            w5: last
+        week_days_and_hours: The %weeks% %days% at %hours%|The %weeks% %days% at %hours%
+    week:
+        w1: 1st wk. of the mo.
+        w2: 2nd wk. of the mo.
+        w3: 3rd wk. of the mo.
+        w4: 4th wk. of the mo.
+        w5: Last wk. of the mo.
+
+prize:
+    action:
+        add_prize_row: Add another prize
+        duplicate_prize: Duplicate prize
+    label:
+        avatar: Photo
+        description: Description
+        name: Name
+    placeholder:
+        name: Name
+
+registration:
+    info:
+        account_activated: Your account is now activated.
+        have_account: Already have an account?
+        subscription_saved: We have successfully received your mail and will inform you as soon as we launch.
+    label:
+        organization: Organization
+    title:
+        confirm: Registration
+        confirmed: Congrats %username%!
+        register: Register
+        registered: Congratulations!
+
+result_submission:
+    action:
+        edit: Edit
+        save: Save
+    flash:
+        successful_data_submit: Your results have been submitted successfully.
+    info:
+        total: 'Total:'
+        update_data: Please update your %measure%.
+    subtitle:
+        submit_data: Update your results for the different periods of time in the form below. Enter numbers only.
+    title:
+        edit_results: Editing "%user_name%'s" results
+        update_results: Update results
+
+security:
+    action:
+        log_in: Log In
+        log_out: Log Out
+    info:
+        forgot_password: Forgot password?
+        not_register: Don't have an account yet?
+    label:
+        email: Email
+        password: Password
+    placeholder:
+        enter_email: john@awesomecorp.com
+        enter_password: Check the Post-It on your computer screen...
+    title:
+        log_in: Log In
+
+user:
+    action:
+        create: Create a new user
+        edit: Edit
+        edit_profile: Edit
+        show: Display profile
+    help:
+        password: You will use this password to log in and participate to the contest
+    info:
+        no_user: There is no user yet
+    label:
+        avatar: Avatar
+        current_avatar: Remove current image
+        email: Email
+        first_name: First name
+        last_name: Last name
+        name: Name
+        password: Choose a password
+        roles: Roles
+    role:
+        admin: Admin
+        contest_creator: Contest creator
+    title:
+        admin_create: Creating a new user
+        admin_edit: Editing a user
+        admin_list: Users
+        admin_panel: Admin Panel
+        admin_profile: User profile
+        edit_profile: Profile edition
+        profile: My profile
+
+mail:
+    comment_reply:
+        initial_author_subject: %author% replied to your comment
+        different_author_subject: %author% replied to %initial_author%'s comment
+        initial_author_content: %author% just replied to your message in contest "%contest_name%".
+        different_author_content: %author% replied to %initial_author%'s message in contest "%contest_name%".
+        original_message: Original message:
+        action: Reply to comment
+    contest_published:
+        title: The contest "%contest_name%" has been published!
+        subject: The contest "%contest_name%" has been published!
+        content: |
+            Hello %user_name%,
+            The contest %contest_name% has just been launched. Participants have been notified by email.
+            Click the link below to access the contest.
+    invitation:
+        title: Invitation
+        subject: Invitation to join the contest %contest_name%
+        content_txt: |
+            Hello %user_name%,
+
+            You have been invited to join the contest %contest_name%. You need to confirm your participation by clicking the link below.
+        content_html: |
+            Hello %user_name%,
+
+            You have been invited to join the contest **%contest_name%**. You need to confirm your participation by clicking the link below.
+    organizationInvitation:
+        subject: Invitation to join the organization %organization_name%
+        title: Invitation
+        content_txt: |
+            Hello %user_name%,
+
+            You have been invited to join the organization %organization_name%. You need to complete your registration by clicking the link below.
+        content_html: |
+            Hello %user_name%,
+
+            You have been invited to join the organization **%organization_name%**. You need to complete your registration by clicking the link below.
+    dataEntryReminder:
+        content_html: |
+            Hello %user_name%,
+
+            You need to update your results for contest **%contest_name%**. Please click on the link below to update your data.
+        content_txt: |
+            Hello %user_name%,
+
+            You need to update your results for contest %contest_name%. Please click on the link below to update your data.
+        subject: Please update your data for contest %contest_name%
+        title: Don't forget to update your data
+    resetting:
+        content_html: "To reset your password, please visit [%confirmationUrl%](%confirmationUrl%)."
+        title: Hello **%username%**,
+    summary:
+        subject: %user_name%, here is what happens in the contest %contest_name%
+        title:
+            board: Individual ranking
+            pending_users: Users who did not confirm their participation yet
+            not_updated_users: Users who did not update their results
+            top_messages: Comments
+        content: |
+            **%user_name%**,
+
+            Here is what happens in the contest %contest_name%.
+        info:
+            no_message: |
+                There has not been any comment on this contest. Fortunately, it is not over yet and you can post one! :)
+            no_participants: This contest does not have any participant yet.
+    action:
+        display_contest: Go to contest
+        participate: Participate
+        show_results: Show all results
+        update_results: Update your results

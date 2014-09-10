@@ -1,0 +1,33 @@
+contest_list:
+    pattern:  /
+    defaults: { _controller: "WebBundle:Contest\Main:index" }
+
+contest_show:
+    pattern:  /{id}
+    defaults: { _controller: "WebBundle:Contest\Main:show" }
+    requirements: { _method: get, id: '\d+' }
+
+contest_delete:
+    pattern:  /{id}
+    defaults: { _controller: "WebBundle:Contest\Main:delete" }
+    requirements: { _method: delete, id: '\d+' }
+
+contest_details:
+    pattern:  /{id}/details
+    defaults: { _controller: "WebBundle:Contest\Main:details" }
+    requirements: { _method: get, id: '\d+' }
+
+contest_show_teams:
+    pattern:  /{id}/teams/rank
+    defaults: { _controller: "WebBundle:Contest\Main:teamsRank" }
+    requirements: { _method: get, id: '\d+' }
+
+contest_create:
+    pattern:  /create
+    defaults: { _controller: "WebBundle:Contest\Main:create" }
+    requirements: { _method: post }
+
+contest_submit_data:
+    pattern:  /{id}/submit
+    defaults: { _controller: "WebBundle:Contest\Main:submitData" }
+    requirements: { _method: get|post, id: '\d+' }

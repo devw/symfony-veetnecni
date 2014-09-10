@@ -1,0 +1,18 @@
+admin_user_list:
+    pattern:  /
+    defaults: { _controller: "WebBundle:Admin\User:index" }
+
+admin_user_show:
+    pattern:  /{id}
+    defaults: { _controller: "WebBundle:Admin\User:show" }
+    requirements: { _method: get, id: '\d+' }
+
+admin_user_create:
+    pattern:  /create
+    defaults: { _controller: "WebBundle:Admin\User:create" }
+    requirements: { _method: get|post }
+
+admin_user_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "WebBundle:Admin\User:edit" }
+    requirements: { _method: get|post, id: '\d+' }

@@ -1,0 +1,19 @@
+confirmation_accept_invitation:
+    pattern:  /
+    defaults: { _controller: "WebBundle:Contest\Confirmation:manageInvitation" }
+    requirements: { _method: get|post, id: '\d+' }
+
+confirmation_with_registration:
+    pattern:  /register
+    defaults: { _controller: "WebBundle:Contest\Confirmation:profileRegistration" }
+    requirements: { _method: get|post, id: '\d+' }
+
+confirmation_acceptance:
+    pattern:  /confirm
+    defaults: { _controller: "WebBundle:Contest\Confirmation:confirm" }
+    requirements: { _method: get|post, id: '\d+' }
+
+confirmation_choose_avatar:
+    pattern:  /choose-avatar
+    defaults: { _controller: "WebBundle:Contest\Confirmation:chooseAvatar" }
+    requirements: { _method: get|post, id: '\d+' }

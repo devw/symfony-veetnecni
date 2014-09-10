@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirecting the old contesteo hosts permanently
+    RewriteCond %{HTTP_HOST} ^((\w+\.)?)contesteo.com$ [NC]
+    RewriteRule (.*) https://%1incenteev.com/$1 [R=301,L]
+
+    # https redirection behind the pagodabox load balancer
+    RewriteCond %{HTTP:X-Forwarded-Proto} =http
+    RewriteRule (.*) https://%{HTTP_HOST}/$1 [R,L]
+
+    #<IfModule mod_vhost_alias.c>
+    #    RewriteBase /
+    #</IfModule>
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ app.php [QSA,L]
+</IfModule>

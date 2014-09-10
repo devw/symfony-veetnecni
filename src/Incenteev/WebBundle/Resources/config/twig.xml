@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="incenteev.twig.extension" class="Incenteev\WebBundle\Twig\IncenteevExtension" public="false">
+            <tag name="twig.extension" />
+            <argument type="service" id="incenteev.avatar.exposer" />
+            <argument type="service" id="incenteev.util.base_url_resolver.assets" />
+            <argument type="service" id="incenteev.util.base_url_resolver.request" />
+            <argument>%incenteev.feedback.address%</argument>
+        </service>
+
+        <service id="incenteev.twig.intl" class="Twig_Extensions_Extension_Intl" public="false">
+            <tag name="twig.extension" />
+        </service>
+    </services>
+</container>

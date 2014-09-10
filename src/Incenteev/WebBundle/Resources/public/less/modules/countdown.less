@@ -1,0 +1,30 @@
+// ------------------------------
+// Countdown Module
+// ------------------------------
+
+
+// Core
+// -------------------------
+.countdown.hasCountdown {
+    background: @colorWhite;
+    border: 1px solid @borderColor;
+    margin: 30px auto;
+    padding: 10px;
+    width: 300px;
+
+    .countdown_row {
+        display: block;
+
+        .countdown_section {
+            border-left: 1px dotted @borderColor;
+
+            &:first-child {
+                border-left: none;
+            }
+
+            .countdown_amount {
+                font-weight: 600;
+            }
+        }
+    }
+}

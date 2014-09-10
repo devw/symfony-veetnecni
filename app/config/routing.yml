@@ -1,0 +1,34 @@
+web:
+    resource: "@WebBundle/Resources/config/routing/main.yml"
+
+fos_comment_api:
+    type: rest
+    resource: "@FOSCommentBundle/Resources/config/routing.yml"
+    prefix: /api
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /signup
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /password-recovery
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+bazinga_expose_translation:
+    resource: "@BazingaExposeTranslationBundle/Resources/config/routing/routing.yml"
+    prefix: /js
+
+nelmio_js_logger:
+    resource: "@NelmioJsLoggerBundle/Resources/config/routing.xml"
+    prefix:   /nelmio-js-logger
+
+# Internal routing configuration to handle ESI
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal

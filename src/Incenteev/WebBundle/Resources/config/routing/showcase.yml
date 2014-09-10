@@ -1,0 +1,7 @@
+showcase_home:
+    pattern:  /
+    defaults: { _controller: WebBundle:Showcase:index }
+
+showcase_coming_soon:
+    pattern:  /coming-soon
+    defaults: { _controller: WebBundle:Showcase:subscriptionComplete }

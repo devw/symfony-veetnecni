@@ -1,0 +1,58 @@
+{% extends 'WebBundle:Admin:layout.html.twig' %}
+
+{% block title %}
+    {{ 'admin.breadcrumb.teams.edition'|trans }}
+    - {{ 'admin.breadcrumb.teams.display'|trans({'%team_name%': team.name}) }}
+    - {{ 'admin.breadcrumb.teams.main'|trans }}
+    - {{ 'admin.breadcrumb.organization_management'|trans }}
+    - Incenteev
+{% endblock %}
+
+{% block breadcrumb %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{{ path('admin_home') }}">{{ 'admin.breadcrumb.organization_management'|trans }}</a>
+            <span class="divider">></span>
+        </li>
+        <li>
+            <a href="{{ path('admin_team_list') }}">{{ 'admin.breadcrumb.teams.main'|trans }}</a>
+            <span class="divider">></span>
+        </li>
+        <li>
+            <a href="{{ path('admin_team_show', {'id': team.id}) }}">{{ 'admin.breadcrumb.teams.display'|trans({'%team_name%': team.name}) }}</a>
+            <span class="divider">></span>
+        </li>
+        <li class="active">{{ 'admin.breadcrumb.teams.edition'|trans }}</li>
+    </ul>
+{% endblock %}
+
+
+{% block inner_content %}
+<h1 class="block-app-title">
+    {{ 'organization_team.title.edit'|trans }}
+</h1>
+
+<form action="{{ path('admin_team_edit', {'id': team.id}) }}" method="post" {{ form_enctype(form) }} class="form form-app">
+
+    {% form_theme form _self %}
+
+    {{ form_widget(form) }}
+
+    <div class="form-app-actions">
+        <ul class="form-app-actions-list list list-actions">
+            <li>
+                <button type="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                    {{ 'form.action.save'|trans }}
+                </button>
+            </li>
+        </ul>
+    </div>
+</form>
+{% endblock %}
+
+{% block _incenteev_organization_team_members_widget %}
+    {{ form_widget(form, {'attr': {
+        'data-placeholder': 'organization_team.placeholder.enter_name'|trans,
+        'data-no_results_text': 'organization_team.info.no_user_found'|trans
+    }}) }}
+{% endblock %}

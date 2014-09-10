@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="incenteev.listener.console_router" class="Incenteev\WebBundle\EventListener\CliRouterListener">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="router" />
+            <argument>%request_context.base_url%</argument>
+        </service>
+
+        <service id="incenteev.listener.flash" class="Incenteev\WebBundle\EventListener\FlashListener">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="session" />
+            <argument type="service" id="translator" />
+        </service>
+
+        <service id="incenteev.listener.password_resetting" class="Incenteev\WebBundle\EventListener\PasswordResettingListener">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="router" />
+        </service>
+
+        <service id="incenteev.listener.registration" class="Incenteev\WebBundle\EventListener\RegistrationListener">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="doctrine" />
+            <argument type="service" id="service_container" />
+        </service>
+    </services>
+
+</container>

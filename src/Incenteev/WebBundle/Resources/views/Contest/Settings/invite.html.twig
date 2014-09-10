@@ -1,0 +1,89 @@
+{% extends 'WebBundle:Contest/Settings:base.html.twig' %}
+
+{% block title %}
+    {{ 'contest.title.participants'|trans }}
+    - {{ 'contest.title.contest_title'|trans({'%contest_name%': contest.name}) }}
+    - Incenteev
+{% endblock %}
+
+{% block edit_title %}{{ 'contest_settings.title.participants'|trans({'%contest_name%': contest.name}) }}{% endblock edit_title %}
+{% block edit_subtitle %}{{ 'contest_settings.subtitle.participants'|trans }}{% endblock %}
+
+{% block edit_content %}
+<form action="{{ path('contest_settings_participants_delete', {'id': contest.id, 'page': app.request.query.get('page')}) }}"
+      method="post" class="form form-participants" data-confirm-submission="{{ 'contest.info.confirm_delete'|trans }}">
+
+    <h4>
+        {{ 'invitation.info.current_participants'|trans }}
+        ({{ participants|length }})
+    </h4>
+    {% if participants is not empty %}
+        <table class="table table-striped table-participants">
+            <thead>
+                <tr>
+                    <th class="user-roles">
+                        <input type="checkbox" data-toggle="check-all" data-target=".form-participants input[name='user_ids[]']">
+                    </th>
+                    <th>{{ 'user.label.name'|trans }}</th>
+                    <th>{{ 'user.label.email'|trans }}</th>
+                </tr>
+            </thead>
+            {% for user in participants %}
+                <tr>
+                    <td><input type="checkbox" name="user_ids[]" value="{{ user.id }}"></td>
+                    <td class="user">
+                        <img src="{{ get_avatar(user) }}" alt="" class="user-avatar">
+                        {% set user_last_name = user.lastName is not empty ? user.lastName ~ ', ' : '' %}
+                        {{ user_last_name ~ user.firstName }}
+                    </td>
+                    <td>
+                        {{ user.email }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>{{ 'invitation.info.no_participants'|trans }}</p>
+    {% endif %}
+    <div class="clearfix">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete_participants') }}">
+        {% if participants is not empty %}
+            <button type="submit" class="btn pull-left">
+                {{ 'contest_settings.action.remove_participants'|trans }}
+            </button>
+        {% endif %}
+        {% if participants.haveToPaginate %}
+            {{ pagerfanta(participants) }}
+        {% endif %}
+    </div>
+</form>
+
+<form action="{{ path('contest_settings_invite', {'id': contest.id, 'page': app.request.query.get('page')}) }}"
+      method="post" {{ form_enctype(form) }} class="form form-invitation" data-check-unload="true">
+    {% form_theme form _self %}
+
+    {{ form_widget(form, {'attr': {'class': 'form-invitation-container'}}) }}
+
+    <div class="form-app-actions">
+        <ul class="form-app-actions-list list list-actions">
+            <li>
+                <button type="submit" name="continue" value="true" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                    {{ 'contest_settings.action.save_and_continue'|trans }}
+                </button>
+            </li>
+            <li>
+                <button type="submit" name="stay" value="true" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                    {{ 'contest_settings.action.save'|trans }}
+                </button>
+            </li>
+        </ul>
+    </div>
+</form>
+{% endblock %}
+
+{% block _incenteev_contest_invitation_owners_widget %}
+    {{ form_widget(form, {'attr': {
+        'data-placeholder': 'invitation.placeholder.enter_name'|trans,
+        'data-no_results_text': 'invitation.info.no_user_found'|trans
+    }}) }}
+{% endblock %}

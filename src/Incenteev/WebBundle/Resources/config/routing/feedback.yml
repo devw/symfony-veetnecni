@@ -1,0 +1,6 @@
+feedback_send:
+    pattern:  /feedback
+    defaults: { _controller: WebBundle:Feedback:send, _format: json }
+    requirements: { _method: POST }
+    options:
+        expose: true

@@ -1,0 +1,13 @@
+{% block subject %}
+{% autoescape false %}
+{{ email }} wants to register.
+{% endautoescape %}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+Dear Incenteev team,
+{{ email }} wants to register on Incenteev.
+Brace yourselves, clients are coming!
+{% endautoescape %}
+{% endblock %}

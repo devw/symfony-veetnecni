@@ -1,0 +1,58 @@
+{% extends 'WebBundle:Contest/Confirmation:layout.html.twig' %}
+
+{% block title %}
+    {{ 'confirmation.page_title.upload_photo'|trans }}
+    - {{ 'contest.title.contest_title'|trans({'%contest_name%': contest.name}) }}
+    - Incenteev
+{% endblock %}
+
+{% block content %}
+    <h1 class="block-app-title">
+        {{ 'confirmation.title.upload_photo'|trans }}
+        <small>{{ 'confirmation.subtitle.upload_photo'|trans }}</small>
+    </h1>
+
+    {% set menu = knp_menu_get('WebBundle:MenuBuilder:contestConfirmationMenu', [], {'participation': participation}) %}
+
+    {{ knp_menu_render(menu, {'currentAsLink': false, 'currentClass' : 'active', 'template': 'WebBundle:Menu:confirmation.html.twig'}) }}
+
+    <div class="row-fluid">
+        <div class="span7">
+            <form action="{{ path('confirmation_choose_avatar', {'token': participation.token, 'id': participation.contest.id, 'full-process': app.request.query.get('full-process')}) }}" method="post" {{ form_enctype(form) }} class="form form-app">
+                {% form_theme form _self %}
+                {{ form_widget(form) }}
+
+                <div class="form-app-actions">
+                    <ul class="form-app-actions-list list list-actions">
+                        <li>
+                            <button type="submit" name="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                                {{ 'confirmation.action.save_and_continue'|trans }}
+                            </button>
+                        </li>
+                        <li>
+                            <a href="{{ path('contest_show', {'id': contest.id}) }}" class="btn btn-link button-link-small">
+                                {{ 'confirmation.action.skip'|trans }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div class="span5">
+            <h5>{{ 'confirmation.title.choose_avatar'|trans }}</h5>
+            <p class="text text-justify text-small">{{ 'confirmation.info.choose_avatar'|trans }}</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _form_avatar_widget %}
+    <div class="media">
+        {% set user = form.parent.vars.data %}
+        {% if user is not null %}
+            <img src="{{ get_avatar(user) }}" class="avatar avatar-big pull-left">
+        {% endif %}
+        <div class="media-body">
+            {{ form_widget(form) }}
+        </div>
+    </div>
+{% endblock %}

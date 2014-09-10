@@ -1,0 +1,4 @@
+registration_confirm:
+    pattern:  /confirm/{token}
+    defaults: { _controller: WebBundle:Registration:confirm }
+    requirements: { _method: get|post, token: '\w+' }

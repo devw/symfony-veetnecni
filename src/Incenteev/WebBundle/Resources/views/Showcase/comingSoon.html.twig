@@ -1,0 +1,18 @@
+{% extends 'WebBundle:Layout:showcase.html.twig' %}
+
+{% block title %}
+    {{ 'registration.title.registered'|trans }} -
+    Incenteev
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="marketing row">
+        <h1>{{ 'registration.title.registered'|trans }}</h1>
+
+        <p class="marketing-placeholder">{{ 'registration.info.subscription_saved'|trans }}</p>
+
+        {% include 'WebBundle:Showcase:socialLinks.html.twig' %}
+    </div>
+</div>
+{% endblock %}

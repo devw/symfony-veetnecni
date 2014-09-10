@@ -1,0 +1,32 @@
+{% extends 'WebBundle:Contest/Settings:base.html.twig' %}
+
+{% block title %}
+    {{ 'contest.title.teams'|trans }}
+    - {{ 'contest.title.contest_title'|trans({'%contest_name%': contest.name}) }}
+    - Incenteev
+{% endblock %}
+
+{% block edit_title %}{{ 'contest_settings.title.teams'|trans({'%contest_name%': contest.name}) }}{% endblock edit_title %}
+{% block edit_subtitle %}{{ 'contest_settings.subtitle.teams'|trans }}{% endblock %}
+
+{% block edit_content %}
+<form action="{{ path('contest_settings_teams', {'id': contest.id}) }}" method="post" {{ form_enctype(form) }} class="form form-app form-teams" data-check-unload="true">
+
+    {{ form_widget(form, {'attr': {'class': 'form-app-teams-container collection'}}) }}
+
+    <div class="form-app-actions">
+        <ul class="form-app-actions-list list list-actions">
+            <li>
+                <button type="submit" name="continue" value="true" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                    {{ 'contest_settings.action.save_and_continue'|trans }}
+                </button>
+            </li>
+            <li>
+                <button type="submit" name="stay" value="true" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                    {{ 'contest_settings.action.save'|trans }}
+                </button>
+            </li>
+        </ul>
+    </div>
+</form>
+{% endblock %}

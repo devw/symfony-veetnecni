@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="incenteev.contest.data_entry_manager" class="Incenteev\WebBundle\Contest\DataEntryManager">
+            <argument type="service" id="doctrine" />
+        </service>
+
+        <service id="incenteev.contest.invitation_manager" class="Incenteev\WebBundle\Contest\InvitationManager">
+            <argument type="service" id="doctrine" />
+            <argument type="service" id="incenteev.mailer" />
+            <argument type="service" id="fos_user.util.token_generator" />
+            <argument type="service" id="incenteev.util.name_guesser" />
+        </service>
+
+        <service id="incenteev.contest.publisher" class="Incenteev\WebBundle\Contest\Publisher">
+            <argument type="service" id="doctrine" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="incenteev.contest.invitation_manager" />
+            <argument type="service" id="fos_comment.manager.thread" />
+        </service>
+
+        <service id="incenteev.contest.cloner" class="Incenteev\WebBundle\Contest\Cloner">
+            <argument type="service" id="doctrine" />
+            <argument type="service" id="incenteev.contest.invitation_manager" />
+            <argument type="service" id="incenteev.avatar.path_resolver" />
+            <argument type="service" id="incenteev.util.upload_filesystem" />
+        </service>
+
+        <service id="incenteev.contest.periodicity_guesser" class="Incenteev\WebBundle\Contest\PeriodicityGuesser" />
+    </services>
+
+</container>

@@ -1,0 +1,55 @@
+// ------------------------------
+// Table Module
+// ------------------------------
+
+
+// Users Rank Table
+// -------------------------
+.table-users-rank {
+    border: 1px solid @appBorderColor;
+    border-left: 0;
+
+    > thead > tr > th {
+        .gradientBar(@rankGradientStartColor, @rankGradientEndColor, @colorDarkGray, 0 1px 0 @colorWhite);
+        *filter: none;
+    }
+
+    tr > th,
+    tr > td {
+        color: @contentColor;
+        border-left: 1px solid @tableBorder;
+        padding: 5px;
+        text-shadow: @contentShadowColor;
+        vertical-align: middle;
+    }
+
+    .rank-users-position {
+        text-align: center;
+        width: 25px;
+    }
+
+    .rank-users-score {
+        text-align: right;
+    }
+
+    .rank-users-prize {
+        .avatarPicture();
+    }
+
+    > tbody > tr.rank-users-current > td {
+        font-weight: bold;
+    }
+}
+
+// Users Admin Table
+// -------------------------
+.table-users-admin {
+    td,
+    th {
+        vertical-align: middle;
+    }
+
+    .user-roles {
+        text-align: center;
+    }
+}

@@ -1,0 +1,61 @@
+{% extends 'WebBundle:Contest/Confirmation:layout.html.twig' %}
+
+{% block title %}
+    {{ 'confirmation.page_title.welcome'|trans }}
+    - {{ 'contest.title.contest_title'|trans({'%contest_name%': contest.name}) }}
+    - Incenteev
+{% endblock %}
+
+{% block content %}
+    <h1 class="block-app-title">
+        {{ 'confirmation.title.welcome'|trans({'%contest_name%': participation.contest.name, '%organization_name%': participation.contest.organization.name}) }}
+        <small>{{ 'confirmation.subtitle.welcome'|trans }}</small>
+    </h1>
+
+    {% set menu = knp_menu_get('WebBundle:MenuBuilder:contestConfirmationMenu', [], {'participation': participation}) %}
+
+    {{ knp_menu_render(menu, {'currentAsLink': false, 'currentClass' : 'active', 'template': 'WebBundle:Menu:confirmation.html.twig'}) }}
+
+    <div class="row-fluid">
+        <div class="span7">
+            <form action="{{ path('confirmation_with_registration', {'token': participation.token, 'id': participation.contest.id, 'full-process': app.request.query.get('full-process')}) }}"
+          method="post" {{ form_enctype(form) }} class="form form-app">
+                {{ form_widget(form) }}
+
+                <div class="form-app-actions">
+                    <ul class="form-app-actions-list list list-actions">
+                        <li>
+                            <button type="submit" data-loading-text="{{ 'layout.messages.loading'|trans }}" class="btn button-submit button-main">
+                                {{ 'confirmation.action.save_and_continue'|trans }}
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div class="span5">
+            <div class="media">
+                <div class="pull-left">
+                    {% set inviter = participation.invitedBy %}
+                    <img src="{{ get_avatar(inviter) }}" alt="" class="avatar avatar-big">
+                </div>
+                <div class="media-body">
+                    <div class="text text-justify text-small">
+                        {{ 'confirmation.info.invited_by'|trans({'%inviter_name%' : inviter.name, '%contest_name%' : participation.contest.name, '%organization_name%' : participation.contest.organization.name})|markdown }}
+                    </div>
+                    <p class="text text-justify text-small">{{ 'confirmation.info.about_incenteev'|trans }}</p>
+                </div>
+                {% if board is defined and board is not empty %}
+                    <ul class="thumbnails">
+                        {% for item in board %}
+                            <li class="user" title="{{ item.participation.user.name }}">
+                                <img src="{{ get_avatar(item.participation.user) }}" alt="" class="avatar avatar-normal">
+                                <div class="user-name text text-center text-small muted">{{ item.participation.user.firstName }}</div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

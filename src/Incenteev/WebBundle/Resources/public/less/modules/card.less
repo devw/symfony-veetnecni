@@ -1,0 +1,184 @@
+// ------------------------------
+// Card Module
+// ------------------------------
+
+
+// Core
+// -------------------------
+.card {
+    background: @cardBackgroundColor;
+    min-width: 150px;
+    position: relative;
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .card-figure,
+    .card-avatar,
+    .card-data {
+        display: inline-block;
+        .ie7-inline-block();
+    }
+
+    .card-figure,
+    .card-avatar {
+        margin: 0;
+        vertical-align: top;
+    }
+
+    .card-avatar {
+        .avatarPicture(32px);
+    }
+
+    .card-data {
+        .card-data-name {
+            color: @contentColor;
+            font-size: @normalFontSize;
+            font-weight: bold;
+            line-height: @normalLineHeight;
+        }
+
+        .card-data-status {
+            font-size: @miniFontSize;
+            font-weight: normal;
+            line-height: @miniLineHeight;
+            margin-bottom: 0;
+            text-transform: uppercase;
+        }
+
+        .card-data-detail {
+            color: @contentColor;
+            font-size: @smallFontSize;
+            line-height: @smallLineHeight;
+            margin-bottom: 0;
+            text-shadow: @contentShadowColor;
+        }
+    }
+}
+
+
+// User Card
+// -------------------------
+.card-user {
+    .card-avatar {
+        .avatarPicture(50px);
+    }
+
+    .card-data-name {
+        .text-overflow();
+        width: 120px;
+    }
+}
+
+
+// Contest Card
+// -------------------------
+.card-contest {
+    .card-figure {
+        float: left;
+        margin-right: 10px;
+        position: relative;
+
+        .card-avatar {
+            .avatarPicture(100px);
+        }
+
+        .card-caption {
+            .border-radius(0);
+            bottom: 0;
+            left: 0;
+            padding: 2px 0;
+            position: absolute;
+            text-align: center;
+            width: 100px;
+        }
+    }
+
+    .card-data {
+        .card-data-name {
+            margin-bottom: 0;
+        }
+    }
+
+    .card-data-actions {
+        .clearfix();
+        margin: 10px -4px 0;
+        border-top: 1px solid @borderColor;
+
+        > li {
+            float: left;
+            margin-bottom: -4px;
+            width: 25%;
+
+            &:first-child a,
+            &:first-child .submit {
+                border-left: none;
+            }
+
+            a,
+            .submit {
+                .text-overflow();
+                background-color: @colorWhiteSmoke;
+                border: none;
+                border-left: 1px solid @borderColor;
+                display: block;
+                font-size: @smallFontSize;
+                line-height: @smallLineHeight;
+                padding: 5px 0;
+                text-align: center;
+                text-decoration: none;
+                width: 100%;
+
+                &:hover {
+                    background-color: @cardBackgroundColor;
+                }
+            }
+
+            form {
+                display: inline;
+            }
+        }
+    }
+}
+
+
+// Prize Card
+// -------------------------
+.card-prize {
+    margin-top: 0;
+
+    .card-avatar {
+        .avatarPicture(48px);
+        float: left;
+        margin-right: 10px;
+    }
+}
+
+
+// Small Card
+// -------------------------
+.card-small {
+    min-width: 50px;
+
+    .card-avatar {
+        .avatarPicture(32px);
+    }
+
+    .card-data-name {
+        width: 50px;
+    }
+}
+
+
+// Block Card
+// -------------------------
+.card-block {
+    .box-sizing(border-box);
+    display: block;
+    width: 100%;
+
+    .card-data-name {
+        width: 100%;
+    }
+}

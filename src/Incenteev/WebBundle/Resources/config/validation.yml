@@ -1,0 +1,34 @@
+# TODO drop this file once FOSUserBundle has been refactored to provide finer validation groups
+FOS\UserBundle\Model\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: emailCanonical
+            errorPath: email
+            message: fos_user.email.already_used
+            groups: [FullRegistration, AdminRegistration]
+
+    properties:
+        email:
+            - NotBlank:
+                message: fos_user.email.blank
+                groups: [FullRegistration, AdminRegistration]
+            - MinLength:
+                limit: 2
+                message: fos_user.email.short
+                groups: [FullRegistration, AdminRegistration]
+            - MaxLength:
+                limit: 254
+                message: fos_user.email.long
+                groups: [FullRegistration, AdminRegistration]
+            - Email:
+                message: fos_user.email.invalid
+                groups: [FullRegistration, AdminRegistration]
+
+        plainPassword:
+            - NotBlank:
+                message: fos_user.password.blank
+                groups: [FullRegistration, ProfileRegistration]
+            - MinLength:
+                limit: 2
+                message: fos_user.password.short
+                groups: [FullRegistration, ProfileRegistration]
